@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>The Gamma: Embedding sample</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://thegamma.net/lib/thegamma/thegamma.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <style>
+body { 
+  margin:0px;
+  padding:0px;
+  background:white;
+}
+#trig {
+  width:100%;
+  height:100vh;
+  position:absolute;
+  overflow:hidden;
+  z-index:-1;
+}
+#trig1:after{
+  height:50vw;
+  width:100vw;
+  position:absolute;
+  left:17vw;
+  top:-42vw;
+  z-ms-transform:skew(20deg,0deg);
+  z-webkit-transform:skew(20deg,0deg);
+  transform:rotate(10deg) skew(-40deg,0deg);
+  content:'';
+  display:block;
+  background:#ff7700;
+  z-index:-1;
+}
+article {
+  font-family:Roboto;
+  padding:5vw 0px 100px 0px;
+  padding-bottom:300px;
+}
+article h1 {
+  font-weight:700;
+  font-size:28pt;
+  line-height:1.2em;
+  margin:10px 0px 30px 0px;
+}
+article h2 {
+  font-weight:500;
+  font-size:22pt;
+  line-height:1.2em;
+  margin:40px 0px 10px 0px;
+  border-top:solid 3px black;
+  display:inline-block;
+}
+article h2 span {
+  padding-top:2px;
+  display:inline-block;
+}
+article h3 {
+  font-weight:700;
+  font-size:18pt;
+  line-height:1.2em;
+  margin:30px 0px 10px 0px;
+}
+article p {
+  font-weight:400;  
+  font-size:13pt;  
+  line-height:1.7em;
+  margin:0px 0px 25px 0px;
+}
+
+article a {
+  text-decoration:none;
+  color:#1A6EBC;
+}
+article a:hover, article a:active {
+  color:#2191F2;
+}
+
+article .thegamma-edit a {
+  font-size:11pt;
+  text-decoration:none;
+  color:#8a8a8a;
+}
+article .thegamma-edit a:hover, article .thegamma-edit a:active {
+  color:#bababa;
+}
+
+.thegamma-edit a i {
+  margin-right:5px;
+}
+.thegamma-edit {
+  text-align:right;
+  margin-right:20px;
+  height:0px;
+}
+.thegamma-table-out .thegamma-out {
+  margin-top:40px;
+  max-height:350px;
+  overflow-y:scroll;
+}
+
+.thegamma-sizer {
+  max-width:1000px;
+}
+.thegamma-dialog-window {
+  max-width:1000px;
+  margin-top:5% !important;
+  height:80% !important;
+}
+
+  </style>
+</head>
+<body>
+  <div id="trig"><div id="trig1"></div><div id="trig2"></div></div>
+  <article class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h1>The Alan Turing Institute<br/>In numbers 2017</h1>
+      <p>Bacon ipsum dolor amet tenderloin pork chop jerky chuck shank. Filet mignon venison picanha, boudin corned beef pig jerky brisket hamburger 
+        chicken drumstick andouille cow tail. Short ribs ham brisket kielbasa burgdoggen, cupim leberkas bresaola tenderloin picanha pork loin. 
+        Drumstick jowl landjaeger, sausage pork loin flank spare ribs filet mignon t-bone pancetta beef ribs venison andouille. Short loin t-bone 
+        jerky bacon ground round prosciutto corned beef tail ribeye pork chop chuck. Turducken burgdoggen beef ribs pork chop cow ground round swine. 
+        T-bone pancetta tongue doner, kevin ribeye meatloaf bacon venison.</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="left col-md-6">
+      <p>Bacon ipsum dolor amet tenderloin pork chop jerky chuck shank. Filet mignon venison picanha, boudin corned beef pig jerky brisket hamburger 
+        chicken drumstick andouille cow tail. Short ribs ham brisket kielbasa burgdoggen, cupim leberkas bresaola tenderloin picanha pork loin. 
+        Drumstick jowl landjaeger, sausage pork loin flank spare ribs filet mignon t-bone pancetta beef ribs venison andouille. Short loin t-bone 
+        jerky bacon ground round prosciutto corned beef tail ribeye pork chop chuck. Turducken burgdoggen beef ribs pork chop cow ground round swine. 
+        T-bone pancetta tongue doner, kevin ribeye meatloaf bacon venison.</p>
+    </div>
+    <div class="right col-md-6">
+      <div style="background:#f0f0f0;margin:10px 50px 20px 50px;padding:20px">
+        <h3><i class="fa fa-search"></i> &nbsp; Don't like games</h3>
+        <h3><i class="fa fa-refresh"></i> &nbsp; Play again</h3>
+        <h3><i class="fa fa-twitter"></i> &nbsp; Share your score</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">    
+      <h2><span>People at the Alan Turing Institute</span></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="left col-md-4">
+      <h3><span>People at the Turing</span></h3>
+      <p>Pancetta biltong ham hock bresaola ribeye, picanha turkey leberkas strip steak short ribs frankfurter sausage. Capicola ribeye spare ribs bacon 
+        tri-tip short ribs frankfurter fatback. Flank corned beef turducken, drumstick chicken shankle boudin sausage t-bone burgdoggen tongue ham. Pork 
+        belly spare ribs shank picanha. Pork loin meatloaf short loin rump salami cupim.</p>
+    </div>
+    <div class="right col-md-8">
+      <div class="thegamma" id="people"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="left col-md-4">
+      <h3><span>Faculty Fellows</span></h3>
+      <p>Pancetta biltong ham hock bresaola ribeye, picanha turkey leberkas strip steak short ribs frankfurter sausage. Capicola ribeye spare ribs bacon 
+        tri-tip short ribs frankfurter fatback. Flank corned beef turducken, drumstick chicken shankle boudin sausage t-bone burgdoggen tongue ham. Pork 
+        belly spare ribs shank picanha. Pork loin meatloaf short loin rump salami cupim.</p>
+    </div>
+    <div class="right col-md-8">
+      <div class="thegamma" id="faculty"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="right col-md-8">
+      <h3>Explore more abot everyone</h3>
+      <p>Pancetta biltong ham hock bresaola ribeye, picanha turkey leberkas strip steak short ribs frankfurter sausage. Capicola ribeye spare ribs bacon 
+        tri-tip short ribs frankfurter fatback. Flank corned beef turducken, drumstick chicken shankle boudin sausage t-bone burgdoggen tongue ham. Pork 
+        belly spare ribs shank picanha. Pork loin meatloaf short loin rump salami cupim.</p>
+      <div class="thegamma thegamma-table-out" id="listing"></div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12">    
+      <h2><span>Events at the Alan Turing Institute</span></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="left col-md-4">
+      <h3><span>People at the Turing</span></h3>
+      <p>Pancetta biltong ham hock bresaola ribeye, picanha turkey leberkas strip steak short ribs frankfurter sausage. Capicola ribeye spare ribs bacon 
+        tri-tip short ribs frankfurter fatback. Flank corned beef turducken, drumstick chicken shankle boudin sausage t-bone burgdoggen tongue ham. Pork 
+        belly spare ribs shank picanha. Pork loin meatloaf short loin rump salami cupim.</p>
+    </div>
+    <div class="right col-md-8">
+      <div class="thegamma" id="peoplez"></div>
+    </div>    
+  </div>
+  
+  
+
+<script type="text/thegamma" id="people-code">
+let data =
+  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+    .'group data'.'by Role'.'count all'.then
+    .'get series'.'with key Role'.'and value count'
+
+youguess.bars(data).setMaximum(150)
+</script>
+<script type="text/thegamma" id="faculty-code">
+let data =
+  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+    .'filter data'.'Role is'.'Faculty Fellow'.then
+    .'group data'.'by University'.'count all'.then
+    .'get series'.'with key University'.'and value count'
+
+youguess.bars(data)
+</script>
+<script type="text/thegamma" id="listing-code">
+let data = 
+ shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+  .'filter data'.'Role is'.'Faculty Fellow'
+    .'and University is'.Cambridge.then
+  .'get the data'
+
+table.create(data)
+</script>
+<script type="text/javascript">
+var thegamma=["people","faculty","listing"];
+</script>
+
+
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.0.18/babel.min.js"></script>
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.0.18/core-js.min.js"></script>
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.0.18/require.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/lib/embed.js"></script>
+
+
+  
+  
+  
+      </div>
+    </div>
+  </article>
+</body>
+</html>
