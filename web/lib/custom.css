@@ -1,5 +1,5 @@
 /* Overall page design and Turing-style triangle at the top */
-body { 
+body {
   margin:0px;
   padding:0px;
   background:white;
@@ -57,14 +57,14 @@ article h3 {
   margin:30px 0px 10px 0px;
 }
 article p {
-  font-weight:400;  
-  font-size:13pt;  
+  font-weight:400;
+  font-size:13pt;
   line-height:1.7em;
   margin:0px 0px 25px 0px;
 }
 article select {
-  font-weight:400;  
-  font-size:11pt;  
+  font-weight:400;
+  font-size:11pt;
 }
 
 article a {
@@ -98,7 +98,7 @@ article .toppad {
 }
 .thegamma-table-out .thegamma-out {
   margin:40px 0px 40px 0px;
-  height:365px;
+  height:270px;
   overflow:scroll;
 }
 .thegamma-table-out table {

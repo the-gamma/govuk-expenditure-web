@@ -1,10 +1,10 @@
 if (!thegammaInit) { var thegammaInit = false; }
 
-// We're not using any framework here (to keep it self-contained), 
+// We're not using any framework here (to keep it self-contained),
 // so the following implements simple dialog boxes for showing the code.
 function openDialog(id) {
   document.getElementById("thegamma-" + id + "-dialog").style.display="block";
-  setTimeout(function() { 
+  setTimeout(function() {
     document.getElementById("thegamma-" + id + "-dialog").style.opacity=1;
     document.getElementById("thegamma-" + id + "-dialog-window").style.top="0px";
   },1);
@@ -12,7 +12,7 @@ function openDialog(id) {
 function closeDialog(id) {
   document.getElementById("thegamma-" + id + "-dialog").style.opacity=0;
   document.getElementById("thegamma-" + id + "-dialog-window").style.top="-500px";
-  setTimeout(function() { 
+  setTimeout(function() {
     document.getElementById("thegamma-" + id + "-dialog").style.display="none";
   },400)
 }
@@ -23,32 +23,33 @@ function loadTheGamma() {
     paths:{'vs':'node_modules/monaco-editor/min/vs'},
     map:{ "*":{"monaco":"vs/editor/editor.main"}}
   });
-  require(["vs/editor/editor.main", "node_modules/thegamma-script/dist/thegamma.js"], function (_, g) {      
+  require(["vs/editor/editor.main", "node_modules/thegamma-script/dist/thegamma.js"], function (_, g) {
     // Go over all the visualizations as defined by 'var thegamma = [ .. ]' in the index.html file
     thegamma.forEach(function (info) {
-      
+
       // Define the providers available in the visualizations
       var id = info.id;
-      var services = "https://thegamma-services.azurewebsites.net/";      
-      var providers = 
-        g.providers.createProviders({ 
+      var services = "https://thegamma-services.azurewebsites.net/";
+      var providers =
+        g.providers.createProviders({
           "worldbank": g.providers.rest(services + "worldbank"),
           "libraries": g.providers.library("node_modules/thegamma-script/dist/libraries.json"),
           "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing", null, true),
-          "olympics": g.providers.pivot(services + "pdata/olympics") });
-        
+          "olympics": g.providers.pivot(services + "pdata/olympics"),
+          "expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
+
       // Create context and setup error handler
       var ctx = g.gamma.createContext(providers);
-      ctx.errorsReported(function (errs) { 
-        var lis = errs.slice(0, 5).map(function (e) { 
+      ctx.errorsReported(function (errs) {
+        var lis = errs.slice(0, 5).map(function (e) {
           return "<li><span class='err'>error " + e.number + "</span>" +
             "<span class='loc'>at line " + e.startLine + " col " + e.startColumn + "</span>: " +
             e.message;
-        });        
+        });
         var ul = "<ul>" + lis + "</ul>";
         document.getElementById("thegamma-" + id + "-errors").innerHTML = ul;
       });
-      
+
       // Specify options and create the editor
       var opts =
         { height: document.getElementById("thegamma-" + id + "-sizer").clientHeight-250,
@@ -60,11 +61,11 @@ function loadTheGamma() {
             m.lineNumbers = false;
           } };
       var editor = ctx.createEditor("thegamma-" + id + "-ed", code, opts);
-      
+
       // Set source code, evalate it and generate options for <select> elements
       // (only when there are placeholders and 'info.editors' is specified)
       function setSource(code) {
-        ctx.evaluate(code, "thegamma-" + id + "-out");      
+        ctx.evaluate(code, "thegamma-" + id + "-out");
         editor.setValue(code);
         if (info.editors) {
           // Type check the source code & get result (as a JS promise)
@@ -86,13 +87,13 @@ function loadTheGamma() {
                       var sel = m == selected.name ? " selected" : "";
                       html += "<option value='" + m + "'" + sel + ">" + m + "</option>";
                     });
-                  
+
                   // Set elements of the drop down. When selection changes,
                   // replace the placeholder in the source code with a new one.
                   var drop = document.getElementById(info.editors + "-" + place.name);
-                  drop.onchange = function() { 
-                    var newCode = code.substr(0, place.range.start) + 
-                      "[" + place.name + ":'" + drop.value + "']" + 
+                  drop.onchange = function() {
+                    var newCode = code.substr(0, place.range.start) +
+                      "[" + place.name + ":'" + drop.value + "']" +
                       code.substr(place.range.end + 1);
                     setSource(newCode);
                   };
@@ -102,9 +103,9 @@ function loadTheGamma() {
           });
         }
       }
-      
+
       // Get and run default code, setup update handler
-      var code = document.getElementById(id + "-code").innerHTML;      
+      var code = document.getElementById(id + "-code").innerHTML;
       setSource(code);
       document.getElementById("thegamma-" + id + "-update").onclick = function() {
         ctx.evaluate(editor.getValue(), "thegamma-" + id + "-out");
@@ -118,10 +119,10 @@ function loadTheGamma() {
 // Generate HTML for each dialog box
 function initTheGamma() {
   thegamma.forEach(function(info) {
-    var el = document.getElementById(info.id);  
-    el.innerHTML = 
+    var el = document.getElementById(info.id);
+    el.innerHTML =
       ("<div class='thegamma-edit'><a href='javascript:openDialog(\"[ID]\")'><i class='fa fa-code'></i> open source code</a></div>" +
-      '<div id="thegamma-[ID]-out" class="thegamma-out"><p class="placeholder">Loading the visualization...</p></div>' +      
+      '<div id="thegamma-[ID]-out" class="thegamma-out"><p class="placeholder">Loading the visualization...</p></div>' +
       '<div id="thegamma-[ID]-sizer" class="thegamma-sizer"></div>' +
       '<div id="thegamma-[ID]-dialog" class="thegamma-dialog">' +
       '  <div id="thegamma-[ID]-dialog-window" class="thegamma-dialog-window">' +
@@ -133,8 +134,8 @@ function initTheGamma() {
   loadTheGamma();
 }
 
-if (!thegammaInit) { 
-  thegammaInit=true; 
+if (!thegammaInit) {
+  thegammaInit=true;
   var ol = window.onload;
   window.onload = function() { initTheGamma(); if (ol) ol(); };
   var link = '<link href="https://thegamma.net/lib/thegamma-0.1/thegamma.css" rel="stylesheet">';
