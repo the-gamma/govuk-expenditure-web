@@ -108,7 +108,10 @@ article .toppad {
 .thegamma-table-out .thegamma-out {
   margin:40px 0px 40px 0px;
   height:365px;
-  overflow-y:scroll;
+  overflow:scroll;
+}
+.thegamma-table-out table {
+  min-width:600px;
 }
 .thegamma-table-out ::-webkit-scrollbar  {
   width:6px;
@@ -212,7 +215,7 @@ article .toppad {
         belly spare ribs shank picanha. Pork loin meatloaf short loin rump salami cupim.</p>
     </div>
     <div class="col-md-4">      
-      <div class="hidden-sm" style="height:80px;"></div>
+      <div class="hidden-sm hidden-xs" style="height:80px;"></div>
       <div class="form-group">
         <label for="listing-options-role" class="control-label">Filter by role</label>
         <div><select class="form-control" style="max-width:300px" id="listing-options-role"></select></div>
@@ -246,6 +249,19 @@ article .toppad {
         belly spare ribs shank picanha. Pork loin meatloaf short loin rump salami cupim.</p>
     </div>
     <div class="toppad col-md-8">
+      <div class="thegamma" id="videos"></div>
+    </div>    
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3><span>People at the Turing</span></h3>
+      <p>Pancetta biltong ham hock bresaola ribeye, picanha turkey leberkas strip steak short ribs frankfurter sausage. Capicola ribeye spare ribs bacon 
+        tri-tip short ribs frankfurter fatback. Flank corned beef turducken, drumstick chicken shankle boudin sausage t-bone burgdoggen tongue ham. Pork 
+        belly spare ribs shank picanha. Pork loin meatloaf short loin rump salami cupim.</p>
+    </div>
+    <div class="toppad col-md-8">
+      <div class="thegamma" id="bubbles"></div>
       <div class="thegamma" id="views"></div>
     </div>    
   </div>
@@ -258,7 +274,7 @@ let data =
     .'group data'.'by Role'.'count all'.then
     .'get series'.'with key Role'.'and value count'
 
-youguess.bars(data).setMaximum(150)
+youguess.bars(data).setMaximum(150).setSize(height=300)
 </script>
 <script type="text/thegamma" id="faculty-code">
 let data =
@@ -267,7 +283,7 @@ let data =
     .'group data'.'by University'.'count all'.then
     .'get series'.'with key University'.'and value count'
 
-youguess.bars(data)
+youguess.bars(data).setSize(height=350)
 </script>
 <script type="text/thegamma" id="listing-code">
 let data = 
@@ -278,7 +294,7 @@ let data =
 
 table.create(data).set(emptyText="No records match the selected criteria")
 </script>
-<script type="text/thegamma" id="views-code">let data =
+<script type="text/thegamma" id="videos-code">let data =
   shared.'by date'.'May 2017'.'YouTube views by video'
     .'filter data'
         .'Video title is'.'Fellow Short Talks: Dr Tomas Petricek, The Alan Turing Institute'
@@ -292,8 +308,37 @@ table.create(data).set(emptyText="No records match the selected criteria")
 
 youguess.sortBars(data).setSize(height=500)
 </script>
+<script type="text/thegamma" id="views-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube Views per Date'
+    .windowing.'window by date'(40)
+      .'middle date'.'mean views'.then
+    .'get series'.'with key middle date'.'and value views'
+
+let sample = 
+  data.filterIndex(fun n -> n % 7 = 0)    
+
+youguess.line(sample)
+  .setClip(date.date(2016,10,20))
+  .setSize(height=300)
+</script>
+
+<script type="text/thegamma" id="bubbles-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube views by video'.'get the data'
+
+compost.charts.bubbles(data)
+  .set(
+    x = fun v -> v.'Video created',
+    y = fun v -> math.log(v.Views),
+    size = fun v -> math.log(v.Views) ^ 1.25)
+  .setColors("#ffa070")
+  .setSize(height=300)
+</script>
+
 <script type="text/javascript">
-var thegamma=[{id:"people"},{id:"faculty"},{id:"listing",editors:"listing-options"},{id:"views"}];
+var thegamma = 
+  [ {id:"people"}, {id:"faculty"},
+    {id:"listing", editors:"listing-options"},
+    {id:"videos"}, {id:"views"}, {id:"bubbles"} ];
 </script>
 
 

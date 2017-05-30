@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "Minimal sample web site showing how to use The Gamma project",
   "scripts": {
-    "start": "concurrently \"node server.js\" \"open-cli http://localhost:8089\""
+    "start": "concurrently \"node server.js\" \"open-cli http://localhost:8083\""
   },
   "repository": {
     "type": "git",
