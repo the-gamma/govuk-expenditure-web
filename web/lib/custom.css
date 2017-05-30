@@ -1,0 +1,135 @@
+/* Overall page design and Turing-style triangle at the top */
+body { 
+  margin:0px;
+  padding:0px;
+  background:white;
+}
+#trig {
+  width:100%;
+  height:100vh;
+  position:absolute;
+  overflow:hidden;
+  z-index:-1;
+}
+#trig1:after{
+  height:50vw;
+  width:100vw;
+  position:absolute;
+  left:17vw;
+  top:-42vw;
+  z-ms-transform:skew(20deg,0deg);
+  z-webkit-transform:skew(20deg,0deg);
+  transform:rotate(10deg) skew(-40deg,0deg);
+  content:'';
+  display:block;
+  background:#ff7700;
+  z-index:-1;
+}
+
+/* Formatting for the article text, headings and standard docment elements */
+article {
+  font-family:Roboto;
+  padding:5vw 0px 100px 0px;
+  padding-bottom:300px;
+}
+article h1 {
+  font-weight:700;
+  font-size:28pt;
+  line-height:1.2em;
+  margin:10px 0px 30px 0px;
+}
+article h2 {
+  font-weight:500;
+  font-size:22pt;
+  line-height:1.2em;
+  margin:40px 0px 10px 0px;
+  border-top:solid 3px black;
+  display:inline-block;
+}
+article h2 span {
+  padding-top:2px;
+  display:inline-block;
+}
+article h3 {
+  font-weight:700;
+  font-size:18pt;
+  line-height:1.2em;
+  margin:30px 0px 10px 0px;
+}
+article p {
+  font-weight:400;  
+  font-size:13pt;  
+  line-height:1.7em;
+  margin:0px 0px 25px 0px;
+}
+article select {
+  font-weight:400;  
+  font-size:11pt;  
+}
+
+article a {
+  text-decoration:none;
+  color:#1A6EBC;
+}
+article a:hover, article a:active {
+  color:#2191F2;
+}
+
+article .thegamma-edit a {
+  font-size:11pt;
+  text-decoration:none;
+  color:#8a8a8a;
+}
+article .thegamma-edit a:hover, article .thegamma-edit a:active {
+  color:#bababa;
+}
+article .toppad {
+  padding-top:30px;
+}
+
+/* Edit source code link and scrollable table outputs */
+.thegamma-edit a i {
+  margin-right:5px;
+}
+.thegamma-edit {
+  text-align:right;
+  margin-right:20px;
+  height:0px;
+}
+.thegamma-table-out .thegamma-out {
+  margin:40px 0px 40px 0px;
+  height:365px;
+  overflow:scroll;
+}
+.thegamma-table-out table {
+  min-width:600px;
+}
+.thegamma-table-out ::-webkit-scrollbar  {
+  width:6px;
+  height:6px;
+  background:transparent;
+}
+.thegamma-table-out ::-webkit-scrollbar-track {
+  background:transparent;
+}
+.thegamma-table-out ::-webkit-scrollbar-thumb {
+  border-radius:3px;
+  background-color:#dddddd;
+}
+
+/* Override default thegamma.css styling (better looking dialog) */
+.thegamma-sizer {
+  max-width:1000px;
+}
+.thegamma-dialog-window {
+  max-width:1000px;
+  margin-top:5% !important;
+  height:80% !important;
+}
+.thegamma .errors {
+  position:absolute;
+  bottom:70px;
+  width:auto !important;
+  left:10px;
+  right:10px;
+}
