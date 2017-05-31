@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <title>The Alan Tring Institte In Numbers 2017</title>
+  <title>UK Government Expenditure: The ATI/Gamma Edition</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
@@ -14,33 +14,85 @@
 </head>
 <body>
   <div id="trig"><div id="trig1"></div><div id="trig2"></div></div>
+
   <article class="container">
     <div class="row">
       <div class="col-lg-12">
         <h1>The Alan Turing Institute<br/>UK Government Expenditure </h1>
-        <p>Public spending is defined as <a href="http://lexicon.ft.com/Term?term=public-spending">"money spent by the Government on public services and other state-controlled operations, projects and investments."</a>. </p>
+        <p>Public spending is defined as <i>"money spent by the Government on public services and other state-controlled operations, projects and investments."</i> <a href="http://lexicon.ft.com/Term?term=public-spending"><span class="source">Source</span></a><a href=""></a>. </p>
         <p>The UK public spending expenditure data in this demo has been sourced from the Public Expenditure Statistical Analyses <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016">(PESA) 2016 report</a>. </p>
         <p>PESA consists of ten Excel spreadsheets, each spreadsheet containing up to eight separate tables. A document which summarizes the data is provided <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/538793/pesa_2016_web.pdf")>here</a>.</p>
       </div>
     </div>
 
+    <!-- Services / Subservices -->
     <div class="row">
       <div class="col-sm-12">
-        <h2><span>Expenditure Classification by Purpose</span></h2>
+        <h2><span>Expenditure Types: Classification by Purpose</span></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+          <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+          <p>Expenditure types can be classified by the purpose of which funds are used. <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4"><span class="source">Source</span></a> </p>
+          <p>Expenditure data here consists of ten services, which are further divided into sub-services. Use the dropbox to select a service and examine its sub-services.
+          </p>
+          <div class="form-group">
+            <label for="listing-options-service" class="control-label">Filter by service</label>
+            <div><select class="form-control" style="max-width:300px" id="listing-options-service"></select></div>
+          </div>
+      </div>
+      <div class="col-md-7">
+        <div class="thegamma thegamma-table-out" id="listing"></div>
+      </div>
+    </div>
+
+    <!-- Visualizations -->
+    <div class="row">
+      <div class="col-sm-12">
+        <h2><span>Expenditure: Explore and Visualize</span></h2>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <div class="col-md-5">
+          <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+          <p>Expenditure types can be classified by the purpose of which funds are used. <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4"><span class="source">Source</span></a> </p>
+      </div>
+      <div class="col-md-7">
+        <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+        <div class="thegamma" id="education"></div>
+      </div>
+
+    </div> -->
+
+    <!-- <div class="row">
+      <div class="col-md-5">
+          <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+          <p>Expenditure types can be classified by the purpose of which funds are used. <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4"><span class="source">Source</span></a> </p>
+      </div>
+      <div class="col-md-7">
+        <div class="thegamma" id="transport"></div>
+      </div>
+    </div>
+
+    -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+        <div class="thegamma" id="education"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+        <div class="thegamma" id="transport"></div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <div class="hidden-sm hidden-xs" style="height:40px;"></div>
-        <p>Public money is spent on different services, these services are further divided into subservices.</p>
-        <div class="form-group">
-          <label for="listing-options-service" class="control-label">Filter by service</label>
-          <div><select class="form-control" style="max-width:300px" id="listing-options-service"></select></div>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="thegamma thegamma-table-out" id="listing"></div>
+        <div class="thegamma" id="socialProtection"></div>
       </div>
     </div>
 
@@ -50,38 +102,38 @@
       </div>
     </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <h3><span>GDP (%) allocated to top six services</span></h3>
-      <p>
-      Can you guess how much we spend (as % GDP) on the top spending UK government public services?</p>
+    <div class="row">
+      <div class="col-md-4">
+        <h3><span>GDP (%) allocated to top six services</span></h3>
+        <p>
+        Can you guess how much we spend (as % GDP) on the top spending UK government public services?</p>
+      </div>
+      <div class="toppad col-md-8">
+        <div class="thegamma" id="grossDomesticProduct"></div>
+      </div>
     </div>
-    <div class="toppad col-md-8">
-      <div class="thegamma" id="grossDomesticProduct"></div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="left col-md-4">
-      <h3><span>Greenest Government Ever</span></h3>
-      <p>In 2010, the Prime Minister David Cameron commits his government to be <a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever">the greenest government ever.</a></p>
-      <p><i>Can you guess the spending trend on Environment Protection services over five years following his announcement?</i></p>
+    <div class="row">
+      <div class="left col-md-4">
+        <h3><span>Greenest Government Ever</span></h3>
+        <p>In 2010, the Prime Minister David Cameron commits his government to be <a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever">the greenest government ever.</a></p>
+        <p><i>Can you guess the spending trend on Environment Protection services over five years following his announcement?</i></p>
+      </div>
+      <div class="toppad col-md-8">
+        <div class="thegamma" id="greenGovernment"></div>
+      </div>
     </div>
-    <div class="toppad col-md-8">
-      <div class="thegamma" id="greenGovernment"></div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="left col-md-4">
-      <h3><span>£600m extra to stimulate growth</span></h3>
-      <p>In 2012, the Chancellor George Osborne pledges extra £600m to the science sector to stimulate growth.</p>
-      <p><i>Can you guess the trend on capital investment on the Science and Technology sector in the years following his pledge?</i></p>
+    <div class="row">
+      <div class="left col-md-4">
+        <h3><span>£600m extra to stimulate growth</span></h3>
+        <p>In 2012, the Chancellor George Osborne pledges extra £600m to the science sector to stimulate growth.</p>
+        <p><i>Can you guess the trend on capital investment on the Science and Technology sector in the years following his pledge?</i></p>
+      </div>
+      <div class="toppad col-md-8">
+        <div class="thegamma" id="scienceAndTech"></div>
+      </div>
     </div>
-    <div class="toppad col-md-8">
-      <div class="thegamma" id="scienceAndTech"></div>
-    </div>
-  </div>
 
 </article>
 
@@ -118,20 +170,58 @@ youguess.line(environmentProtection)
 <script type="text/thegamma" id="scienceAndTech-code">
 let scienceCapital =
   expenditure.byService.'Science and technology'.byAccount.Capital
-
 youguess.line(scienceCapital)
   .setColors("blue", unknown="yellow")
   .setClip(2012)
   .setRange(2500, 4000)
   .setLabels("£m Capital Investment")
+</script>
 
+<script type="text/thegamma" id="education-code">
+let primarysecondary =
+  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(2)
+let tertiary =
+  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).skip(3).take(1)
+let data = primarysecondary.append(tertiary)
+compost.charts.column(data)
+  .setAxisX(label="Education Sub-services")
+  .setAxisY(label="£ million")
+</script>
+
+<script type="text/thegamma" id="transport-code">
+let total =
+  expenditure.byService.'Economic affairs'.byAccount.Capital
+let enterprise =
+  expenditure.byService.'Enterprise and economic development'.byAccount.Capital
+let science =
+  expenditure.byService.'Science and technology'.byAccount.Capital
+let employment =
+  expenditure.byService.'Employment policies'.byAccount.Capital
+let agriculture =
+  expenditure.byService.'Agriculture, fisheries and forestry'.byAccount.Capital
+let transport =
+  expenditure.byService.Transport.byAccount.Capital
+compost.charts.lines([total,science,enterprise,agriculture, transport])
+    .setAxisX(2011,2015,label="Economic Affairs")
+    .setAxisY(label="£ million")
+</script>
+
+<script type="text/thegamma" id="socialProtection-code">
+let data =
+  expenditure
+    .byYear.'2015'
+    .byService.'Social protection'
+    .sortValues(reverse=true).take(5)
+compost.charts.bar(data)
+    .setAxisX(0,125000)
 </script>
 
 <!-- Define visualizations that should be loaded by embed.js later -->
 <script type="text/javascript">
 var thegamma =
   [ {id:"grossDomesticProduct"}, {id:"greenGovernment"},
-  {id:"scienceAndTech"},
+  {id:"scienceAndTech"},{id:"education"},{id:"transport"},
+  {id:"socialProtection"},
   {id:"listing",editors:"listing-options"} ];
     // The 'editors' value specifies prefix that is used for generating <select> elements
     // for placeholders in the code. In the case here, there are placeholders 'uni' and 'role'
