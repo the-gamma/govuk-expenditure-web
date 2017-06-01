@@ -18,10 +18,22 @@
   <article class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h1>The Alan Turing Institute<br/>UK Government Expenditure </h1>
-        <p>Public spending is defined as <i>"money spent by the Government on public services and other state-controlled operations, projects and investments."</i> <a href="http://lexicon.ft.com/Term?term=public-spending"><span class="source">Source</span></a><a href=""></a>. </p>
-        <p>The UK public spending expenditure data in this demo has been sourced from the Public Expenditure Statistical Analyses <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016">(PESA) 2016 report</a>. </p>
-        <p>PESA consists of ten Excel spreadsheets, each spreadsheet containing up to eight separate tables. A document which summarizes the data is provided <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/538793/pesa_2016_web.pdf")>here</a>.</p>
+        <h1>The Alan Turing Institute<br/>Accounting for Democracy</h1>
+        <h2>How and why public money is spent</h2>
+        <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+        <p>
+        Our goal is to promote the ability to understand a set of data, to learn to question the legitimacy of its source, and see the context in which these numbers are presented. We have chosen the UK Government public expenditure data for demonstration.
+        </p>
+        <p>Public expenditure is defined as <i>"money spent by the Government on public services and other state-controlled operations, projects and investments."</i>
+          <a href="http://lexicon.ft.com/Term?term=public-spending"><span class="source"><sup>Source</sup></span></a>
+        </p>
+        <p>
+        If public expenditure data is easily accessible, we will understand how our money is spent, and question if it was used wisely. However, people need good quality, well presented financial information to hold Government to account. Financial information requires a good understanding of accounts, therefore, we need to maximize transparency of spending purposes.
+        </p><p>
+        Given a set of accounts, we should be able to see what is available and visualize what interests us most. When we are able to place sections of public spending in context, we gain an understanding of the entire picture.
+        </p>
+        <p>The UK public spending expenditure data in this demo has been sourced from the Public Expenditure Statistical Analyses (PESA) report. <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016"><sup>Source</sup></a> There is a summary of PESA here.
+        <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/538793/pesa_2016_web.pdf")><sup>here</sup></a></p>
       </div>
     </div>
 
@@ -104,9 +116,11 @@
 
     <div class="row">
       <div class="col-md-4">
-        <h3><span>GDP (%) allocated to top six services</span></h3>
-        <p>
-        Can you guess how much we spend (as % GDP) on the top spending UK government public services?</p>
+        <h3><span>2015: Spending in GDP (%)</span></h3>
+        <p><i>
+        Can you guess how much we spent (as % GDP) on the top six spending UK government public services?</i></p>
+        <p><sup>Download: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
+          PESA 2016 Chapter 4 Table 4.4</a></sup></p>
       </div>
       <div class="toppad col-md-8">
         <div class="thegamma" id="grossDomesticProduct"></div>
@@ -116,8 +130,10 @@
     <div class="row">
       <div class="left col-md-4">
         <h3><span>Greenest Government Ever</span></h3>
-        <p>In 2010, the Prime Minister David Cameron commits his government to be <a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever">the greenest government ever.</a></p>
+        <p>In 2010, the Prime Minister David Cameron commits his government to be "<i>the greenest government ever.</i>"<a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever"><sup> Source</sup></a></p>
         <p><i>Can you guess the spending trend on Environment Protection services over five years following his announcement?</i></p>
+        <p><sup>Download: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
+          PESA 2016 Chapter 4 Table 4.2</a></sup></p>
       </div>
       <div class="toppad col-md-8">
         <div class="thegamma" id="greenGovernment"></div>
@@ -126,9 +142,11 @@
 
     <div class="row">
       <div class="left col-md-4">
-        <h3><span>£600m extra to stimulate growth</span></h3>
-        <p>In 2012, the Chancellor George Osborne pledges extra £600m to the science sector to stimulate growth.</p>
+        <h3><span>£600m Extra For Science</span></h3>
+        <p>In 2012, the Chancellor George Osborne pledges extra £600m over three years to the science sector, believing that science and technology are key to economic growth.<a href="https://www.theguardian.com/science/2012/dec/05/george-osborne-science-stimulate-growth"><sup> Source</sup></a></p>
         <p><i>Can you guess the trend on capital investment on the Science and Technology sector in the years following his pledge?</i></p>
+        <p><sup>Download: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
+          PESA 2016 Chapter 5 Table 5.4</a></sup></p>
       </div>
       <div class="toppad col-md-8">
         <div class="thegamma" id="scienceAndTech"></div>
@@ -164,7 +182,9 @@ let environmentProtection =
 youguess.line(environmentProtection)
   .setColors("blue", unknown="green")
   .setClip(2010, known=2010)
-  .setLabels("£m Adjusted Cash Spending")
+  .setAxisX(label="Years")
+  .setAxisY(label="Real Terms (£ billion)")
+  .setLabels(top="Funds for Environment Protection",known="",guess="")
 </script>
 
 <script type="text/thegamma" id="scienceAndTech-code">
@@ -174,7 +194,9 @@ youguess.line(scienceCapital)
   .setColors("blue", unknown="yellow")
   .setClip(2012)
   .setRange(2500, 4000)
-  .setLabels("£m Capital Investment")
+  .setAxisX(label="Years")
+  .setAxisY(label="Capital Investment (£ million)")
+  .setLabels(top="Funds for Science",known="",guess="")
 </script>
 
 <script type="text/thegamma" id="education-code">
@@ -207,12 +229,13 @@ compost.charts.lines([total,science,enterprise,agriculture, transport])
 </script>
 
 <script type="text/thegamma" id="socialProtection-code">
-let data =
+let top10 =
   expenditure
     .byYear.'2015'
     .byService.'Social protection'
-    .sortValues(reverse=true).take(5)
-compost.charts.bar(data)
+    .sortValues(reverse=true).take(10)
+
+compost.charts.bar(top10)
     .setAxisX(0,125000)
 </script>
 
