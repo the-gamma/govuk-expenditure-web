@@ -20,10 +20,10 @@ function closeDialog(id) {
 // When page loads - initialize all The Gamma visualizations
 function loadTheGamma() {
   require.config({
-    paths:{'vs':'node_modules/monaco-editor/min/vs'},
+    paths:{'vs':'https://thegamma.net/lib/thegamma/vs'},
     map:{ "*":{"monaco":"vs/editor/editor.main"}}
   });
-  require(["vs/editor/editor.main", "node_modules/thegamma-script/dist/thegamma.js"], function (_, g) {
+  require(["monaco", "https://thegamma.net/lib/thegamma-0.1/thegamma.js"], function (_, g) {      
     // Go over all the visualizations as defined by 'var thegamma = [ .. ]' in the index.html file
     thegamma.forEach(function (info) {
 
@@ -33,7 +33,7 @@ function loadTheGamma() {
       var providers =
         g.providers.createProviders({
           "worldbank": g.providers.rest(services + "worldbank"),
-          "libraries": g.providers.library("node_modules/thegamma-script/dist/libraries.json"),
+          "libraries": g.providers.library("https://thegamma.net/lib/thegamma-0.1/libraries.json"),
           "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing", null, true),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
           "expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure") });

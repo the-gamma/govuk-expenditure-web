@@ -22,7 +22,7 @@ body {
   transform:rotate(10deg) skew(-40deg,0deg);
   content:'';
   display:block;
-  background:#ff7700;
+  background:#3D46FF;
   z-index:-1;
 }
 
@@ -37,6 +37,10 @@ article h1 {
   font-size:28pt;
   line-height:1.2em;
   margin:10px 0px 30px 0px;
+}
+article h1 em {
+  font-weight:400;
+  font-style:normal;
 }
 article h2 {
   font-weight:500;
@@ -98,8 +102,9 @@ article .toppad {
 }
 .thegamma-table-out .thegamma-out {
   margin:40px 0px 40px 0px;
-  height:270px;
-  overflow:scroll;
+  height:405px;
+  overflow-y:auto;
+  overflow-x:auto;
 }
 .thegamma-table-out table {
   min-width:600px;
