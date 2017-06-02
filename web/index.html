@@ -213,7 +213,7 @@ let primarysecondary =
   expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(2)
 let tertiary =
   expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).skip(3).take(1)
-let data = primarysecondary.append(tertiary)
+let data = primarysecondary.append(tertiary).sortValues(reverse=false)
 compost.charts.column(data)
   .setAxisX(label="Education Sub-services")
   .setAxisY(label="£ million")
@@ -222,7 +222,7 @@ compost.charts.column(data)
 
 <script type="text/thegamma" id="transport-code">
 let total =
-  expenditure.byService.'Economic affairs'.byAccount.Capital.setProperties(seriesName="Total - Econ. Affairs")
+  expenditure.byService.'Economic affairs'.byAccount.Capital.setProperties(seriesName="Total")
 let enterprise =
   expenditure.byService.'Enterprise and economic development'.byAccount.Capital.setProperties(seriesName="Ent. & Econ. Dev")
 let science =
