@@ -195,13 +195,13 @@ youguess.line(sample)
 <script type="text/thegamma" id="bubbles-code">let data = 
   shared.'by date'.'May 2017'.'YouTube views by video'.'get the data'
 
-compost.charts.bubbles(data)
-  .set(
+compost.charts.bubbles(data).set(
     x = fun v -> v.'Video created',
     y = fun v -> math.log(v.Views),
     size = fun v -> math.log(v.Views) ^ 1.25)
   .setColors("#ffa070")
   .setSize(height=300)
+  .setAxisX(date.date(2016, 4, 5), date.date(2017, 4, 20))
 </script>
 
 <!-- Define visualizations that should be loaded by embed.js later -->

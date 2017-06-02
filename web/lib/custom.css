@@ -127,6 +127,7 @@ article .toppad {
   height:80% !important;
 }
 .thegamma .errors {
+  background:white;
   position:absolute;
   bottom:70px;
   width:auto !important;
