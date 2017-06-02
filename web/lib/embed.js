@@ -36,7 +36,8 @@ function loadTheGamma() {
           "libraries": g.providers.library("node_modules/thegamma-script/dist/libraries.json"),
           "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing", null, true),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
-          "expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure") });
+          "expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
+          //"expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure") });
 
       // Create context and setup error handler
       var ctx = g.gamma.createContext(providers);

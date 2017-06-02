@@ -221,18 +221,41 @@ compost.charts.column(data)
 </script>
 
 <script type="text/thegamma" id="transport-code">
-let total =
-  expenditure.byService.'Economic affairs'.byAccount.Capital.setProperties(seriesName="Total")
-let enterprise =
-  expenditure.byService.'Enterprise and economic development'.byAccount.Capital.setProperties(seriesName="Ent. & Econ. Dev")
-let science =
-  expenditure.byService.'Science and technology'.byAccount.Capital.setProperties(seriesName="Sci & Tech")
-let agriculture =
-  expenditure.byService.'Agriculture, fisheries and forestry'.byAccount.Capital.setProperties(seriesName="Agriculture")
-let transport =
-  expenditure.byService.Transport.byAccount.Capital.setProperties(seriesName="Transport")
+let sci =
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.'Science and technology'
+        .byAccount.Capital
+        .setProperties(seriesName="Sci & Tech")
 
-compost.charts.lines([total,transport,science,enterprise,agriculture])
+let transport =
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.Transport
+        .byAccount.Capital
+        .setProperties(seriesName="Transport")
+
+let ent =
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.'Enterprise and economic development'
+        .byAccount.Capital
+        .setProperties(seriesName="Enterprise")
+
+let total =
+    expenditure
+        .byService.'Economic affairs'
+        .byAccount.Capital
+        .setProperties(seriesName="Total")
+
+let agri =
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.'Agriculture, fisheries and forestry'
+        .byAccount.Capital
+        .setProperties(seriesName="Agriculture")
+
+compost.charts.lines([total,transport,sci,ent,agri])
     .setAxisX(2011,2015,label="Year")
     .setAxisY(label="£ million")
     .setLegend("right")
