@@ -90,10 +90,10 @@
     -->
 
     <div class="row">
-      <div class="left toppad col-sm-5">
+      <div class="left toppad col-sm-6">
         <div class="thegamma" id="education"></div>
       </div>
-      <div class="right toppad col-sm-5 col-sm-offset-1">
+      <div class="right toppad col-sm-6">
         <div class="thegamma" id="transport"></div>
       </div>
     </div>
@@ -102,6 +102,19 @@
       <div class="toppad col-sm-12">
         <div class="thegamma" id="socialProtection"></div>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="left col-sm-12">
+        <p><sup>Download Education: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_5_tables.xlsx">
+          PESA 2016 Chapter 5 Table 5.2</a></sup><br>
+          <sup>Download Economic Affairs: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_5_tables.xlsx">
+            PESA 2016 Chapter 5 Table 5.4</a></sup><br>
+            <sup>Download Social Protection: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_5_tables.xlsx">
+              PESA 2016 Chapter 5 Table 5.2</a></sup>
+          </p>
+      </div>
+
     </div>
 
     <div class="row">
@@ -204,35 +217,29 @@ let data = primarysecondary.append(tertiary)
 compost.charts.column(data)
   .setAxisX(label="Education Sub-services")
   .setAxisY(label="£ million")
+  .setTitle("Education (2015)")
 </script>
 
 <script type="text/thegamma" id="transport-code">
 let total =
-  expenditure.byService.'Economic affairs'.byAccount.Capital
+  expenditure.byService.'Economic affairs'.byAccount.Capital.setProperties(seriesName="Total - Econ. Affairs")
 let enterprise =
-  expenditure.byService.'Enterprise and economic development'.byAccount.Capital
+  expenditure.byService.'Enterprise and economic development'.byAccount.Capital.setProperties(seriesName="Ent. & Econ. Dev")
 let science =
-  expenditure.byService.'Science and technology'.byAccount.Capital
-let employment =
-  expenditure.byService.'Employment policies'.byAccount.Capital
+  expenditure.byService.'Science and technology'.byAccount.Capital.setProperties(seriesName="Sci & Tech")
 let agriculture =
-  expenditure.byService.'Agriculture, fisheries and forestry'.byAccount.Capital
+  expenditure.byService.'Agriculture, fisheries and forestry'.byAccount.Capital.setProperties(seriesName="Agriculture")
 let transport =
-  expenditure.byService.Transport.byAccount.Capital
-compost.charts.lines([total,science,enterprise,agriculture, transport])
-    .setAxisX(2011,2015,label="Economic Affairs")
+  expenditure.byService.Transport.byAccount.Capital.setProperties(seriesName="Transport")
+
+compost.charts.lines([total,transport,science,enterprise,agriculture])
+    .setAxisX(2011,2015,label="Year")
     .setAxisY(label="£ million")
+    .setLegend("right")
+    .setTitle("Capital Investment - Economic Affairs")
 </script>
 
 <script type="text/thegamma" id="socialProtection-code">
-// let top10 =
-//   expenditure
-//     .byYear.'2015'
-//     .byService.'Social protection'
-//     .sortValues(reverse=true).take(10)
-//
-// compost.charts.bar(top10)
-//     .setAxisX(0,125000)
 let top10 =
   expenditure
     .byYear.'2015'
@@ -242,11 +249,13 @@ let top10 =
 let oldAge = top10.take(1)
 let sicknessAndBenefit = top10.skip(2).take(1)
 let socialExclusion = top10.skip(4).take(1)
-let housing = top10.skip(6)
+let housing = top10.skip(6).take(2)
 let data = oldAge.append(sicknessAndBenefit).append(socialExclusion).append(housing)
 
 compost.charts.bar(data)
-    .setAxisX(0,125000)
+    .setAxisX(0,125000,label="£ million")
+    .setAxisY(label="Social Protection Subservices")
+    .setTitle("Social Protection (2015)")
 </script>
 
 <!-- Define visualizations that should be loaded by embed.js later -->
