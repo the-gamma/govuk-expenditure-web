@@ -2,7 +2,7 @@ if (!thegammaInit) { var thegammaInit = false; }
 
 var [vsRoot, theGammaRoot] = 
   (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1") ?
-  ["node_modules/monaco-editor/min/vs", "node_modules/thegamma-script/dist"] :
+  ["/node_modules/monaco-editor/min/vs", "/node_modules/thegamma-script/dist"] :
   ["https://thegamma.net/lib/thegamma-0.1/vs", "https://thegamma.net/lib/thegamma-0.1"];
 
 // We're not using any framework here (to keep it self-contained),

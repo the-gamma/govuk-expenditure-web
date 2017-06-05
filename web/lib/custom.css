@@ -11,7 +11,7 @@ body {
   overflow:hidden;
   z-index:-1;
 }
-#trig1:after{
+#trig1blue:after{
   height:50vw;
   width:100vw;
   position:absolute;
@@ -23,6 +23,34 @@ body {
   content:'';
   display:block;
   background:#3D46FF;
+  z-index:-1;
+}
+#trig1orange:after{
+  height:50vw;
+  width:100vw;
+  position:absolute;
+  left:17vw;
+  top:-42vw;
+  z-ms-transform:skew(20deg,0deg);
+  z-webkit-transform:skew(20deg,0deg);
+  transform:rotate(10deg) skew(-40deg,0deg);
+  content:'';
+  display:block;
+  background:#ff7700;
+  z-index:-1;
+}
+#trig1green:after{
+  height:50vw;
+  width:100vw;
+  position:absolute;
+  left:17vw;
+  top:-42vw;
+  z-ms-transform:skew(20deg,0deg);
+  z-webkit-transform:skew(20deg,0deg);
+  transform:rotate(10deg) skew(-40deg,0deg);
+  content:'';
+  display:block;
+  background:#38B738;
   z-index:-1;
 }
 
