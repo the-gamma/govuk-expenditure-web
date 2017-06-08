@@ -1,5 +1,10 @@
 if (!thegammaInit) { var thegammaInit = false; }
 
+var [vsRoot, theGammaRoot] =
+  (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1") ?
+  ["node_modules/monaco-editor/min/vs", "node_modules/thegamma-script/dist"] :
+  ["https://thegamma.net/lib/thegamma-0.1/vs", "https://thegamma.net/lib/thegamma-0.1"];
+
 // We're not using any framework here (to keep it self-contained),
 // so the following implements simple dialog boxes for showing the code.
 function openDialog(id) {
@@ -20,10 +25,10 @@ function closeDialog(id) {
 // When page loads - initialize all The Gamma visualizations
 function loadTheGamma() {
   require.config({
-    paths:{'vs':'node_modules/monaco-editor/min/vs'},
+    paths:{'vs':vsRoot},
     map:{ "*":{"monaco":"vs/editor/editor.main"}}
   });
-  require(["vs/editor/editor.main", "node_modules/thegamma-script/dist/thegamma.js"], function (_, g) {
+  require(["vs/editor/editor.main", theGammaRoot + "/thegamma.js"], function (_, g) {
     // Go over all the visualizations as defined by 'var thegamma = [ .. ]' in the index.html file
     thegamma.forEach(function (info) {
 
@@ -33,11 +38,12 @@ function loadTheGamma() {
       var providers =
         g.providers.createProviders({
           "worldbank": g.providers.rest(services + "worldbank"),
-          "libraries": g.providers.library("node_modules/thegamma-script/dist/libraries.json"),
+          "libraries": g.providers.library(theGammaRoot + "/libraries.json"),
           "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing", null, true),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
-          "expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
-          //"expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure") });
+          "expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure") });
+          //"expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
+
 
       // Create context and setup error handler
       var ctx = g.gamma.createContext(providers);
