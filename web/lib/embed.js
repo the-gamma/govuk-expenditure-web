@@ -1,6 +1,6 @@
 if (!thegammaInit) { var thegammaInit = false; }
 
-var [vsRoot, theGammaRoot] = 
+var [vsRoot, theGammaRoot] =
   (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1") ?
   ["node_modules/monaco-editor/min/vs", "node_modules/thegamma-script/dist"] :
   ["https://thegamma.net/lib/thegamma-0.1/vs", "https://thegamma.net/lib/thegamma-0.1"];
@@ -42,6 +42,8 @@ function loadTheGamma() {
           "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing", null, true),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
           "expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure") });
+          //"expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
+
 
       // Create context and setup error handler
       var ctx = g.gamma.createContext(providers);

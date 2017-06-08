@@ -22,9 +22,9 @@
         <p>
         Our goal is to promote the ability to examine data, to learn to question the legitimacy of its source, and appreciate the context in which numbers are presented. We have chosen the UK Government public expenditure data for demonstration.
         </p>
-        <p>Public expenditure is <a href="http://lexicon.ft.com/Term?term=public-spending">defined by the Financial Times</a> 
+        <p>Public expenditure is <a href="http://lexicon.ft.com/Term?term=public-spending">defined by the Financial Times</a>
           as <i>money spent by the Government on public services and other state-controlled operations, projects and investments.</i>
-        If public expenditure data is easily accessible, we will understand how our money is spent, and question if it was used wisely. In order for the Government to ensure there is good value for money for the taxpayer, there should be maximal transparency of spending purposes. 
+        If public expenditure data is easily accessible, we will understand how our money is spent, and question if it was used wisely. In order for the Government to ensure there is good value for money for the taxpayer, there should be maximal transparency of spending purposes.
         Citizens and organizations with good quality, well presented public expenditure information can ensure that services receiving public money are held fully to account.
         To begin with, we should be able to rapidly see what is available and then visualize what interests us. When we are able to place sections of public spending in context, we gain an understanding of the entire picture.
         </p>
@@ -41,12 +41,12 @@
     </div>
     <div class="row">
       <div class="toppad col-md-5">
-          <p>Expenditure types can be classified by the purpose of which funds are used. 
-            The <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4">Classification of the Functions of Government</a> 
+          <p>Expenditure types can be classified by the purpose of which funds are used.
+            The <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4">Classification of the Functions of Government</a>
             document published by the United Nations provide a common structure that is used in reports produced by all UN members.
           </p>
-          <p>Expenditure data here consists of ten services, which are further divided into sub-services. 
-            To explore the sub-services, use the dropdown to select a service and see the subservices it consists of. 
+          <p>Expenditure data here consists of ten services, which are further divided into sub-services.
+            To explore the sub-services, use the dropdown to select a service and see the subservices it consists of.
           </p>
           <div class="form-group" style="margin:30px 0px 0px 0px">
             <label for="listing-options-service" class="control-label">Filter sub-services by service</label>
@@ -68,17 +68,17 @@
       <div class="col-sm-10 col-lg-8">
         <p>As we saw in the previous section, the expenditure in each
           service of the government consists of several sub-services.
-          To better understand the government expenditrue, we look at
+          To better understand the government expenditure, we look at
           some of the services in detail. First, a large portion
           of government expenditure is spent on "social protection", but
           how is the money distributed between different sub-services?
           Second, how much of the overall "education" expenditure is spent on
           primary, secondary and tertiary education?</p>
-          
+
         <p>This report is created using <a href="https://thegamma.net/">The Gamma</a>,
           which makes data visualizations more transparent and so it allows you
           to easily modify the visualizations and explore other services. To get
-          started, just click "open source code" and change the service you want to see!          
+          started, just click "open source code" and change the service you want to see!
         </p>
       </div>
     </div>
@@ -94,13 +94,13 @@
 
     <div class="row">
       <div class="col-sm-10 col-lg-8">
-        <p>One of the interesting trends in the government expenditure has been the 
-          growing investment into a service called "economic affairs". According to 
+        <p>One of the interesting trends in the government expenditure has been the
+          growing investment into a service called "economic affairs". According to
           <a href="http://ec.europa.eu/eurostat/statistics-explained/index.php/Government_expenditure_on_economic_affairs">Eurostat statistical analysis</a>,
           this includes capital injections into banks (for example in Greece).
           Expenditure on agriculture and fisheries falls within the EU competency and hence
           is low for member states. This part of government expenditure has been rising
-          since 2012, but we can get better insight if we look at the individual 
+          since 2012, but we can get better insight if we look at the individual
           sub-services.
           </p>
       </div>
@@ -138,9 +138,9 @@
       <div class="col-sm-10 col-lg-8">
         <p>Do you know how is the government expenditure distributed among the
           different government services? Can you guess how spending changes following
-          pledges made by the government?</p>          
+          pledges made by the government?</p>
         <p>Rather than creating a chart showing the answer, we created a number of
-          interactive visualizations inspired by 
+          interactive visualizations inspired by
           <a href="https://www.nytimes.com/interactive/2017/01/15/us/politics/you-draw-obama-legacy.html">New
           York Times "You Draw It" series</a> where you have to make a guess
           before looking at the actual data. As in the previous sections,
@@ -154,11 +154,11 @@
       <div class="left col-sm-4">
         <h3><span>Expenditure breakdown</span></h3>
         <p>First, let's start with the overview of an entire public expenditure.
-          Following the <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4">Classification 
+          Following the <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4">Classification
           of the Functions of Government</a>, we split the overall expenditure into
-          ten services. Can you guess how much we spent (as a percentage of GDP) on the 
+          ten services. Can you guess how much we spent (as a percentage of GDP) on the
           top six UK public services?</i></p>
-        
+
         <p>Are you curious about the remaining four services? Click "open source code" and
           replace <code>take(6)</code> with <code>take(10)</code> in the script.</p>
         <p><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
@@ -215,7 +215,7 @@ let data =
   expenditure
     .byYear.'2015'
     .inTermsOf.GDP
-    .sortValues(reverse=true).skip(1).take(6).shuffle()
+    .sortValues(reverse=true).skip(1).take(5).shuffle()
 
 youguess.bars(data)
   .setTitle("Expenditure in % of GDP (2015)")
@@ -236,7 +236,7 @@ youguess.line(environmentProtection)
 
 <script type="text/thegamma" id="scienceAndTech-code">
 let scienceCapital =
-  expenditure.byService.'Science and technology'.byAccount.Capital
+  expenditure.byService.'Economic affairs'.ofWhichComponentIs.'Science and technology'.byAccount.Capital
 
 youguess.line(scienceCapital)
   .setColors("#9467bd", unknown="#bcbd22")
@@ -248,13 +248,9 @@ youguess.line(scienceCapital)
 </script>
 
 <script type="text/thegamma" id="education-code">
-let primarysecondary =
-  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(2)
-let tertiary =
-  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).skip(3).take(1)
-let data = primarysecondary.reverse().append(tertiary).reverse()
-
-compost.charts.bar(data)
+let topThreeSpendings =
+  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(3)
+compost.charts.bar(topThreeSpendings)
   .setAxisY(label="Education sub-services")
   .setAxisX(label="£ million")
   .setTitle("Education (2015)")
@@ -262,23 +258,37 @@ compost.charts.bar(data)
 </script>
 
 <script type="text/thegamma" id="transport-code">
-let total =
-  expenditure.byService.'Economic affairs'
-    .byAccount.Capital.setProperties(seriesName="Total")
-let enterprise =
-  expenditure.byService.'Enterprise and economic development'
-    .byAccount.Capital.setProperties(seriesName="Enterprise and economic development")
-let science =
-  expenditure.byService.'Science and technology'
-    .byAccount.Capital.setProperties(seriesName="Science and technology")
-let agriculture =
-  expenditure.byService.'Agriculture, fisheries and forestry'
-    .byAccount.Capital.setProperties(seriesName="Agriculture, fisheries and forestry")
+let sci =
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.'Science and technology'
+        .byAccount.Capital
+        .setProperties(seriesName="Sci & Tech")
 let transport =
-  expenditure.byService.Transport
-    .byAccount.Capital.setProperties(seriesName="Transport")
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.Transport
+        .byAccount.Capital
+        .setProperties(seriesName="Transport")
+let ent =
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.'Enterprise and economic development'
+        .byAccount.Capital
+        .setProperties(seriesName="Enterprise")
+let total =
+    expenditure
+        .byService.'Economic affairs'
+        .byAccount.Capital
+        .setProperties(seriesName="Total")
+let agri =
+    expenditure
+        .byService.'Economic affairs'
+        .ofWhichComponentIs.'Agriculture, fisheries and forestry'
+        .byAccount.Capital
+        .setProperties(seriesName="Agriculture")
 
-compost.charts.lines([total,transport,science,enterprise,agriculture])
+compost.charts.lines([total,transport,sci,ent,agri])
     .setAxisX(2011,2015,label="Year")
     .setAxisY(label="£ million")
     .setLegend("right")
@@ -287,19 +297,13 @@ compost.charts.lines([total,transport,science,enterprise,agriculture])
 </script>
 
 <script type="text/thegamma" id="socialProtection-code">
-let top10 =
+let Top4SpendsForSocialProtection =
   expenditure
     .byYear.'2015'
     .byService.'Social protection'
-    .sortValues(reverse=true).take(10)
+    .sortValues(reverse=true).take(5)
 
-let oldAge = top10.take(1)
-let sicknessAndBenefit = top10.skip(2).take(1)
-let socialExclusion = top10.skip(4).take(1)
-let housing = top10.skip(6).take(2)
-let data = oldAge.append(sicknessAndBenefit).append(socialExclusion).append(housing)
-
-compost.charts.bar(data)
+compost.charts.bar(Top4SpendsForSocialProtection)
     .setAxisX(label="£ million")
     .setAxisY(label="Social protection subservices")
     .setTitle("Social protection (2015)")
