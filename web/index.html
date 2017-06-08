@@ -179,7 +179,7 @@ let data =
   expenditure
     .byYear.'2015'
     .inTermsOf.GDP
-    .sortValues(reverse=true).skip(1).take(6).shuffle()
+    .sortValues(reverse=true).skip(1).take(5).shuffle()
 
 youguess.bars(data)
 </script>
@@ -198,7 +198,8 @@ youguess.line(environmentProtection)
 
 <script type="text/thegamma" id="scienceAndTech-code">
 let scienceCapital =
-  expenditure.byService.'Science and technology'.byAccount.Capital
+  expenditure.byService.'Economic affairs'.ofWhichComponentIs.'Science and technology'.byAccount.Capital
+
 youguess.line(scienceCapital)
   .setColors("blue", unknown="yellow")
   .setClip(2012)
@@ -209,15 +210,10 @@ youguess.line(scienceCapital)
 </script>
 
 <script type="text/thegamma" id="education-code">
-let primarysecondary =
-  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(2)
-let tertiary =
-  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).skip(3).take(1)
-let data = primarysecondary.append(tertiary).sortValues(reverse=false)
-compost.charts.column(data)
-  .setAxisX(label="Education Sub-services")
-  .setAxisY(label="£ million")
-  .setTitle("Education (2015)")
+let topThreeSpendings =
+  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(3)
+
+compost.charts.column(topThreeSpendings)
 </script>
 
 <script type="text/thegamma" id="transport-code">
@@ -263,19 +259,13 @@ compost.charts.lines([total,transport,sci,ent,agri])
 </script>
 
 <script type="text/thegamma" id="socialProtection-code">
-let top10 =
+let Top4SpendsForSocialProtection =
   expenditure
     .byYear.'2015'
     .byService.'Social protection'
-    .sortValues(reverse=true).take(10)
+    .sortValues(reverse=true).take(5)
 
-let oldAge = top10.take(1)
-let sicknessAndBenefit = top10.skip(2).take(1)
-let socialExclusion = top10.skip(4).take(1)
-let housing = top10.skip(6).take(2)
-let data = oldAge.append(sicknessAndBenefit).append(socialExclusion).append(housing)
-
-compost.charts.bar(data)
+compost.charts.bar(Top4SpendsForSocialProtection)
     .setAxisX(0,125000,label="£ million")
     .setAxisY(label="Social Protection Subservices")
     .setTitle("Social Protection (2015)")
