@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>Year 2017 in numbers | The Alan Turing Institute</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://thegamma.net/lib/thegamma/thegamma.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="/lib/custom.css" rel="stylesheet">
+</head>
+<body>
+  <div id="trig"><div id="trig1orange"></div></div>
+  <article class="container">
+    
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h1>The Alan Turing Institute<br/><em>Year 2017 in numbers</em></h1>
+      <p>
+        The Alan Turing Institute is the United Kingdom national institute for data sciences, 
+        founded in 2015. It is named after Alan Turing, the British mathematician and computing pioneer.
+        Since getting started in 2015, the institute hired its first Research Fellows, published 
+        <a href="https://www.youtube.com/channel/UCcr5vuAH5TPlYox-QLj4ySw">numerous recorded talks</a>,
+        <a href="https://www.turing.ac.uk/publications/">over 50 publications</a> and started
+        new <a href="https://www.turing.ac.uk/category/research/projects/">research projects</a>
+        that aim to advance the fields of data science, machine learning and many more.</p>
+      <p>Here, we present information about the Alan Turing Institute in a fun interactive way.
+        We are using tools developed as part of <a href="https://www.turing.ac.uk/research_projects/the-gamma/">The 
+        Gamma</a> project, which make it possible to present data in a transparent way. Behind 
+        every chart on this page, there is source code that links the chart to the primary data
+        source and lets you explore the data further. The visualizations are inspired by
+        <a href="https://nytimes.com/interactive/2017/01/15/us/politics/you-draw-obama-legacy.html">the
+        You Draw It series by New York Times</a> and let you make your own guess about the data
+        before showing the actual numbers. How many of the facts about the Alan Turing Institute
+        can you guess correctly?      
+      </p>
+    </div>
+  </div>
+  
+  <!--
+  <div class="row">
+    <div class="col-md-6">
+      <div style="background:#f0f0f0;margin:10px 50px 20px 50px;padding:20px">
+        <h3><i class="fa fa-search"></i> &nbsp; Don't like games</h3>
+        <h3><i class="fa fa-refresh"></i> &nbsp; Play again</h3>
+        <h3><i class="fa fa-twitter"></i> &nbsp; Share your score</h3>
+      </div>
+    </div>
+  </div>
+  -->
+
+  <div class="row">
+    <div class="col-sm-12">    
+      <h2><span>People at the Alan Turing Institute</span></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3><span>People at the Turing</span></h3>
+      <p>In this section, we look at the people working at the Alan Turing Institute
+        as <a href="https://www.turing.ac.uk/people/">listed on the institute web page</a>.
+        This includes Research Fellows who work full-time at the institute, Faculty Fellows 
+        who divide their time between the host university and the instiute and Doctoral 
+        Students who spent one year of their PhD at the institute.</p>
+      <p>Can you guess how many Research Fellows, Faculty Fellows, Doctoral Students and
+        members of the Leadership team are there? </p>
+    </div>
+    <div class="toppad col-md-8">
+      <div class="thegamma" id="people"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="left col-md-4">
+      <h3><span>Fellows from partner universities</span></h3>
+      <p>The Faculty Fellows are based at one of the partner universities and have 
+        a part-time appointment at the Alan Turing Institute. This can range from one day a
+        month to several days a week and each university prefers different arrangements.</p>
+      <p>Can you guess which university has the largest number of Faculty Fellows
+        affiliated with the Alan Turing Institute?</p>
+    </div>
+    <div class="toppad col-md-8">
+      <div class="thegamma" id="faculty"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h2><span>Talks at the Alan Turing Institute</span></h2>
+      <p style="margin-top:20px">
+        The Alan Turing Institute has been hosting a number of talk series and posting the 
+        recording on YouTube throughout the year. Videos from the
+        <a href="https://www.youtube.com/watch?v=GnLU1sZLQR4&list=PLuD_SqLtxSdU774xWBKNjg54GgNpKvWbC">Fellow
+        Short Talks series</a> feature the current research of the Research Fellows and Falculty Fellows.
+        The <a href="https://www.youtube.com/watch?v=y7ehrXZfIS0&list=PLuD_SqLtxSdVDcrCYIHayTL91DapuIHrO">Turing
+        Lectures series</a> contains invited talks from researchers across the world.
+        The chart below shows the aggregate number of video views for all
+        the talks posted on YouTube.
+      </p>
+      <p>Note that the chart below is calculated from a data dump from YouTube and so
+        you can click "view source code" and explore the data on your own. For example,
+        try looking at the number of subscribers rather than the number of views!
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-md-12 col-lg-10">    
+      <div class="thegamma" id="aggviews"></div>
+    </div>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3><span>When are videos published</span></h3>
+      <p>Let's now have a more detailed look at the YouTube video views. The bubble chart
+        shows when each video was published together with the total number of views since
+        it was published. This means that older videos had more time to get more views.
+      </p>
+      <p>
+        You can see huge spike in activity around October 2016 when regular talk series started
+        and then a break around Christmas 2016. Since then, activity has been more regular.
+      </p>
+      <p>Now the game part! The line chart below shows total video views per day. This jumps
+        up and down, so the line chart shows average values over two weeks. Can you guess 
+        the rest of the line?</p>
+      <p>As with the previous charts, you can click "open source code" to see how the visualization
+        is created. Change the window size on the second line from 15 to 1 or 30 to see how
+        it changes!
+    </div>
+    <div class="toppad col-md-8">
+      <div class="hidden-sm hidden-xs" style="height:20px;"></div>
+      <div class="thegamma" id="bubbles"></div>
+      <div class="thegamma" id="views"></div>
+    </div>    
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3><span>Selected Turing lectures</span></h3>
+      <p>Now, let's look at a couple of individual lectures. The following list contains
+        a number of talks (selected by hand) that illustrate the breadth of the topics
+        covered by the institute. You can explore and select other talks if you click
+        "open source code".
+      </p>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=lLH70qkROWQ">Ethics in the Age of Information</a></li>
+        <li><a href="https://www.youtube.com/watch?v=CvL-KV3IBcM">Multi-Agent Learning at DeepMind</a></li>
+        <li><a href="https://www.youtube.com/watch?v=LH3vvA7PL1U">The Data Science of Politics</a></li>
+        <li><a href="https://www.youtube.com/watch?v=aHjgpmzFjOA">Open Data-Driven Storytelling</a></li>
+        <li><a href="https://www.youtube.com/watch?v=OJy2h9mgiX8">What is data science?</a></li>
+      </ul>
+      <p>The game part is, can you assign the talks to the bars in the chart by the number of 
+        their views? To do this, click on a talk title and then click on a bar where you think
+        it should be!</p>
+    </div>
+    <div class="toppad col-md-8">
+      <div class="hidden-sm hidden-xs" style="height:20px;"></div>
+      <div class="thegamma" id="videos"></div>
+    </div>    
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">    
+      <h2><span>Explore the data on your own</span></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7">
+      <h3>People at the Alan Turing Institute</h3>
+      <p>This report is generated live using the original dataset that contains all information
+        used in the report in a form that is not aggregated in any way. This means that you can
+        easily explore the data further on your own. In this section, you can access some of the
+        original data. For example, below is a listing of people 
+        <a href="https://www.turing.ac.uk/people/">based on the insititute web site</a>.
+        To make filtering simpler, everyone from the Leadership team is listed as being
+        affiliated with The Alan Turing Institute rather than their other institutions.</p>
+    </div>
+    <div class="col-md-5">      
+      <div class="hidden-sm hidden-xs" style="height:60px;"></div>
+      <div class="form-group">
+        <label for="listing-options-role" class="control-label">Filter by role</label>
+        <div><select class="form-control" style="max-width:360px" id="listing-options-role"></select></div>
+      </div>
+      <div class="form-group">
+        <label for="listing-options-uni" class="control-label">Filter by university</label>
+        <div><select class="form-control" style="max-width:360px" id="listing-options-uni"></select></div>
+      </div>      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <style type="text/css">#listing .thegamma-out { margin-top:35px; }</style>
+      <div class="thegamma thegamma-table-out" id="listing"></div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+
+</article>  
+
+<!-- Source code for embedded The Gamma visualizations -->
+
+<script type="text/thegamma" id="people-code">let data =
+  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+    .'group data'.'by Role'.'count all'.then
+    .'get series'.'with key Role'.'and value count'
+
+youguess.bars(data).setMaximum(150).setSize(height=350)
+</script>
+<script type="text/thegamma" id="faculty-code">let data =
+  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+    .'filter data'.'Role is'.'Faculty Fellow'.then
+    .'group data'.'by University'.'count all'.then
+    .'get series'.'with key University'.'and value count'
+
+youguess.bars(data).setSize(height=350)
+</script>
+<script type="text/thegamma" id="listing-code">let data = 
+ shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+  .'filter data'.'Role is'.[role:'Faculty Fellow']
+    .'and University is'.[uni:Cambridge].then
+  .'get the data'
+
+table.create(data).set(emptyText="No records match the selected criteria")
+</script>
+<script type="text/thegamma" id="videos-code">let data =
+  shared.'by date'.'May 2017'.'YouTube views by video'
+    .'filter data'
+        .'Video title is'.'Fellow Short Talks: Dr Tomas Petricek, The Alan Turing Institute'
+        .'or Video title is'.'The Role of Multi-Agent Learning in Artificial Intelligence Research at DeepMind'
+        .'or Video title is'.'What is data science?'
+        .'or Video title is'.'Professor Helen Margetts: "The Data Science of Politics"'
+        .'or Video title is'.'Professor Luciano Floridi: "Ethics in the Age of Information"'
+        .then
+    .'get series'.'with key Video title'.'and value Views'
+    .shuffle()
+
+youguess.sortBars(data).setSize(height=500)
+</script>
+<script type="text/thegamma" id="aggviews-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube Views per Date'
+    .windowing.'expanding by date'.'sum views'.then
+    .'get series'.'with key last date'.'and value views'
+
+compost.charts.area(data)
+  .setColors(["#ff7f0e"])
+  .setAxisX(minValue=date.date(2016,5,10), maxValue=date.date(2017,5,10))
+  .setAxisY(label="Total number of YouTube views")
+  .setSize(height=300)
+</script>  
+<script type="text/thegamma" id="views-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube Views per Date'
+    .windowing.'window by date'(15)
+      .'middle date'.'mean views'.then
+    .'get series'.'with key middle date'.'and value views'
+
+let sample = 
+  data.filterIndex(fun n -> n % 7 = 0)    
+
+youguess.line(sample)
+  .setClip(date.date(2016,10,20))
+  .setSize(height=300)
+  .setAxisY(label="Views averaged over two weeks", labelOffset=45)
+</script>
+
+<script type="text/thegamma" id="bubbles-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube views by video'.'get the data'
+
+compost.charts.bubbles(data).set(
+    x = fun v -> v.'Video created',
+    y = fun v -> math.log(v.Views),
+    size = fun v -> math.log(v.Views) ^ 1.25)
+  .setColors("#ffa070")
+  .setSize(height=300)
+  .setAxisY(label="Logarithm of total viedeo views", labelOffset=45)
+  .setAxisX(date.date(2016, 4, 5), date.date(2017, 4, 20))
+</script>
+
+<!-- Define visualizations that should be loaded by embed.js later -->
+<script type="text/javascript">
+var thegamma = 
+  [ {id:"people"}, {id:"faculty"},
+    {id:"listing", editors:"listing-options"},
+    {id:"videos"}, {id:"aggviews"}, 
+    {id:"views"}, {id:"bubbles"} ];
+</script>
+
+
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/babel.min.js"></script>
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/core-js.min.js"></script>
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/require.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/lib/embed.js"></script>
+
+</body>
+</html>
