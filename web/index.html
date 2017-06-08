@@ -3,13 +3,13 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <title>UK Government Expenditure: The ATI/Gamma Edition</title>
+  <title>UK Government Expenditure | The Alan Turing Institute</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="https://thegamma.net/lib/thegamma/thegamma.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto:300,400,500,700,900" rel="stylesheet">
   <link href="lib/custom.css" rel="stylesheet">
 </head>
 <body>
@@ -17,39 +17,39 @@
 
   <article class="container">
     <div class="row">
-      <div class="col-lg-12">
-        <h1>The Alan Turing Institute<br/>Accounting for Democracy</h1>
-        <h2>How and why public money is spent</h2>
-        <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+      <div class="col-sm-10 col-lg-8">
+        <h1>The Alan Turing Institute<br/><em>Accounting for democracy</em></h1>
         <p>
         Our goal is to promote the ability to examine data, to learn to question the legitimacy of its source, and appreciate the context in which numbers are presented. We have chosen the UK Government public expenditure data for demonstration.
         </p>
-        <p>Public expenditure is defined as <i>"money spent by the Government on public services and other state-controlled operations, projects and investments."</i>
-          <a href="http://lexicon.ft.com/Term?term=public-spending"><span class="source"><sup>Source</sup></span></a>
-        </p>
-        <p>
-        If public expenditure data is easily accessible, we will understand how our money is spent, and question if it was used wisely. In order for the Government to ensure there is good value for money for the taxpayer, there should be maximal transparency of spending purposes. Parties with good quality, well presented financial information can ensure that services receiving public money are held fully to account.
-        </p><p>
+        <p>Public expenditure is <a href="http://lexicon.ft.com/Term?term=public-spending">defined by the Financial Times</a>
+          as <i>money spent by the Government on public services and other state-controlled operations, projects and investments.</i>
+        If public expenditure data is easily accessible, we will understand how our money is spent, and question if it was used wisely. In order for the Government to ensure there is good value for money for the taxpayer, there should be maximal transparency of spending purposes.
+        Citizens and organizations with good quality, well presented public expenditure information can ensure that services receiving public money are held fully to account.
         To begin with, we should be able to rapidly see what is available and then visualize what interests us. When we are able to place sections of public spending in context, we gain an understanding of the entire picture.
         </p>
-        <p>The UK public spending expenditure data in this demo has been sourced from the Public Expenditure Statistical Analyses (PESA) report. <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016"><sup>Source</sup></a> There is a summary of PESA here.
-        <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/538793/pesa_2016_web.pdf")><sup>Source</sup></a></p>
+        <p>The UK data in this demo has been sourced from the <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016">Public Expenditure Statistical Analyses (PESA) report</a>.
+          For more information, you can refer to the <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/538793/pesa_2016_web.pdf")>full document (PDF)</a>.</p>
       </div>
     </div>
 
     <!-- Services / Subservices -->
     <div class="row">
       <div class="col-sm-12">
-        <h2><span>Expenditure Types: Classification by Purpose</span></h2>
+        <h2><span>Understanding the structure of the expenditure</span></h2>
       </div>
     </div>
     <div class="row">
       <div class="toppad col-md-5">
-          <p>Expenditure types can be classified by the purpose of which funds are used. <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4"><sup>Source</sup></a> </p>
-          <p>Expenditure data here consists of ten services, which are further divided into sub-services. Use the dropbox to select a service and examine its sub-services.
+          <p>Expenditure types can be classified by the purpose of which funds are used.
+            The <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4">Classification of the Functions of Government</a>
+            document published by the United Nations provide a common structure that is used in reports produced by all UN members.
           </p>
-          <div class="form-group">
-            <label for="listing-options-service" class="control-label">Filter by service</label>
+          <p>Expenditure data here consists of ten services, which are further divided into sub-services.
+            To explore the sub-services, use the dropdown to select a service and see the subservices it consists of.
+          </p>
+          <div class="form-group" style="margin:30px 0px 0px 0px">
+            <label for="listing-options-service" class="control-label">Filter sub-services by service</label>
             <div><select class="form-control" style="max-width:300px" id="listing-options-service"></select></div>
           </div>
       </div>
@@ -61,7 +61,25 @@
     <!-- Visualizations -->
     <div class="row">
       <div class="col-sm-12">
-        <h2><span>Expenditure: Explore and Visualize</span></h2>
+        <h2><span>Exploring and visualizing expenditure</span></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 col-lg-8">
+        <p>As we saw in the previous section, the expenditure in each
+          service of the government consists of several sub-services.
+          To better understand the government expenditrue, we look at
+          some of the services in detail. First, a large portion
+          of government expenditure is spent on "social protection", but
+          how is the money distributed between different sub-services?
+          Second, how much of the overall "education" expenditure is spent on
+          primary, secondary and tertiary education?</p>
+
+        <p>This report is created using <a href="https://thegamma.net/">The Gamma</a>,
+          which makes data visualizations more transparent and so it allows you
+          to easily modify the visualizations and explore other services. To get
+          started, just click "open source code" and change the service you want to see!
+        </p>
       </div>
     </div>
 
@@ -75,37 +93,76 @@
     </div>
 
     <div class="row">
-      <div class="toppad col-sm-12">
+      <div class="col-sm-10 col-lg-8">
+        <p>One of the interesting trends in the government expenditure has been the
+          growing investment into a service called "economic affairs". According to
+          <a href="http://ec.europa.eu/eurostat/statistics-explained/index.php/Government_expenditure_on_economic_affairs">Eurostat statistical analysis</a>,
+          this includes capital injections into banks (for example in Greece).
+          Expenditure on agriculture and fisheries falls within the EU competency and hence
+          is low for member states. This part of government expenditure has been rising
+          since 2012, but we can get better insight if we look at the individual
+          sub-services.
+          </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
         <div class="thegamma" id="transport"></div>
       </div>
     </div>
 
     <div class="row">
-      <div class="left col-sm-12">
-        <p><sup>Download Education: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_5_tables.xlsx">
-          PESA 2016 Chapter 5 Table 5.2</a></sup><br>
-          <sup>Download Economic Affairs: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_5_tables.xlsx">
-            PESA 2016 Chapter 5 Table 5.4</a></sup><br>
-            <sup>Download Social Protection: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_5_tables.xlsx">
-              PESA 2016 Chapter 5 Table 5.2</a></sup>
-          </p>
+      <div class="col-sm-10 col-lg-8">
+        <p>The data used in the above visualizations come from Chapter 5
+          "Public sector expenditure by function, sub-function and economic category"
+          of the <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016">PESA 2016</a>:
+        </p>
+        <p>
+          <small>Data on education: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
+            PESA 2016 Chapter 5 Table 5.2 (XLSX)</a><br>
+          Data on economic affairs: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
+            PESA 2016 Chapter 5 Table 5.4 (XLSX)</a><br>
+          Data on social protection: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
+            PESA 2016 Chapter 5 Table 5.2 (XLSX)</a></small>
+        </p>
       </div>
-
     </div>
 
     <div class="row">
       <div class="col-sm-12">
-        <h2><span>How well can you guess expenditure trends?</span></h2>
+        <h2><span>Guessing the expenditure trends</span></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 col-lg-8">
+        <p>Do you know how is the government expenditure distributed among the
+          different government services? Can you guess how spending changes following
+          pledges made by the government?</p>
+        <p>Rather than creating a chart showing the answer, we created a number of
+          interactive visualizations inspired by
+          <a href="https://www.nytimes.com/interactive/2017/01/15/us/politics/you-draw-obama-legacy.html">New
+          York Times "You Draw It" series</a> where you have to make a guess
+          before looking at the actual data. As in the previous sections,
+          you can click "open source code" to see the raw data and even
+          create your own challenges.
+          </p>
       </div>
     </div>
 
     <div class="row">
       <div class="left col-sm-4">
-        <h3><span>2015: Spending in GDP (%)</span></h3>
-        <p><i>
-        Can you guess how much we spent (as % GDP) on the top six spending UK government public services?</i></p>
-        <p><sup>Download: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
-          PESA 2016 Chapter 4 Table 4.4</a></sup></p>
+        <h3><span>Expenditure breakdown</span></h3>
+        <p>First, let's start with the overview of an entire public expenditure.
+          Following the <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4">Classification
+          of the Functions of Government</a>, we split the overall expenditure into
+          ten services. Can you guess how much we spent (as a percentage of GDP) on the
+          top six UK public services?</i></p>
+
+        <p>Are you curious about the remaining four services? Click "open source code" and
+          replace <code>take(6)</code> with <code>take(10)</code> in the script.</p>
+        <p><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
+          PESA 2016 Chapter 4 Table 4.4 (XLSX)</a></small></p>
       </div>
       <div class="right toppad col-sm-8">
         <div class="thegamma" id="grossDomesticProduct"></div>
@@ -114,11 +171,13 @@
 
     <div class="row">
       <div class="left col-sm-4">
-        <h3><span>Greenest Government Ever</span></h3>
-        <p>In 2010, the Prime Minister David Cameron commits his government to be "<i>the greenest government ever.</i>"<a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever"><sup> Source</sup></a></p>
-        <p><i>Can you guess the spending trend on Environment Protection services over five years following his announcement?</i></p>
-        <p><sup>Download: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
-          PESA 2016 Chapter 4 Table 4.2</a></sup></p>
+        <h3><span>Greenest government ever</span></h3>
+        <p>In 2010, the Prime Minister David Cameron commits his government to be <a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever">the greenest government ever</a>.
+          Can you guess the spending trend on Environment Protection services over five years following this announcement?</p>
+        <p>Are you curious about changes to other services? Click "open source code" and replace
+          <code>'Environment protection'</code> on the second line with, for example, <code>Defence</code>.
+        <p><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
+          PESA 2016 Chapter 4 Table 4.2</a></small></p>
       </div>
       <div class="right toppad col-sm-8">
         <div class="thegamma" id="greenGovernment"></div>
@@ -127,11 +186,11 @@
 
     <div class="row">
       <div class="left col-sm-4">
-        <h3><span>£600m Extra For Science</span></h3>
-        <p>In 2012, the Chancellor George Osborne pledges extra £600m over three years to the science sector, believing that science and technology are key to economic growth.<a href="https://www.theguardian.com/science/2012/dec/05/george-osborne-science-stimulate-growth"><sup> Source</sup></a></p>
-        <p><i>Can you guess the trend on capital investment on the Science and Technology sector in the years following his pledge?</i></p>
-        <p><sup>Download: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
-          PESA 2016 Chapter 5 Table 5.4</a></sup></p>
+        <h3><span>£600m Extra for science</span></h3>
+        <p>In 2012, the Chancellor George Osborne <a href="https://www.theguardian.com/science/2012/dec/05/george-osborne-science-stimulate-growth">pledged extra £600m over three years to the science sector</a>, believing that science and technology are key to economic growth.</p>
+        <p>Can you guess the trend on capital investment on the Science and Technology sector in the years following his pledge?</p>
+        <p><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
+          PESA 2016 Chapter 5 Table 5.4</a></small></p>
       </div>
       <div class="right toppad col-sm-8">
         <div class="thegamma" id="scienceAndTech"></div>
@@ -144,7 +203,8 @@
 <script type="text/thegamma" id="listing-code">
 let data =
  shared.'by date'.'May 2017'.'COFOG Structure'
-  .'filter data'.'Service is'.[service:Defence].then
+  .'filter data'.'Service is'.[service:Education].then
+  .'drop columns'.'drop Service'.then
   .'get the data'
 
 table.create(data).set(emptyText="No records match the selected criteria")
@@ -158,6 +218,8 @@ let data =
     .sortValues(reverse=true).skip(1).take(5).shuffle()
 
 youguess.bars(data)
+  .setTitle("Expenditure in % of GDP (2015)")
+  .setAxisY(label="", labelOffset=110)
 </script>
 
 <script type="text/thegamma" id="greenGovernment-code">
@@ -165,11 +227,11 @@ let environmentProtection =
   expenditure.byService.'Environment protection'.inTermsOf.Adjusted
 
 youguess.line(environmentProtection)
-  .setColors("blue", unknown="green")
+  .setColors("#1f77b4", unknown="#ff7f0e")
   .setClip(2010, known=2010)
   .setAxisX(label="Years")
-  .setAxisY(label="Real Terms (£ billion)")
-  .setLabels(top="Funds for Environment Protection",known="",guess="")
+  .setAxisY(minValue=0,maxValue=18,label="Real Terms (£ billion)")
+  .setTitle("Expenditure on environment protection")
 </script>
 
 <script type="text/thegamma" id="scienceAndTech-code">
@@ -177,61 +239,51 @@ let scienceCapital =
   expenditure.byService.'Economic affairs'.ofWhichComponentIs.'Science and technology'.byAccount.Capital
 
 youguess.line(scienceCapital)
-  .setColors("blue", unknown="yellow")
+  .setColors("#9467bd", unknown="#bcbd22")
   .setClip(2012)
-  .setRange(2500, 4000)
+  .setRange(0, 5000)
   .setAxisX(label="Years")
   .setAxisY(label="Capital Investment (£ million)")
-  .setLabels(top="Funds for Science",known="",guess="")
+  .setTitle("Expenditure on science and technology")
 </script>
 
 <script type="text/thegamma" id="education-code">
-let topThreeSpendings =
-  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(3)
+let primarysecondary =
+  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(2)
+let tertiary =
+  expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).skip(3).take(1)
+let data = primarysecondary.reverse().append(tertiary).reverse()
 
-compost.charts.column(topThreeSpendings)
+compost.charts.bar(data)
+  .setAxisY(label="Education sub-services")
+  .setAxisX(label="£ million")
+  .setTitle("Education (2015)")
+  .setStyle(inlineLabels=true)
 </script>
 
 <script type="text/thegamma" id="transport-code">
-let sci =
-    expenditure
-        .byService.'Economic affairs'
-        .ofWhichComponentIs.'Science and technology'
-        .byAccount.Capital
-        .setProperties(seriesName="Sci & Tech")
-
-let transport =
-    expenditure
-        .byService.'Economic affairs'
-        .ofWhichComponentIs.Transport
-        .byAccount.Capital
-        .setProperties(seriesName="Transport")
-
-let ent =
-    expenditure
-        .byService.'Economic affairs'
-        .ofWhichComponentIs.'Enterprise and economic development'
-        .byAccount.Capital
-        .setProperties(seriesName="Enterprise")
-
 let total =
-    expenditure
-        .byService.'Economic affairs'
-        .byAccount.Capital
-        .setProperties(seriesName="Total")
-
-let agri =
-    expenditure
-        .byService.'Economic affairs'
-        .ofWhichComponentIs.'Agriculture, fisheries and forestry'
-        .byAccount.Capital
-        .setProperties(seriesName="Agriculture")
+  expenditure.byService.'Economic affairs'
+    .byAccount.Capital.setProperties(seriesName="Total")
+let enterprise =
+  expenditure.byService.'Enterprise and economic development'
+    .byAccount.Capital.setProperties(seriesName="Enterprise and economic development")
+let science =
+  expenditure.byService.'Science and technology'
+    .byAccount.Capital.setProperties(seriesName="Science and technology")
+let agriculture =
+  expenditure.byService.'Agriculture, fisheries and forestry'
+    .byAccount.Capital.setProperties(seriesName="Agriculture, fisheries and forestry")
+let transport =
+  expenditure.byService.Transport
+    .byAccount.Capital.setProperties(seriesName="Transport")
 
 compost.charts.lines([total,transport,sci,ent,agri])
     .setAxisX(2011,2015,label="Year")
     .setAxisY(label="£ million")
     .setLegend("right")
-    .setTitle("Capital Investment - Economic Affairs")
+    .setTitle("Expenditure on economic affairs")
+    .setSize(height=400)
 </script>
 
 <script type="text/thegamma" id="socialProtection-code">
@@ -242,9 +294,10 @@ let Top4SpendsForSocialProtection =
     .sortValues(reverse=true).take(5)
 
 compost.charts.bar(Top4SpendsForSocialProtection)
-    .setAxisX(0,125000,label="£ million")
-    .setAxisY(label="Social Protection Subservices")
-    .setTitle("Social Protection (2015)")
+    .setAxisX(label="£ million")
+    .setAxisY(label="Social protection subservices")
+    .setTitle("Social protection (2015)")
+    .setStyle(inlineLabels=true)
 </script>
 
 <!-- Define visualizations that should be loaded by embed.js later -->
