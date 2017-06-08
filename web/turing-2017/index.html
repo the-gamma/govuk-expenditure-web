@@ -207,16 +207,14 @@
 
 <!-- Source code for embedded The Gamma visualizations -->
 
-<script type="text/thegamma" id="people-code">
-let data =
+<script type="text/thegamma" id="people-code">let data =
   shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
     .'group data'.'by Role'.'count all'.then
     .'get series'.'with key Role'.'and value count'
 
 youguess.bars(data).setMaximum(150).setSize(height=350)
 </script>
-<script type="text/thegamma" id="faculty-code">
-let data =
+<script type="text/thegamma" id="faculty-code">let data =
   shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
     .'filter data'.'Role is'.'Faculty Fellow'.then
     .'group data'.'by University'.'count all'.then
@@ -224,8 +222,7 @@ let data =
 
 youguess.bars(data).setSize(height=350)
 </script>
-<script type="text/thegamma" id="listing-code">
-let data = 
+<script type="text/thegamma" id="listing-code">let data = 
  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
   .'filter data'.'Role is'.[role:'Faculty Fellow']
     .'and University is'.[uni:Cambridge].then
@@ -247,8 +244,7 @@ table.create(data).set(emptyText="No records match the selected criteria")
 
 youguess.sortBars(data).setSize(height=500)
 </script>
-<script type="text/thegamma" id="aggviews-code">
-let data = 
+<script type="text/thegamma" id="aggviews-code">let data = 
   shared.'by date'.'May 2017'.'YouTube Views per Date'
     .windowing.'expanding by date'.'sum views'.then
     .'get series'.'with key last date'.'and value views'

@@ -175,6 +175,9 @@ article .toppad {
   margin-top:5% !important;
   height:80% !important;
 }
+.thegamma-dialog-window .body {
+  padding-bottom:0px;
+}
 .thegamma .errors {
   background:white;
   position:absolute;
