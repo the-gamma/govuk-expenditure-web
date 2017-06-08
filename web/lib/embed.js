@@ -41,7 +41,7 @@ function loadTheGamma() {
           "libraries": g.providers.library(theGammaRoot + "/libraries.json"),
           "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing", null, true),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
-          "expenditure": g.providers.rest("http://thegamma-govuk-expenditure-service.azurewebsites.net/") 
+          "expenditure": g.providers.rest("https://thegamma-govuk-expenditure-service.azurewebsites.net/") 
           //"expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") 
         });
 
