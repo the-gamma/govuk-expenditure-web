@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>Playground | The Alan Turing Institute</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://thegamma.net/lib/thegamma-0.1/thegamma.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="/lib/custom.css" rel="stylesheet">
+  <style type="text/css">
+    .thegamma .errors {
+      background:white;
+      position:static;
+      width:auto !important;
+    }
+  </style>
+</head>
+<body>
+<script id="demo" type="text/thegamma">placeholder.create("Change the source code or select a sample below.")
+</script>
+<script id="rio2016" type="text/thegamma">let data =
+  olympics
+    .'filter data'.'Games is'.'Rio (2016)'.then
+    .'group data'.'by Athlete'.'sum Gold'.then
+    .'sort data'.'by Gold descending'.then
+    .paging.take(8)
+    .'get series'.'with key Athlete'.'and value Gold'
+    .reverse()
+  
+compost.charts.bar(data)
+  .setAxisY(labelOffset=100, label="")
+  .setTitle("Top medalists (by number of gold medals) at Rio 2016")
+</script>
+<script id="worldbank" type="text/thegamma">let china = 
+  worldbank.byCountry.China
+    .'Climate Change'.'CO2 emissions (kt)'
+      .setProperties(seriesName="China")
+
+let usa =
+  worldbank.byCountry.'United States'
+    .'Climate Change'.'CO2 emissions (kt)'
+      .setProperties(seriesName="USA")
+
+compost.charts.lines([china,usa])
+  .setColors(["red","blue"]).setAxisX(1960)
+  .setTitle("Total CO2 emissions")
+  .setLegend("right")
+</script>
+  <div id="trig"><div id="trig1green"></div></div>
+  <article class="container">
+    
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h1>The Alan Turing Institute<br/><em>Data playground</em></h1>
+      <p>This is a minimal page where you can explore any of the datasets available
+        in The Gamma or uploaded to <a href="https://gallery.thegamma.net/">The Gamma gallery</a>.
+        For example, start by typing <code>olympics</code> to explore Olympic medal winners or
+        <code>worldbank</code> to explore World Bank statistics.
+      </p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12 thegamma">
+      <div id="ed1"></div>
+      <div id="ed1-errors" class="errors" style="bottom:0px"></div>
+
+      <div id="out1" class="output">
+        <div class="placeholder">
+          Loading the visualization...
+        </div>
+      </div>
+      
+      <div class="form-inline" style="padding-top:50px">
+        <button class="btn btn-success" id="okbtn">Update page</button>
+        <select id="samples" class="form-control" style="padding:3px 10px 3px 10px;margin-top:10px;min-width:400px">
+          <option>Open sample visualization...</option>
+          <option value="worldbank">WorldBank: CO2 emissions of China and USA</option>
+          <option value="rio2016">Olympics: Top medalists from Rio 2016</option>
+        </select>
+      </div>    
+    </div>
+  </div>
+  
+
+  <!-- Third-party standard references -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js"></script>
+  
+  <!-- Loading Monaco and TheGamma scripts -->
+  <script src="/node_modules/babel-standalone/babel.js"></script>
+  <script src="/node_modules/requirejs/require.js"></script>
+  <script>
+    // This follows the standard way of loading the Monaco editor (https://github.com/Microsoft/monaco-editor)
+    // although we use normal 'require.js' and also load the compiled 'thegamma.js' (which depends on Monaco)
+    require.config({
+      paths:{'vs':'/node_modules/monaco-editor/min/vs'},
+      map:{ "*":{"monaco":"vs/editor/editor.main"}}
+    });
+    require(["vs/editor/editor.main", "/node_modules/thegamma-script/dist/thegamma.js"], function (_, g) {      
+      // Configure type providers available in The Gamma
+      // (when running thegamma-services locally, use http://127.0.0.1:10042/)
+      var services = "https://thegamma-services.azurewebsites.net/";      
+      //var services = "http://127.0.0.1:10042/";
+      var providers = 
+        g.providers.createProviders({ 
+          "worldbank": g.providers.rest(services + "worldbank"),
+          "libraries": g.providers.library("/node_modules/thegamma-script/dist/libraries.json"),
+          "olympics": g.providers.pivot(services + "pdata/olympics"),
+          "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing"),
+          "expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure"),
+          "videos": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-12/file_8.csv"),
+          "views": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-29/file_3.csv")
+        });
+          
+      // Create context which is used to create editor & run code
+      // When errors are reportped, display the errors in modal dialog (while editting)
+      var ctx = g.gamma.createContext(providers);
+      ctx.errorsReported(function (errs) {
+        var lis = errs.slice(0, 5).map(function (e) {
+          return "<li><span class='err'>error " + e.number + "</span>" +
+            "<span class='loc'>at line " + e.startLine + " col " + e.startColumn + "</span>: " +
+            e.message;
+        });
+        var ul = "<ul>" + lis + "</ul>";
+        document.getElementById("ed1-errors").innerHTML = ul;
+      });
+
+      // Get sample code and run it; use the '#out1' element for outputs
+      var code = document.getElementById("demo").innerHTML;
+      ctx.evaluate(code, "out1");
+      
+      // Options passed to the editor - specify size & configuration function
+      // that sets properties directly for the Monaco editor
+      var opts =
+        { autoHeight: true,
+          enablePreview: false,
+          monacoOptions: function(m) {
+            m.fontFamily = "Inconsolata";
+            m.fontSize = 15;
+            m.lineHeight = 20;
+            m.lineNumbers = false;
+          } };
+
+      // Create editor if it is not created yet
+      var editor = ctx.createEditor("ed1", code, opts);
+      
+      // Get editor text and run it on the main page
+      okbtn.onclick = function() { 
+        code = editor.getValue();
+        ctx.evaluate(code, "out1");
+      };
+      
+      document.getElementById("samples").onchange = function() {
+        var id = document.getElementById("samples").value;
+        if (id != null && id != "") {
+          var code = document.getElementById(id).innerHTML;
+          editor.setValue(code);
+          ctx.evaluate(code, "out1");
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>

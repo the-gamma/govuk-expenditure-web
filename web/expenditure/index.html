@@ -87,7 +87,7 @@
       <div class="left toppad col-sm-6">
         <div class="thegamma" id="socialProtection"></div>
       </div>
-      <div class="right toppad col-sm-6">
+      <div class="right toppad botpad col-sm-6">
         <div class="thegamma" id="education"></div>
       </div>
     </div>
@@ -107,7 +107,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12 botpad">
         <div class="thegamma" id="transport"></div>
       </div>
     </div>
@@ -118,13 +118,13 @@
           "Public sector expenditure by function, sub-function and economic category"
           of the <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016">PESA 2016</a>:
         </p>
-        <p>
+        <p class="small">
           <small>Data on education: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
-            PESA 2016 Chapter 5 Table 5.2 (XLSX)</a><br>
+            Chapter 5 Table 5.2 (XLSX)</a><br>
           Data on economic affairs: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
-            PESA 2016 Chapter 5 Table 5.4 (XLSX)</a><br>
+            Chapter 5 Table 5.4 (XLSX)</a><br>
           Data on social protection: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
-            PESA 2016 Chapter 5 Table 5.2 (XLSX)</a></small>
+            Chapter 5 Table 5.2 (XLSX)</a></small>
         </p>
       </div>
     </div>
@@ -161,7 +161,7 @@
 
         <p>Are you curious about the remaining four services? Click "open source code" and
           replace <code>take(6)</code> with <code>take(10)</code> in the script.</p>
-        <p><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
+        <p class="small"><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
           PESA 2016 Chapter 4 Table 4.4 (XLSX)</a></small></p>
       </div>
       <div class="right toppad col-sm-8">
@@ -176,7 +176,7 @@
           Can you guess the spending trend on Environment Protection services over five years following this announcement?</p>
         <p>Are you curious about changes to other services? Click "open source code" and replace
           <code>'Environment protection'</code> on the second line with, for example, <code>Defence</code>.
-        <p><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
+        <p class="small"><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539470/PESA_2016_Chapter_4_tables.xlsx">
           PESA 2016 Chapter 4 Table 4.2</a></small></p>
       </div>
       <div class="right toppad col-sm-8">
@@ -189,7 +189,7 @@
         <h3><span>£600m Extra for science</span></h3>
         <p>In 2012, the Chancellor George Osborne <a href="https://www.theguardian.com/science/2012/dec/05/george-osborne-science-stimulate-growth">pledged extra £600m over three years to the science sector</a>, believing that science and technology are key to economic growth.</p>
         <p>Can you guess the trend on capital investment on the Science and Technology sector in the years following his pledge?</p>
-        <p><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
+        <p class="small"><small>Data source: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/539471/PESA_2016_Chapter_5_tables.xlsx">
           PESA 2016 Chapter 5 Table 5.4</a></small></p>
       </div>
       <div class="right toppad col-sm-8">
@@ -200,8 +200,7 @@
 </article>
 
 <!-- Source code for embedded The Gamma visualizations -->
-<script type="text/thegamma" id="listing-code">
-let data =
+<script type="text/thegamma" id="listing-code">let data =
  shared.'by date'.'May 2017'.'COFOG Structure'
   .'filter data'.'Service is'.[service:Education].then
   .'drop columns'.'drop Service'.then
@@ -210,8 +209,7 @@ let data =
 table.create(data).set(emptyText="No records match the selected criteria")
 </script>
 
-<script type="text/thegamma" id="grossDomesticProduct-code">
-let data =
+<script type="text/thegamma" id="grossDomesticProduct-code">let data =
   expenditure
     .byYear.'2015'
     .inTermsOf.GDP
@@ -219,23 +217,22 @@ let data =
 
 youguess.bars(data)
   .setTitle("Expenditure in % of GDP (2015)")
-  .setAxisY(label="", labelOffset=110)
+  .setAxisY(label="", labelOffset=110, labelMinimalSize=500)
 </script>
 
-<script type="text/thegamma" id="greenGovernment-code">
-let environmentProtection =
+<script type="text/thegamma" id="greenGovernment-code">let environmentProtection =
   expenditure.byService.'Environment protection'.inTermsOf.Adjusted
+    .map(fun v -> v * 1000)
 
 youguess.line(environmentProtection)
   .setColors("#1f77b4", unknown="#ff7f0e")
   .setClip(2010, known=2010)
   .setAxisX(label="Years")
-  .setAxisY(minValue=0,maxValue=18,label="Real Terms (£ billion)")
+  .setAxisY(minValue=0,maxValue=18000,label="Real Terms (£ million)", labelMinimalSize=500)
   .setTitle("Expenditure on environment protection")
 </script>
 
-<script type="text/thegamma" id="scienceAndTech-code">
-let scienceCapital =
+<script type="text/thegamma" id="scienceAndTech-code">let scienceCapital =
   expenditure.byService.'Economic affairs'.ofWhichComponentIs.'Science and technology'.byAccount.Capital
 
 youguess.line(scienceCapital)
@@ -243,12 +240,11 @@ youguess.line(scienceCapital)
   .setClip(2012)
   .setRange(0, 5000)
   .setAxisX(label="Years")
-  .setAxisY(label="Capital Investment (£ million)")
+  .setAxisY(label="Capital Investment (£ million)", labelMinimalSize=500)
   .setTitle("Expenditure on science and technology")
 </script>
 
-<script type="text/thegamma" id="education-code">
-let topThreeSpendings =
+<script type="text/thegamma" id="education-code">let topThreeSpendings =
   expenditure.byYear.'2015'.byService.Education.sortValues(reverse=true).take(3)
 compost.charts.bar(topThreeSpendings)
   .setAxisY(label="Education sub-services")
@@ -257,13 +253,12 @@ compost.charts.bar(topThreeSpendings)
   .setStyle(inlineLabels=true)
 </script>
 
-<script type="text/thegamma" id="transport-code">
-let sci =
+<script type="text/thegamma" id="transport-code">let sci =
     expenditure
         .byService.'Economic affairs'
         .ofWhichComponentIs.'Science and technology'
         .byAccount.Capital
-        .setProperties(seriesName="Sci & Tech")
+        .setProperties(seriesName="Science and technology")
 let transport =
     expenditure
         .byService.'Economic affairs'
@@ -275,29 +270,28 @@ let ent =
         .byService.'Economic affairs'
         .ofWhichComponentIs.'Enterprise and economic development'
         .byAccount.Capital
-        .setProperties(seriesName="Enterprise")
+        .setProperties(seriesName="Enterprise and economic development")
 let total =
     expenditure
         .byService.'Economic affairs'
         .byAccount.Capital
-        .setProperties(seriesName="Total")
+        .setProperties(seriesName="Economic affairs total")
 let agri =
     expenditure
         .byService.'Economic affairs'
         .ofWhichComponentIs.'Agriculture, fisheries and forestry'
         .byAccount.Capital
-        .setProperties(seriesName="Agriculture")
+        .setProperties(seriesName="Agriculture, fisheries and forestry")
 
 compost.charts.lines([total,transport,sci,ent,agri])
     .setAxisX(2011,2015,label="Year")
     .setAxisY(label="£ million")
-    .setLegend("right")
+    .setLegend("auto")
     .setTitle("Expenditure on economic affairs")
     .setSize(height=400)
 </script>
 
-<script type="text/thegamma" id="socialProtection-code">
-let Top4SpendsForSocialProtection =
+<script type="text/thegamma" id="socialProtection-code">let Top4SpendsForSocialProtection =
   expenditure
     .byYear.'2015'
     .byService.'Social protection'

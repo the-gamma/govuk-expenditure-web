@@ -94,6 +94,10 @@ article p {
   line-height:1.7em;
   margin:0px 0px 25px 0px;
 }
+article p.small {
+  line-height:1.8em;
+  font-size:11pt;
+}
 article ul {
   margin:0px 0px 25px 0px;
 }
@@ -109,7 +113,6 @@ article select {
 }
 article p small {
   font-size:11pt;
-  line-height:1.2em;
 }
 article code {
   background:transparent;
@@ -135,7 +138,10 @@ article .thegamma-edit a:hover, article .thegamma-edit a:active {
   color:#bababa;
 }
 article .toppad {
-  padding-top:30px;
+  padding-top:40px;
+}
+article .botpad {
+  padding-bottom:40px;
 }
 
 /* Edit source code link and scrollable table outputs */
@@ -167,30 +173,4 @@ article .toppad {
 .thegamma-table-out ::-webkit-scrollbar-thumb {
   border-radius:3px;
   background-color:#dddddd;
-}
-
-/* Override default thegamma.css styling (better looking dialog) */
-.thegamma-sizer {
-  max-width:1000px;
-}
-.thegamma-dialog-window {
-  max-width:1000px;
-  margin-top:5% !important;
-  height:80% !important;
-}
-.thegamma-dialog-window .body {
-  padding-bottom:0px;
-}
-.thegamma .errors {
-  background:white;
-  position:absolute;
-  bottom:70px;
-  width:auto !important;
-  left:10px;
-  right:10px;
-}
-
-/* May */
-article a .source {
-  font-size:10pt;
 }

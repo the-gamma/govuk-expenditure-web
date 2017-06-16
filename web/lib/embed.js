@@ -1,3 +1,54 @@
+// ----------------------------------------------------------------------------------------
+// Logging user events
+// ----------------------------------------------------------------------------------------
+
+function guid(){
+  var d = new Date().getTime();
+  if (window.performance && typeof window.performance.now === "function") d += performance.now();
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (d + Math.random()*16)%16 | 0;
+      d = Math.floor(d/16);
+      return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+  });
+}
+
+var ssid = guid();
+var logStarted = false;
+var pendingEvents = [];
+var logTimer = -1;
+
+function writeLog() {
+  logTimer = -1;
+  if (pendingEvents.length > 0) {
+    var req = new XMLHttpRequest();
+    req.open("POST", "https://thegamma-logs.azurewebsites.net/log/turing");
+    req.send(pendingEvents.join("\n"));
+  }
+  pendingEvents = [];
+}
+
+function logEvent(category, evt, id, data) {
+  if (!logStarted) return;
+  var usrid = document.cookie.replace(/(?:(?:^|.*;\s*)thegammausrid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  if (usrid == "") {
+    usrid = guid();
+    document.cookie = "thegammausrid=" + usrid;
+  }
+  var logObj =
+    { "user":usrid, "session":ssid,
+      "time":(new Date()).toISOString(),
+      "url":window.location.toString(),
+      "element": id, "category": category, "event": evt, "data": data };
+  
+  pendingEvents.push(JSON.stringify(logObj));
+  if (logTimer != -1) clearTimeout(logTimer);
+  logTimer = setTimeout(writeLog, 1000);  
+}
+
+// ----------------------------------------------------------------------------------------
+// Creating The Gamma visualization
+// ----------------------------------------------------------------------------------------
+
 if (!thegammaInit) { var thegammaInit = false; }
 
 var [vsRoot, theGammaRoot] =
@@ -8,6 +59,7 @@ var [vsRoot, theGammaRoot] =
 // We're not using any framework here (to keep it self-contained),
 // so the following implements simple dialog boxes for showing the code.
 function openDialog(id) {
+  logEvent("dialog", "open", id, "");
   document.getElementById("thegamma-" + id + "-dialog").style.display="block";
   setTimeout(function() {
     document.getElementById("thegamma-" + id + "-dialog").style.opacity=1;
@@ -15,12 +67,16 @@ function openDialog(id) {
   },1);
 }
 function closeDialog(id) {
+  logEvent("dialog", "close", id, "");
   document.getElementById("thegamma-" + id + "-dialog").style.opacity=0;
   document.getElementById("thegamma-" + id + "-dialog-window").style.top="-500px";
   setTimeout(function() {
     document.getElementById("thegamma-" + id + "-dialog").style.display="none";
   },400)
 }
+
+// Function to call when page gets resized
+var reloadTheGamma = []; 
 
 // When page loads - initialize all The Gamma visualizations
 function loadTheGamma() {
@@ -59,7 +115,7 @@ function loadTheGamma() {
 
       // Specify options and create the editor
       var opts =
-        { height: document.getElementById("thegamma-" + id + "-sizer").clientHeight-220,
+        { height: document.getElementById("thegamma-" + id + "-sizer").clientHeight-115,
           width: document.getElementById("thegamma-" + id + "-sizer").clientWidth-20,
           monacoOptions: function(m) {
             m.fontFamily = "Inconsolata";
@@ -71,8 +127,18 @@ function loadTheGamma() {
 
       // Set source code, evalate it and generate options for <select> elements
       // (only when there are placeholders and 'info.editors' is specified)
-      function setSource(code) {
-        ctx.evaluate(code, "thegamma-" + id + "-out");
+      function setSource(code, log) {
+        if (log) logEvent("source", "update", id, code);
+        ctx.evaluate(code).then(function(res) { 
+          Object.keys(res).forEach(function(k) {
+            var it = res[k];
+            if (typeof it.setLogger === 'function') it = it.setLogger(function(o) { 
+              logEvent("interactive", o.event, o.id, o.data);
+            });
+            if (typeof it.show === 'function') it.show("thegamma-" + id + "-out");
+          });
+        });
+        
         editor.setValue(code);
         if (info.editors) {
           // Type check the source code & get result (as a JS promise)
@@ -102,7 +168,8 @@ function loadTheGamma() {
                     var newCode = code.substr(0, place.range.start) +
                       "[" + place.name + ":'" + drop.value + "']" +
                       code.substr(place.range.end + 1);
-                    setSource(newCode);
+                    logEvent("source", "select", id, {"placeholder":place.name, "value":drop.value});
+                    setSource(newCode, true);
                   };
                   drop.innerHTML = html;
                 });
@@ -113,12 +180,15 @@ function loadTheGamma() {
 
       // Get and run default code, setup update handler
       var code = document.getElementById(id + "-code").innerHTML;
-      setSource(code);
+      setSource(code, false);
       document.getElementById("thegamma-" + id + "-update").onclick = function() {
-        ctx.evaluate(editor.getValue(), "thegamma-" + id + "-out");
+        setSource(editor.getValue(), true);
         closeDialog(id);
         return false;
       }
+      reloadTheGamma.push(function() {
+        setSource(editor.getValue(), false);
+      });
     });
   });
 }
@@ -139,6 +209,9 @@ function initTheGamma() {
       '</div></div>').replace(/\[ID\]/g, info.id);
   });
   loadTheGamma();
+  
+  logStarted = true;
+  logEvent("page", "loaded", "", window.navigator.userAgent);
 }
 
 if (!thegammaInit) {
@@ -150,3 +223,5 @@ if (!thegammaInit) {
   if (heads.length > 0) heads[0].innerHTML += link;
   else document.write(link);
 }
+
+window.onresize = function() { reloadTheGamma.forEach(function (f) { f(); }); }

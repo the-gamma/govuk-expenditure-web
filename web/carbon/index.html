@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>Carbon emissions | The Alan Turing Institute</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://thegamma.net/lib/thegamma/thegamma.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="/lib/custom.css" rel="stylesheet">
+</head>
+<body>
+  <div id="trig"><div id="trig1green"></div></div>
+  <article class="container">
+    
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h1>The Alan Turing Institute<br/><em>Our world in data</em></h1>
+      <p>
+        Here, we look at a couple of simple data visualizations about our world, 
+        inspired by <a href="https://ourworldindata.org/">Our World in Data</a>.
+        We use <a href="http://data.worldbank.org/">The World Bank data</a> as our data source.
+        All of the visualizations are open and transparent. This means that you can click 
+        on the "open source button" to explore and modify the source code behind each
+        visualizations.</p>
+      <p>For example, in the CO2 emission visualizations below, try changing the indicator 
+        from total CO2 emissions in kilotons to relative CO2 emissions per capita and 
+        see how the results change!   
+      </p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="thegamma" id="co2"></div>
+    </div>
+  </div>
+</article>
+
+<script type="text/thegamma" id="co2-code">let china = 
+  worldbank.byCountry.China
+    .'Climate Change'.'CO2 emissions (kt)'
+      .setProperties(seriesName="China")
+
+let usa =
+  worldbank.byCountry.'United States'
+    .'Climate Change'.'CO2 emissions (kt)'
+      .setProperties(seriesName="USA")
+
+compost.charts.lines([china,usa])
+  .setColors(["red","blue"]).setAxisX(1960)
+  .setTitle("Total CO2 emissions")
+  .setLegend("right")
+</script>
+
+<script type="text/javascript">
+var thegamma = [ {id:"co2"} ];
+</script>
+
+
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/babel.min.js"></script>
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/core-js.min.js"></script>
+<script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/require.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/lib/embed.js"></script>
+
+</body>
+</html>
