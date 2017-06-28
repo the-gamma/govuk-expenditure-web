@@ -226,4 +226,11 @@ if (!thegammaInit) {
   else document.write(link);
 }
 
-window.onresize = function() { reloadTheGamma.forEach(function (f) { f(); }); }
+var lastWinWidth = window.innerWidth;
+window.onresize = function() { 
+  var w = window.innerWidth;
+  if (lastWinWidth != w) {
+    lastWinWidth = w;
+    reloadTheGamma.forEach(function (f) { f(); }); 
+  }
+}
