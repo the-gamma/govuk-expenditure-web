@@ -54,11 +54,26 @@ body {
   z-index:-1;
 }
 
+footer {
+  color:#a0a0a0;
+  background:#e8e8e8;
+  padding:30px 0px 30px 0px;
+}
+footer h4 {
+  font-family:Roboto;
+  font-size:13pt;
+  margin:0px 0px 10px 0px;
+}
+footer p {
+  font-family:Roboto;
+  font-size:10pt;
+  margin:0px 0px 20px 0px;
+}
+
 /* Formatting for the article text, headings and standard docment elements */
 article {
   font-family:Roboto;
-  padding:5vw 0px 100px 0px;
-  padding-bottom:300px;
+  padding:5vw 0px 80px 0px;
 }
 article h1 {
   font-weight:700;
@@ -120,10 +135,10 @@ article code {
 
 article a {
   text-decoration:none;
-  color:#1A6EBC;
+  color:#E4003C;
 }
 article a:hover, article a:active {
-  color:#2191F2;
+  color:#FF5969;
 }
 article h2 a, article h2 a:hover {
   color:black;
@@ -143,6 +158,21 @@ article .toppad {
 article .botpad {
   padding-bottom:40px;
 }
+.article-info-sm {
+  padding:0px;
+  margin:0px 0px 10px 0px;
+}
+.article-info-sm i {
+  font-size:14pt;
+  margin-left:5px;
+}
+.article-info-sm a {
+  color:#1A6EBC;
+}
+.article-info-sm a:hover, .article-info-sm a:active {
+  color:#2191F2;
+}
+
 
 /* Edit source code link and scrollable table outputs */
 .thegamma-edit a i {

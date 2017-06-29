@@ -51,10 +51,12 @@ function logEvent(category, evt, id, data) {
 
 if (!thegammaInit) { var thegammaInit = false; }
 
-var [vsRoot, theGammaRoot] =
+var roots =
   (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1") ?
   ["/node_modules/monaco-editor/min/vs", "/node_modules/thegamma-script/dist"] :
   ["https://thegamma.net/lib/thegamma-0.1/vs", "https://thegamma.net/lib/thegamma-0.1"];
+var vsRoot = roots[0];
+var theGammaRoot = roots[1];
 
 // We're not using any framework here (to keep it self-contained),
 // so the following implements simple dialog boxes for showing the code.
@@ -224,4 +226,11 @@ if (!thegammaInit) {
   else document.write(link);
 }
 
-window.onresize = function() { reloadTheGamma.forEach(function (f) { f(); }); }
+var lastWinWidth = window.innerWidth;
+window.onresize = function() { 
+  var w = window.innerWidth;
+  if (lastWinWidth != w) {
+    lastWinWidth = w;
+    reloadTheGamma.forEach(function (f) { f(); }); 
+  }
+}

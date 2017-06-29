@@ -86,6 +86,18 @@
     <div class="row">
       <div class="col-sm-10 col-lg-8">
         <h1>The Alan Turing Institute<br/><em>Accounting for democracy</em></h1>
+        <p class="article-info-sm">
+          <a target="_blank" href="https://twitter.com/intent/tweet?url=http%3a%2f%2fgamma.turing.ac.uk&amp;text=Accounting+for+democracy+-+Interactive+%23dataviz+using+%40thegamma_net+by+%40turinginst+%23ddj">
+            <i class="fa fa-twitter-square"></i></a>
+          <a target="_blank" href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fgamma.turing.ac.uk">
+            <i class="fa fa-facebook-official"></i></a>
+          <a href="mailto:?subject=Accounting%20for%20democracy%20%7c%20The%20Alan%20Turing%20Institute&body=See%3a%20http%3a%2f%2fgamma.turing.ac.uk">
+            <i class="fa fa-envelope"></i></a>
+          <a href="http://www.reddit.com/submit?url=http%3a%2f%2fgamma.turing.ac.uk&title=Accounting+for+democracy+%7c+The+Alan+Turing+Institute">
+            <i class="fa fa-reddit-square"></i></a>
+          <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgamma.turing.ac.uk&t=Accounting%20for%20democracy%20-%20The%20Alan%20Turing%20Institute">
+            <i class="fa fa-hacker-news"></i></a>
+        </p>
         <p>
         Our goal is to promote the ability to examine data, to learn to question the legitimacy of its source, and appreciate the context in which numbers are presented. We have chosen the UK Government public expenditure data for demonstration.
         </p>
@@ -96,7 +108,7 @@
         To begin with, we should be able to rapidly see what is available and then visualize what interests us. When we are able to place sections of public spending in context, we gain an understanding of the entire picture.
         </p>
         <p>The UK data in this demo has been sourced from the <a href="https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2016">Public Expenditure Statistical Analyses (PESA) report</a>.
-          For more information, you can refer to the <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/538793/pesa_2016_web.pdf")>full document (PDF)</a>.</p>
+          For more information, you can refer to the <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/538793/pesa_2016_web.pdf">full document (PDF)</a>.</p>
       </div>
     </div>
 
@@ -224,7 +236,7 @@
           Following the <a href="https://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4">Classification
           of the Functions of Government</a>, we split the overall expenditure into
           ten services. Can you guess how much we spent (as a percentage of GDP) on the
-          top six UK public services?</i></p>
+          top six UK public services?</p>
 
         <p>Are you curious about the remaining four services? Click "open source code" and
           replace <code>take(6)</code> with <code>take(10)</code> in the script.</p>
@@ -239,7 +251,7 @@
     <div class="row">
       <div class="left col-sm-4">
         <h3><span>Greenest government ever</span></h3>
-        <p>In 2010, the Prime Minister David Cameron commits his government to be <a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever">the greenest government ever</a>.
+        <p>In 2010, the Prime Minister David Cameron commited his government to be <a href="https://www.theguardian.com/environment/2010/may/14/cameron-wants-greenest-government-ever">the greenest government ever</a>.
           Can you guess the spending trend on Environment Protection services over five years following this announcement?</p>
         <p>Are you curious about changes to other services? Click "open source code" and replace
           <code>'Environment protection'</code> on the second line with, for example, <code>Defence</code>.
@@ -265,6 +277,37 @@
     </div>
 
 </article>
+<footer>
+  <div class="container">
+    <div calss="row">
+      <div class="col-sm-5">
+        <h4>About the project</h4>
+        <p>
+          This page has been created by May Yong and Tomas Petricek using using <a href="https://thegamma.net/">The Gamma</a>,
+          an innovative open-source visualization tools that lets you create transparent data-driven visualizations.
+        </p>
+        <p>
+          To find out more, check out <a href="https://thegamma.net/">The Gamma homepage</a> and source on 
+          <a href="https://github.com/the-gamma">GitHub</a>. For updates, follow
+          <a href="https://twitter.com/thegamma_net">@thegamma_net</a> and <a href="https://twitter.com/tomaspetricek">@tomaspetricek</a>.
+          Send your comments to Tomas at <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a>.
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <h4>Privacy policy</h4>
+        <p>For further research purposes, this page collects anonymous usage data about the choices made in the interactive 
+          visualizations and changes made to source code of snippets.</p>
+        <p>In addition, we are using
+          Google Analytics, which collects information about page views and uses tracking cookies.</p>
+      </div>
+      <div class="col-sm-3">
+        <p style="text-align:center;padding-top:40px">
+          <img src="../img/turing.png" style="width:200px;opacity:0.2"/>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- Source code for embedded The Gamma visualizations -->
 <script type="text/thegamma" id="listing-code">let data =
@@ -318,6 +361,7 @@ compost.charts.bar(topThreeSpendings)
   .setAxisX(label="£ million")
   .setTitle("Education (2015)")
   .setStyle(inlineLabels=true)
+  .setEmptyMessage("Data for the specified year and government service is not avialble. Please select another service or year!")
 </script>
 
 <script type="text/thegamma" id="transport-code">let sci =
@@ -356,6 +400,7 @@ compost.charts.lines([total,transport,sci,ent,agri])
     .setLegend("auto")
     .setTitle("Expenditure on economic affairs")
     .setSize(height=400)
+    .setEmptyMessage("Data for the specified year and government service is not avialble. Please select another service or year!")    
 </script>
 
 <script type="text/thegamma" id="socialProtection-code">let Top4SpendsForSocialProtection =
@@ -369,6 +414,7 @@ compost.charts.bar(Top4SpendsForSocialProtection)
     .setAxisY(label="Social protection subservices")
     .setTitle("Social protection (2015)")
     .setStyle(inlineLabels=true)
+    .setEmptyMessage("Data for the specified year and government service is not avialble. Please select another service or year!")
 </script>
 
 <!-- Define visualizations that should be loaded by embed.js later -->
@@ -390,5 +436,13 @@ var thegamma =
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="/lib/embed.js"></script>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-65311433-2', 'auto');
+  ga('send', 'pageview');
+</script>
 </body>
 </html>
