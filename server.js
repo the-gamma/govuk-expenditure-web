@@ -8,18 +8,19 @@ var exposedNodeModules = [
   '/node_modules/monaco-editor',
   '/node_modules/thegamma-script',
   '/node_modules/babel-standalone' ];
+var exposedDirs = [
+  'img', 'lib', 'expenditure', 'playground', 
+  'carbon', 'turing-2017' ];
   
 for(var i=0; i<exposedNodeModules.length; i++) {
   var subdir = exposedNodeModules[i];
   app.use(subdir, express.static(__dirname + subdir));
 }  
-  
+for(var i=0; i<exposedDirs.length; i++) {    
+  var dir = exposedDirs[i];
+  app.use('/' + dir, express.static(__dirname + '/web/' + dir));
+}
 app.get('/', function(_, res) { res.redirect('/expenditure'); })
-app.use('/img', express.static(__dirname + '/web/img'));
-app.use('/lib', express.static(__dirname + '/web/lib'));
-app.use('/expenditure', express.static(__dirname + '/web/expenditure'));
-app.use('/favicon.ico', express.static(__dirname + '/web/favicon.ico'));
-
 app.listen(port);
 
 console.log('Listening on port: ', port);
