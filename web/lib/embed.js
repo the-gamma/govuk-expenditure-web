@@ -199,16 +199,30 @@ function loadTheGamma() {
 function initTheGamma() {
   thegamma.forEach(function(info) {
     var el = document.getElementById(info.id);
-    el.innerHTML =
-      ("<div class='thegamma-edit'><a href='javascript:openDialog(\"[ID]\")'><i class='fa fa-code'></i> open source code</a></div>" +
-      '<div id="thegamma-[ID]-out" class="thegamma-out"><p class="placeholder">Loading the visualization...</p></div>' +
-      '<div id="thegamma-[ID]-sizer" class="thegamma-sizer"></div>' +
-      '<div id="thegamma-[ID]-dialog" class="thegamma-dialog">' +
-      '  <div id="thegamma-[ID]-dialog-window" class="thegamma-dialog-window">' +
-      '  <div class="header"><a href="javascript:closeDialog(\'[ID]\');">&times;</a><span>Edit source code</span></div>' +
-      '  <div class="body"><div id="thegamma-[ID]-ed"></div><div id="thegamma-[ID]-errors" class="errors"></div>' +
-      '    <button id="thegamma-[ID]-update">Update page</button></div>' +
-      '</div></div>').replace(/\[ID\]/g, info.id);
+    if (info.inline) {
+      document.getElementById("inline-placeholder").innerHTML += 
+        ('<div id="thegamma-[ID]-sizer" class="thegamma-sizer"></div>' +
+        '<div id="thegamma-[ID]-dialog" class="thegamma-dialog">' +
+        '  <div id="thegamma-[ID]-dialog-window" class="thegamma-dialog-window">' +
+        '  <div class="header"><a href="javascript:closeDialog(\'[ID]\');">&times;</a><span>Edit source code</span></div>' +
+        '  <div class="body"><div id="thegamma-[ID]-ed"></div><div id="thegamma-[ID]-errors" class="errors"></div>' +
+        '    <button id="thegamma-[ID]-update">Update page</button></div>' +
+        '</div></div>').replace(/\[ID\]/g, info.id);
+      el.innerHTML =
+        ("<a href='javascript:openDialog(\"[ID]\")' title='Click here to see the calculation behind the number.' " +
+            "class='thegamma-inline' id='thegamma-[ID]-out'>(...)</a>").replace(/\[ID\]/g, info.id);      
+    } else {
+      el.innerHTML =
+        ("<div class='thegamma-edit'><a href='javascript:openDialog(\"[ID]\")'><i class='fa fa-code'></i> open source code</a></div>" +
+        '<div id="thegamma-[ID]-out" class="thegamma-out"><p class="placeholder">Loading the visualization...</p></div>' +
+        '<div id="thegamma-[ID]-sizer" class="thegamma-sizer"></div>' +
+        '<div id="thegamma-[ID]-dialog" class="thegamma-dialog">' +
+        '  <div id="thegamma-[ID]-dialog-window" class="thegamma-dialog-window">' +
+        '  <div class="header"><a href="javascript:closeDialog(\'[ID]\');">&times;</a><span>Edit source code</span></div>' +
+        '  <div class="body"><div id="thegamma-[ID]-ed"></div><div id="thegamma-[ID]-errors" class="errors"></div>' +
+        '    <button id="thegamma-[ID]-update">Update page</button></div>' +
+        '</div></div>').replace(/\[ID\]/g, info.id);
+      }
   });
   loadTheGamma();
   

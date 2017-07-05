@@ -11,6 +11,9 @@
   <link href="https://thegamma.net/lib/thegamma/thegamma.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
   <link href="/lib/custom.css" rel="stylesheet">
+  <script type="text/javascript">
+    var thegamma = [];
+  </script>  
 </head>
 <body>
   <div id="trig"><div id="trig1orange"></div></div>
@@ -23,34 +26,66 @@
         The Alan Turing Institute is the United Kingdom national institute for data sciences, 
         founded in 2015. It is named after Alan Turing, the British mathematician and computing pioneer.
         Since getting started in 2015, the institute hired its first Research Fellows, published 
-        <a href="https://www.youtube.com/channel/UCcr5vuAH5TPlYox-QLj4ySw">numerous recorded talks</a>,
-        <a href="https://www.turing.ac.uk/publications/">over 50 publications</a> and started
+        over <span id="stats-youtube-count"></span> <a href="https://www.youtube.com/channel/UCcr5vuAH5TPlYox-QLj4ySw">recorded talks</a>,
+        over <span id="stats-pubs-count"></span> <a href="https://www.turing.ac.uk/publications/">academic publications</a> and started
         new <a href="https://www.turing.ac.uk/category/research/projects/">research projects</a>
-        that aim to advance the fields of data science, machine learning and many more.</p>
+        that advance the fields of data science, machine learning and many more.</p>
       <p>Here, we present information about the Alan Turing Institute in a fun interactive way.
-        We are using tools developed as part of <a href="https://www.turing.ac.uk/research_projects/the-gamma/">The 
-        Gamma</a> project, which make it possible to present data in a transparent way. Behind 
-        every chart on this page, there is source code that links the chart to the primary data
-        source and lets you explore the data further. The visualizations are inspired by
-        <a href="https://nytimes.com/interactive/2017/01/15/us/politics/you-draw-obama-legacy.html">the
-        You Draw It series by New York Times</a> and let you make your own guess about the data
-        before showing the actual numbers. How many of the facts about the Alan Turing Institute
-        can you guess correctly?      
-      </p>
+        We are using tools developed as part of <a href="https://thegamma.net/">The 
+        Gamma</a> project, which make it possible to present data transparently. Behind 
+        every number and every chart on this page, there is source code that links the chart to the primary data 
+        source and lets you check the data and explore further. For example, if you want to verify that
+        the Institute hosted <span id="stats-event-count"></span> events, click on the number to 
+        see the raw data from which it is calculated!</p>
     </div>
   </div>
   
-  <!--
   <div class="row">
-    <div class="col-md-6">
-      <div style="background:#f0f0f0;margin:10px 50px 20px 50px;padding:20px">
-        <h3><i class="fa fa-search"></i> &nbsp; Don't like games</h3>
-        <h3><i class="fa fa-refresh"></i> &nbsp; Play again</h3>
-        <h3><i class="fa fa-twitter"></i> &nbsp; Share your score</h3>
+    <div class="col-sm-6">
+      <p>The interactive visualizations on this page are inspired by
+        <a href="https://nytimes.com/interactive/2017/01/15/us/politics/you-draw-obama-legacy.html">the
+        You Draw It series by New York Times</a> and let you make your own guess about the data
+        before showing the actual numbers. To make this more fun, we calculate a score that tells
+        you how good your guesses are! When you are done, share the results with us at 
+        <a href="https://twitter.com/turinginst">@turinginst</a>. How many of the facts about the 
+        Alan Turing Institute can you guess correctly?      
+      </p>
+    </div>
+    <div class="col-sm-6">
+      <div class="game-info">
+        <p><a href="#"><i class="fa fa-search"></i>  &nbsp; <strong>I don't like games.</strong></a>
+          Just show me the correct results on all interactive charts.</p>
+        <p><a href="#"><i class="fa fa-refresh"></i> &nbsp; <strong>Play again.</strong></a>
+          Reset all guesses on the interactive charts. I want to try again!</p>
+        <p><a href="#"><i class="fa fa-twitter"></i> &nbsp; <strong>Share your score.</strong></a>
+          Tell the world how you did! Don't worry, this is just for fun.</p>
       </div>
     </div>
   </div>
-  -->
+
+<script type="text/thegamma" id="stats-youtube-count-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'.'get the data'
+  
+let rounded = data.count().map(fun x -> math.floor(x/10)*10)  
+inline.create(rounded)</script>
+<script type="text/thegamma" id="stats-pubs-count-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Papers (3 July 2017, raw)'.'get the data'
+  
+let rounded = data.count().map(fun x -> math.floor(x/10)*10)  
+inline.create(rounded)
+</script>
+<script type="text/thegamma" id="stats-event-count-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'get the data'
+
+inline.create(data.count())
+</script>
+<script type="text/javascript">
+  thegamma.push({id:"stats-youtube-count", inline:true});
+  thegamma.push({id:"stats-pubs-count", inline:true});
+  thegamma.push({id:"stats-event-count", inline:true});
+</script>
+
 
   <div class="row">
     <div class="col-sm-12">    
@@ -61,16 +96,16 @@
   <div class="row">
     <div class="col-md-4">
       <h3><span>People at the Turing</span></h3>
-      <p>In this section, we look at the people working at the Alan Turing Institute
-        as <a href="https://www.turing.ac.uk/people/">listed on the institute web page</a>.
-        This includes Research Fellows who work full-time at the institute, Faculty Fellows 
-        who divide their time between the host university and the instiute and Doctoral 
-        Students who spent one year of their PhD at the institute.</p>
+      <p>The Alan Turing Institute hosts over <span id="people-count"></span> academics and
+        students. The members <a href="https://www.turing.ac.uk/people/">listed on the Turing web page</a>,
+        include Research Fellows who work full-time at the institute, 
+        Faculty Fellows who divide their time between the host university and the instiute and 
+        Doctoral Students who spent one year of their PhD at the institute.</p>
       <p>Can you guess how many Research Fellows, Faculty Fellows, Doctoral Students and
         members of the Leadership team are there? </p>
     </div>
     <div class="toppad col-md-8">
-      <div class="thegamma" id="people"></div>
+      <div class="thegamma" id="people-role"></div>
     </div>
   </div>
 
@@ -84,16 +119,47 @@
         affiliated with the Alan Turing Institute?</p>
     </div>
     <div class="toppad col-md-8">
-      <div class="thegamma" id="faculty"></div>
+      <div class="thegamma" id="people-uni"></div>
     </div>
   </div>
+  
+<script type="text/thegamma" id="people-role-code">let data =
+  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+    .'group data'.'by Role'.'count all'.then
+    .'get series'.'with key Role'.'and value count'
+
+youguess.bars(data).setMaximum(150).setSize(height=350)
+</script>
+<script type="text/thegamma" id="people-uni-code">let data =
+  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+    .'filter data'.'Role is'.'Faculty Fellow'.then
+    .'group data'.'by University'.'count all'.then
+    .'get series'.'with key University'.'and value count'
+
+youguess.bars(data).setSize(height=350)
+</script>
+<script type="text/thegamma" id="people-count-code">let data =
+  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+    .'filter data'.'Role is'.'Faculty Fellow'.'or Role is'.'Research Fellow'
+      .'or Role is'.'Doctoral Student'.then
+    .'get the data'
+    
+let rounded = data.count().map(fun x -> math.floor(x/10)*10)  
+inline.create(rounded)
+</script>
+<script type="text/javascript">
+  thegamma.push({id:"people-uni"});
+  thegamma.push({id:"people-role"});
+  thegamma.push({id:"people-count", inline:true});
+</script>
+  
 
   <div class="row">
     <div class="col-sm-12 col-md-8">
-      <h2><span>Talks at the Alan Turing Institute</span></h2>
+      <h2><span>Talks recorded at the Alan Turing Institute</span></h2>
       <p style="margin-top:20px">
-        The Alan Turing Institute has been hosting a number of talk series and posting the 
-        recording on YouTube throughout the year. Videos from the
+        The Alan Turing Institute published over <span id="youtube-count"></span> YouTube videos
+        that have a total watch time of <span id="youtube-watchtime"></span> minutes. Videos from the
         <a href="https://www.youtube.com/watch?v=GnLU1sZLQR4&list=PLuD_SqLtxSdU774xWBKNjg54GgNpKvWbC">Fellow
         Short Talks series</a> feature the current research of the Research Fellows and Falculty Fellows.
         The <a href="https://www.youtube.com/watch?v=y7ehrXZfIS0&list=PLuD_SqLtxSdVDcrCYIHayTL91DapuIHrO">Turing
@@ -102,25 +168,26 @@
         the talks posted on YouTube.
       </p>
       <p>Note that the chart below is calculated from a data dump from YouTube and so
-        you can click "view source code" and explore the data on your own. For example,
-        try looking at the number of subscribers rather than the number of views!
+        you can click on any of the numbers quoted in the previous paragraph, or on the
+        "view source code" link, and explore the data on your own. 
+        Try changing the number of views to the number of subscribers!
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-md-12 col-lg-10">    
-      <div class="thegamma" id="aggviews"></div>
+      <div class="thegamma" id="youtube-sums"></div>
     </div>
     <div class="col-lg-1"></div>
   </div>
 
-  <div class="row">
+  <div class="row toppad">
     <div class="col-md-4">
       <h3><span>When are videos published</span></h3>
       <p>Let's now have a more detailed look at the YouTube video views. The bubble chart
         shows when each video was published together with the total number of views since
-        it was published. This means that older videos had more time to get more views.
+        it was published. 
       </p>
       <p>
         You can see huge spike in activity around October 2016 when regular talk series started
@@ -129,20 +196,16 @@
       <p>Now the game part! The line chart below shows total video views per day. This jumps
         up and down, so the line chart shows average values over two weeks. Can you guess 
         the rest of the line?</p>
-      <p>As with the previous charts, you can click "open source code" to see how the visualization
-        is created. Change the window size on the second line from 15 to 1 or 30 to see how
-        it changes!
     </div>
-    <div class="toppad col-md-8">
-      <div class="hidden-sm hidden-xs" style="height:20px;"></div>
-      <div class="thegamma" id="bubbles"></div>
-      <div class="thegamma" id="views"></div>
+    <div class="col-md-8">
+      <div class="thegamma" id="youtube-bubbles"></div>
+      <div class="thegamma" id="youtube-views"></div>
     </div>    
   </div>
 
   <div class="row">
     <div class="col-md-4">
-      <h3><span>Selected Turing lectures</span></h3>
+      <h3><span>Selected Turing videos</span></h3>
       <p>Now, let's look at a couple of individual lectures. The following list contains
         a number of talks (selected by hand) that illustrate the breadth of the topics
         covered by the institute. You can explore and select other talks if you click
@@ -150,7 +213,7 @@
       </p>
       <ul>
         <li><a href="https://www.youtube.com/watch?v=lLH70qkROWQ">Ethics in the Age of Information</a></li>
-        <li><a href="https://www.youtube.com/watch?v=CvL-KV3IBcM">Multi-Agent Learning at DeepMind</a></li>
+        <li><a href="https://www.youtube.com/watch?v=nHXO43BqeQw">High-Dimensional Learning</a></li>
         <li><a href="https://www.youtube.com/watch?v=LH3vvA7PL1U">The Data Science of Politics</a></li>
         <li><a href="https://www.youtube.com/watch?v=aHjgpmzFjOA">Open Data-Driven Storytelling</a></li>
         <li><a href="https://www.youtube.com/watch?v=OJy2h9mgiX8">What is data science?</a></li>
@@ -160,11 +223,267 @@
         it should be!</p>
     </div>
     <div class="toppad col-md-8">
+      <div class="thegamma" id="youtube-videos"></div>
+    </div>    
+  </div>
+  
+<script type="text/thegamma" id="youtube-sums-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube Views per Date'
+    .windowing.'expanding by date'.'sum views'.then
+    .'get series'.'with key last date'.'and value views'
+
+compost.charts.area(data)
+  .setColors(["#ff7f0e"])
+  .setAxisX(minValue=date.date(2016,5,10), maxValue=date.date(2017,5,10))
+  .setAxisY(label="Total number of YouTube views")
+  .setSize(height=300)
+</script>  
+<script type="text/thegamma" id="youtube-views-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube Views per Date'
+    .windowing.'window by date'(15)
+      .'middle date'.'mean views'.then
+    .'get series'.'with key middle date'.'and value views'
+
+let sample = 
+  data.filterIndex(fun n -> n % 7 = 0)    
+
+youguess.line(sample)
+  .setClip(date.date(2016,10,20))
+  .setSize(height=300)
+  .setAxisY(label="Views averaged over two weeks", labelOffset=45)
+</script>
+
+<script type="text/thegamma" id="youtube-bubbles-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube views by video'.'get the data'
+
+compost.charts.bubbles(data).set(
+    x = fun v -> v.'Video created',
+    y = fun v -> math.log(v.Views),
+    size = fun v -> math.log(v.Views) ^ 1.25,
+    label = fun v -> v.'Video title')
+  .setColors("#ffa070")
+  .setSize(height=300)
+  .setAxisY(label="Logarithm of total viedeo views", labelOffset=45)
+  .setAxisX(date.date(2016, 4, 5), date.date(2017, 4, 20))
+</script>
+<script type="text/thegamma" id="youtube-videos-code">let data =
+  shared.'by date'.'May 2017'.'YouTube views by video'
+    .'filter data'
+        .'Video title is'.'Fellow Short Talks: Dr Tomas Petricek, The Alan Turing Institute'
+        .'or Video title is'.'The Role of Multi-Agent Learning in Artificial Intelligence Research at DeepMind'
+        .'or Video title is'.'What is data science?'
+        .'or Video title is'.'Professor Helen Margetts: "The Data Science of Politics"'
+        .'or Video title is'.'Professor Luciano Floridi: "Ethics in the Age of Information"'
+        .then
+    .'get series'.'with key Video title'.'and value Views'
+    .shuffle()
+
+youguess.sortBars(data).setSize(height=500)
+</script>
+<script type="text/thegamma" id="youtube-watchtime-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube Views per Date'
+    .'group data'.'by ad_impressions'.'sum watch_time_minutes'.then
+    .'get series'.'with key ad_impressions'.'and value watch_time_minutes'.first()
+
+inline.create(data.map(fun n -> number.format(n,0)))
+</script>
+<script type="text/thegamma" id="youtube-count-code">let data = 
+  shared.'by date'.'May 2017'.'YouTube views by video'
+    .'group data'.'by Estimated partner revenue usd'.'count all'.then 
+    .'get series'.'with key Estimated partner revenue usd'.'and value count'.first()
+
+inline.create(data.map(fun n -> number.format(n,0)))
+</script>
+<script type="text/javascript">
+  thegamma.push({id:"youtube-videos"});
+  thegamma.push({id:"youtube-sums"});
+  thegamma.push({id:"youtube-views"});
+  thegamma.push({id:"youtube-bubbles"});
+  thegamma.push({id:"youtube-watchtime", inline:true});
+  thegamma.push({id:"youtube-count", inline:true});
+</script>  
+  
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h2><span>Events at the Alan Turing Institute</span></h2>
+      <p style="margin-top:20px">    
+        The Alan Turing Institute hosted over <span id="events-count"></span> events. Those
+        include <a href="https://www.turing.ac.uk/past-events/">Turing Lectures</a>, which feature
+        lectures by prominent researchers visiting the institute, <a href="https://www.turing.ac.uk/past-events/">Fellow
+        Short Talks</a> where Turing researchers introduce their work, smaller informal workshops 
+        where new collaborations are initiated and also a range of events for students.
+        In total, number of visits for all events hosted at the institute was over <span id="events-people"></span>.
+        Note that we do not track individual visitors, so if you attended two events, you will be counted twice.            
+      </p>
+      <p>The following chart gives an overview of the events. The institute started hosting early 
+        scoping workshops between December 2015 and continued throughout 2016. A lot more activity
+        started once the institute officially opened in October 2016.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-md-12 col-lg-10">    
+      <div class="thegamma" id="events-bubbles"></div>
+    </div>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="hidden-sm hidden-xs" style="height:40px;"></div>
+      <h3><span>How many people come</span></h3>
+      <p>As you can see in the following chart, the two most common kinds of events hosted at the
+        institute are workshops and lectures. Since the institute was established, it hosted
+        <span id="events-count-lecture"></span> lectures and 
+        <span id="events-count-workshop"></span> workshops. The number of short talks and 
+        larger conferences was smaller.
+      </p>
+      <p>
+        The total number of visitors to any of the events was <span id="events-people2"></span>,
+        but the fun question for you is to guess how is the number of visits distributed
+        between different kinds of events?
+      </p>
+      <p>
+        In the following interactive visualization, you can try to guess! You need to guess
+        the total number of visits to all the short talks, conferences, workshops and lectures,
+        respectively. 
+      </p>
+    </div>
+    <div class="col-md-8">
       <div class="hidden-sm hidden-xs" style="height:20px;"></div>
-      <div class="thegamma" id="videos"></div>
+      <div class="thegamma" id="events-count-kind"></div>
+      <div class="thegamma" id="events-attend-kind"></div>
     </div>    
   </div>
 
+  
+  <div class="row">
+    <div class="col-md-4">
+      <h3><span>Largest Turing events</span></h3>
+      <p>Turing Lectures often attract a large number of guests. The largest
+        one had over <span id="events-largest"></span> visitors, but the next four 
+        closely follow the lead. You can view the recordings of many of the biggest events
+        on YouTube, including four of the top five. Here, they are in alphabethic order:
+      </p>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=o7BJEqyrDm4">AI and Public Services</a></li>
+        <li><a href="https://www.youtube.com/watch?v=RfK3D5dJV2Q">Data Science for Medicine</a></li>
+        <li><a href="https://www.turing.ac.uk/events/chief-scientist-professor-anthony-finkelstein/">Data Science, National Security and Systems Challenges</a> (not recorded)</li>
+        <li><a href="https://www.youtube.com/watch?v=CvL-KV3IBcM">Multi-Agent Learning at DeepMind</a></li>        
+        <li><a href="https://www.youtube.com/watch?v=y7ehrXZfIS0">Smarter Cities</a></li>
+      </ul>
+      <p>As with the YouTube videos before, can you assign the events to their bars based on
+        the number of attendees? Click on the event and then on the bar where you think
+        it should be!</p>
+    </div>
+    <div class="toppad col-md-8">
+      <div class="hidden-sm hidden-xs" style="height:20px;"></div>
+      <div class="thegamma" id="events-selected"></div>
+    </div>    
+  </div>
+  
+<script type="text/thegamma" id="events-bubbles-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'.'get the data'
+
+compost.charts.bubbles(data).set(
+    x = fun v -> v.Date,
+    y = fun v -> v.Number,
+    size = fun v -> math.log(v.Number) ^ 1.7,
+    label = fun v -> v.Event)
+  .setColors("#2ca02c")
+  .setSize(height=300)
+  .setAxisY(label="Number of event attendees", labelOffset=45)
+  .setAxisX(date.date(2015, 11, 1), date.date(2017, 4, 10))
+</script>
+<script type="text/thegamma" id="events-selected-code">let data =
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'sort data'.'by Number descending'.then
+    .paging.take(5)
+    .'get series'.'with key Event'.'and value Number'
+    .shuffle()
+
+youguess.sortBars(data).setSize(height=500)
+</script>
+<script type="text/thegamma" id="events-attend-kind-code">let data =
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'filter data'.'Kind is not'.Masterclass
+      .'and Kind is not'.'External event'.then
+    .'group data'.'by Kind'.'sum Number'.then
+    .'get series'.'with key Kind'.'and value Number'
+
+youguess.bars(data).setSize(height=320)</script>  
+<script type="text/thegamma" id="events-count-kind-code">let data =
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'filter data'.'Kind is not'.Masterclass
+      .'and Kind is not'.'External event'.then
+    .'group data'.'by Kind'.'count distinct Event'.then
+    .'get series'.'with key Kind'.'and value Event'
+
+youguess.bars(data).setSize(height=320).setInteractive(false)</script>  
+<script type="text/thegamma" id="events-count-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'get the data'
+
+let rounded = data.count().map(fun x -> math.floor(x/10)*10)
+inline.create(rounded)
+</script>
+<script type="text/thegamma" id="events-people-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'group data'.'by Kind'.'sum Number'.then
+    .'get the data'
+
+let rounded = data.sumBy(fun x -> x.Number).map(fun x -> math.floor(x/10)*10)
+inline.create(rounded)
+</script>
+<script type="text/thegamma" id="events-people2-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'group data'.'by Kind'.'sum Number'.then
+    .'get the data'
+
+let rounded = data.sumBy(fun x -> x.Number).map(fun x -> math.floor(x/10)*10)
+inline.create(rounded)
+</script>
+<script type="text/thegamma" id="events-count-lecture-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'group data'.'by Kind'.'count distinct Event'.then
+    .'filter data'.'Kind is'.Lecture.then
+    .'get series'.'with key Kind'.'and value Event'
+
+inline.create(data.first())
+</script>
+<script type="text/thegamma" id="events-count-workshop-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'group data'.'by Kind'.'count distinct Event'.then
+    .'filter data'.'Kind is'.Workshop.then
+    .'get series'.'with key Kind'.'and value Event'
+
+inline.create(data.first())
+</script>
+<script type="text/thegamma" id="events-largest-code">let data = 
+  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+    .'sort data'.'by Number descending'.then
+    .paging.take(1).'get the data'
+
+let rounded = data.first().map(fun x -> math.floor(x.Number/10)*10)
+inline.create(rounded)
+</script>
+
+
+<script type="text/javascript">
+  thegamma.push({id:"events-bubbles"});
+  thegamma.push({id:"events-count-kind"});
+  thegamma.push({id:"events-attend-kind"});
+  thegamma.push({id:"events-selected"});
+  thegamma.push({id:"events-count-workshop", inline:true});
+  thegamma.push({id:"events-count-lecture", inline:true});
+  thegamma.push({id:"events-count", inline:true});
+  thegamma.push({id:"events-people", inline:true});
+  thegamma.push({id:"events-people2", inline:true});
+  thegamma.push({id:"events-largest", inline:true});
+</script>  
+  
+    
   <div class="row">
     <div class="col-sm-12">    
       <h2><span>Explore the data on your own</span></h2>
@@ -206,22 +525,8 @@
 </article>  
 
 <!-- Source code for embedded The Gamma visualizations -->
+<div id="inline-placeholder" class="thegamma"></div>
 
-<script type="text/thegamma" id="people-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
-    .'group data'.'by Role'.'count all'.then
-    .'get series'.'with key Role'.'and value count'
-
-youguess.bars(data).setMaximum(150).setSize(height=350)
-</script>
-<script type="text/thegamma" id="faculty-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
-    .'filter data'.'Role is'.'Faculty Fellow'.then
-    .'group data'.'by University'.'count all'.then
-    .'get series'.'with key University'.'and value count'
-
-youguess.bars(data).setSize(height=350)
-</script>
 <script type="text/thegamma" id="listing-code">let data = 
  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
   .'filter data'.'Role is'.[role:'Faculty Fellow']
@@ -230,66 +535,18 @@ youguess.bars(data).setSize(height=350)
 
 table.create(data).set(emptyText="No records match the selected criteria")
 </script>
-<script type="text/thegamma" id="videos-code">let data =
-  shared.'by date'.'May 2017'.'YouTube views by video'
-    .'filter data'
-        .'Video title is'.'Fellow Short Talks: Dr Tomas Petricek, The Alan Turing Institute'
-        .'or Video title is'.'The Role of Multi-Agent Learning in Artificial Intelligence Research at DeepMind'
-        .'or Video title is'.'What is data science?'
-        .'or Video title is'.'Professor Helen Margetts: "The Data Science of Politics"'
-        .'or Video title is'.'Professor Luciano Floridi: "Ethics in the Age of Information"'
-        .then
-    .'get series'.'with key Video title'.'and value Views'
-    .shuffle()
-
-youguess.sortBars(data).setSize(height=500)
-</script>
-<script type="text/thegamma" id="aggviews-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
-    .windowing.'expanding by date'.'sum views'.then
-    .'get series'.'with key last date'.'and value views'
-
-compost.charts.area(data)
-  .setColors(["#ff7f0e"])
-  .setAxisX(minValue=date.date(2016,5,10), maxValue=date.date(2017,5,10))
-  .setAxisY(label="Total number of YouTube views")
-  .setSize(height=300)
-</script>  
-<script type="text/thegamma" id="views-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
-    .windowing.'window by date'(15)
-      .'middle date'.'mean views'.then
-    .'get series'.'with key middle date'.'and value views'
-
-let sample = 
-  data.filterIndex(fun n -> n % 7 = 0)    
-
-youguess.line(sample)
-  .setClip(date.date(2016,10,20))
-  .setSize(height=300)
-  .setAxisY(label="Views averaged over two weeks", labelOffset=45)
-</script>
-
-<script type="text/thegamma" id="bubbles-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube views by video'.'get the data'
-
-compost.charts.bubbles(data).set(
-    x = fun v -> v.'Video created',
-    y = fun v -> math.log(v.Views),
-    size = fun v -> math.log(v.Views) ^ 1.25)
-  .setColors("#ffa070")
-  .setSize(height=300)
-  .setAxisY(label="Logarithm of total viedeo views", labelOffset=45)
-  .setAxisX(date.date(2016, 4, 5), date.date(2017, 4, 20))
-</script>
-
+  
 <!-- Define visualizations that should be loaded by embed.js later -->
 <script type="text/javascript">
+/*
 var thegamma = 
-  [ {id:"people"}, {id:"faculty"},
-    {id:"listing", editors:"listing-options"},
-    {id:"videos"}, {id:"aggviews"}, 
-    {id:"views"}, {id:"bubbles"} ];
+  [ // basic
+    {id:"events"}, {id:"aggevents"}, {id:"attendkind"}, {id:"countkind"},
+    // inline
+    {id:"countevents", inline:true},
+    // with editors
+    {id:"listing", editors:"listing-options"} ];
+*/
 </script>
 
 
