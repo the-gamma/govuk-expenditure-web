@@ -38,16 +38,50 @@
       <div class="thegamma" id="co2"></div>
     </div>
   </div>
+  
+  <div class="row">
+    <div class="col-sm-12 col-md-8" style="padding-top:30px">
+      <p>You can change the indicators and countries as you wish by editting the source code
+        for the visualization if you click "open source code". However, having the source code
+        and nicely structured data source also makes it possible to generate a simple user interface,
+        such as the one below, where you can change the most important parameters.
+       </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="co2-cnt1" class="control-label">First country</label>
+        <div><select class="form-control" style="max-width:360px" id="co2-cnt1"></select></div>
+      </div>
+      <div class="form-group">
+        <label for="co2-cnt2" class="control-label">Second country</label>
+        <div><select class="form-control" style="max-width:360px" id="co2-cnt2"></select></div>
+      </div>
+    </div>    
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="co2-ind1" class="control-label">First indicator</label>
+        <div><select class="form-control" style="max-width:360px" id="co2-ind1"></select></div>
+      </div>
+      <div class="form-group">
+        <label for="co2-ind2" class="control-label">Second indicator</label>
+        <div><select class="form-control" style="max-width:360px" id="co2-ind2"></select></div>
+      </div>
+    </div>    
+  </div>
+  
+  
 </article>
 
 <script type="text/thegamma" id="co2-code">let china = 
-  worldbank.byCountry.China
-    .'Climate Change'.'CO2 emissions (kt)'
+  worldbank.byCountry.[cnt1:China]
+    .'Climate Change'.[ind1:'CO2 emissions (kt)']
       .setProperties(seriesName="China")
 
 let usa =
-  worldbank.byCountry.'United States'
-    .'Climate Change'.'CO2 emissions (kt)'
+  worldbank.byCountry.[cnt2:'United States']
+    .'Climate Change'.[ind2:'CO2 emissions (kt)']
       .setProperties(seriesName="USA")
 
 compost.charts.lines([china,usa])
@@ -57,7 +91,7 @@ compost.charts.lines([china,usa])
 </script>
 
 <script type="text/javascript">
-var thegamma = [ {id:"co2"} ];
+var thegamma = [ {id:"co2",editors:"co2"} ];
 </script>
 
 
