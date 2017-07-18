@@ -424,11 +424,18 @@ var thegamma =
   {id:"scienceAndTech"},{id:"education"},{id:"transport"},
   {id:"socialProtection"},
   {id:"listing",editors:"listing-options"} ];
-    // The 'editors' value specifies prefix that is used for generating <select> elements
-    // for placeholders in the code. In the case here, there are placeholders 'uni' and 'role'
-    // and we have two <select> elements with ids 'listing-options-uni' and 'listing-options-role
 </script>
 
+<div class="thegamma">
+<div id="thegamma-sizer" class="thegamma-sizer"></div>
+<div id="thegamma-dialog" class="thegamma-dialog">
+  <div id="thegamma-dialog-window" class="thegamma-dialog-window">
+    <div class="header"><a href="javascript:closeDialog();">&times;</a><span>Edit source code</span></div>
+    <div class="body"><div id="thegamma-ed"></div><div id="thegamma-errors" class="errors"></div>
+      <button id="thegamma-update">Update page</button></div>
+  </div>
+</div>
+</div>
 
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/babel.min.js"></script>
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/core-js.min.js"></script>

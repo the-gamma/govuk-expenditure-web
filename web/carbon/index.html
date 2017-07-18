@@ -94,6 +94,16 @@ compost.charts.lines([china,usa])
 var thegamma = [ {id:"co2",editors:"co2"} ];
 </script>
 
+<div class="thegamma">
+<div id="thegamma-sizer" class="thegamma-sizer"></div>
+<div id="thegamma-dialog" class="thegamma-dialog">
+  <div id="thegamma-dialog-window" class="thegamma-dialog-window">
+    <div class="header"><a href="javascript:closeDialog();">&times;</a><span>Edit source code</span></div>
+    <div class="body"><div id="thegamma-ed"></div><div id="thegamma-errors" class="errors"></div>
+      <button id="thegamma-update">Update page</button></div>
+  </div>
+</div>
+</div>
 
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/babel.min.js"></script>
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/core-js.min.js"></script>

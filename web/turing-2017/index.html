@@ -16,6 +16,19 @@
   </script>  
 </head>
 <body>
+  <div class="game-status" id="game-status">
+    <div id="game-details">
+      <table id="game-table">
+      </table>
+    </div>
+    <div>
+        <a style="float:right;" href="javascript:;" onclick="switchDetails()"><i class="fa fa-bars"></i></a>
+        <a href="" id="game-tweet" target="_blank">
+          <i class="fa fa-twitter"></i> Tweet score! 
+        </a>
+    </div>
+  </div>
+  
   <div id="trig"><div id="trig1orange"></div></div>
   <article class="container">
     
@@ -53,30 +66,29 @@
     </div>
     <div class="col-sm-6">
       <div class="game-info">
-        <p><a href="#"><i class="fa fa-search"></i>  &nbsp; <strong>I don't like games.</strong></a>
+        <p><a href="javascript:;" onclick="dontLikeGames();"><i class="fa fa-search"></i>  &nbsp; <strong>I don't like games.</strong></a>
           Just show me the correct results on all interactive charts.</p>
-        <p><a href="#"><i class="fa fa-refresh"></i> &nbsp; <strong>Play again.</strong></a>
+        <p><a href="javascript:;" onclick="resetGame();"><i class="fa fa-refresh"></i> &nbsp; <strong>Play again.</strong></a>
           Reset all guesses on the interactive charts. I want to try again!</p>
-        <p><a href="#"><i class="fa fa-twitter"></i> &nbsp; <strong>Share your score.</strong></a>
+        <p><a id="game-tweet-2" target="_blank" href="https://twitter.com/intent/tweet?url=http%3a%2f%2fgamma.turing.ac.uk%2fturing-2017&amp;text=How%20do%20you%20know%20%40turinginst%3F%20Find%20out%20in%20our%20interactive%20game!%20"><i class="fa fa-twitter"></i> &nbsp; <strong>Share your score.</strong></a>
           Tell the world how you did! Don't worry, this is just for fun.</p>
       </div>
     </div>
   </div>
 
 <script type="text/thegamma" id="stats-youtube-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'.'get the data'
+  events.'get the data'
   
 let rounded = data.count().map(fun x -> math.floor(x/10)*10)  
 inline.create(rounded)</script>
 <script type="text/thegamma" id="stats-pubs-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Papers (3 July 2017, raw)'.'get the data'
+  papers.'get the data'
   
 let rounded = data.count().map(fun x -> math.floor(x/10)*10)  
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="stats-event-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
-    .'get the data'
+  events.'get the data'
 
 inline.create(data.count())
 </script>
@@ -124,14 +136,14 @@ inline.create(data.count())
   </div>
   
 <script type="text/thegamma" id="people-role-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+  people
     .'group data'.'by Role'.'count all'.then
     .'get series'.'with key Role'.'and value count'
 
 youguess.bars(data).setMaximum(150).setSize(height=350)
 </script>
 <script type="text/thegamma" id="people-uni-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+  people
     .'filter data'.'Role is'.'Faculty Fellow'.then
     .'group data'.'by University'.'count all'.then
     .'get series'.'with key University'.'and value count'
@@ -139,7 +151,7 @@ youguess.bars(data).setMaximum(150).setSize(height=350)
 youguess.bars(data).setSize(height=350)
 </script>
 <script type="text/thegamma" id="people-count-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+  people
     .'filter data'.'Role is'.'Faculty Fellow'.'or Role is'.'Research Fellow'
       .'or Role is'.'Doctoral Student'.then
     .'get the data'
@@ -228,7 +240,7 @@ inline.create(rounded)
   </div>
   
 <script type="text/thegamma" id="youtube-sums-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
+  views
     .windowing.'expanding by date'.'sum views'.then
     .'get series'.'with key last date'.'and value views'
 
@@ -239,7 +251,7 @@ compost.charts.area(data)
   .setSize(height=300)
 </script>  
 <script type="text/thegamma" id="youtube-views-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
+  views
     .windowing.'window by date'(15)
       .'middle date'.'mean views'.then
     .'get series'.'with key middle date'.'and value views'
@@ -254,7 +266,7 @@ youguess.line(sample)
 </script>
 
 <script type="text/thegamma" id="youtube-bubbles-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube views by video'.'get the data'
+  videos.'get the data'
 
 compost.charts.bubbles(data).set(
     x = fun v -> v.'Video created',
@@ -267,7 +279,7 @@ compost.charts.bubbles(data).set(
   .setAxisX(date.date(2016, 4, 5), date.date(2017, 4, 20))
 </script>
 <script type="text/thegamma" id="youtube-videos-code">let data =
-  shared.'by date'.'May 2017'.'YouTube views by video'
+  videos
     .'filter data'
         .'Video title is'.'Fellow Short Talks: Dr Tomas Petricek, The Alan Turing Institute'
         .'or Video title is'.'The Role of Multi-Agent Learning in Artificial Intelligence Research at DeepMind'
@@ -281,14 +293,14 @@ compost.charts.bubbles(data).set(
 youguess.sortBars(data).setSize(height=500)
 </script>
 <script type="text/thegamma" id="youtube-watchtime-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
+  views
     .'group data'.'by ad_impressions'.'sum watch_time_minutes'.then
     .'get series'.'with key ad_impressions'.'and value watch_time_minutes'.first()
 
 inline.create(data.map(fun n -> number.format(n,0)))
 </script>
 <script type="text/thegamma" id="youtube-count-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube views by video'
+  videos
     .'group data'.'by Estimated partner revenue usd'.'count all'.then 
     .'get series'.'with key Estimated partner revenue usd'.'and value count'.first()
 
@@ -384,7 +396,7 @@ inline.create(data.map(fun n -> number.format(n,0)))
   </div>
   
 <script type="text/thegamma" id="events-bubbles-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'.'get the data'
+  events.'get the data'
 
 compost.charts.bubbles(data).set(
     x = fun v -> v.Date,
@@ -397,7 +409,7 @@ compost.charts.bubbles(data).set(
   .setAxisX(date.date(2015, 11, 1), date.date(2017, 4, 10))
 </script>
 <script type="text/thegamma" id="events-selected-code">let data =
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'sort data'.'by Number descending'.then
     .paging.take(5)
     .'get series'.'with key Event'.'and value Number'
@@ -406,7 +418,7 @@ compost.charts.bubbles(data).set(
 youguess.sortBars(data).setSize(height=500)
 </script>
 <script type="text/thegamma" id="events-attend-kind-code">let data =
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'filter data'.'Kind is not'.Masterclass
       .'and Kind is not'.'External event'.then
     .'group data'.'by Kind'.'sum Number'.then
@@ -414,7 +426,7 @@ youguess.sortBars(data).setSize(height=500)
 
 youguess.bars(data).setSize(height=320)</script>  
 <script type="text/thegamma" id="events-count-kind-code">let data =
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'filter data'.'Kind is not'.Masterclass
       .'and Kind is not'.'External event'.then
     .'group data'.'by Kind'.'count distinct Event'.then
@@ -422,14 +434,14 @@ youguess.bars(data).setSize(height=320)</script>
 
 youguess.bars(data).setSize(height=320).setInteractive(false)</script>  
 <script type="text/thegamma" id="events-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'get the data'
 
 let rounded = data.count().map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="events-people-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'group data'.'by Kind'.'sum Number'.then
     .'get the data'
 
@@ -437,7 +449,7 @@ let rounded = data.sumBy(fun x -> x.Number).map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="events-people2-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'group data'.'by Kind'.'sum Number'.then
     .'get the data'
 
@@ -445,7 +457,7 @@ let rounded = data.sumBy(fun x -> x.Number).map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="events-count-lecture-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'group data'.'by Kind'.'count distinct Event'.then
     .'filter data'.'Kind is'.Lecture.then
     .'get series'.'with key Kind'.'and value Event'
@@ -453,7 +465,7 @@ inline.create(rounded)
 inline.create(data.first())
 </script>
 <script type="text/thegamma" id="events-count-workshop-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'group data'.'by Kind'.'count distinct Event'.then
     .'filter data'.'Kind is'.Workshop.then
     .'get series'.'with key Kind'.'and value Event'
@@ -461,7 +473,7 @@ inline.create(data.first())
 inline.create(data.first())
 </script>
 <script type="text/thegamma" id="events-largest-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'sort data'.'by Number descending'.then
     .paging.take(1).'get the data'
 
@@ -528,7 +540,7 @@ inline.create(rounded)
 <div id="inline-placeholder" class="thegamma"></div>
 
 <script type="text/thegamma" id="listing-code">let data = 
- shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+ people
   .'filter data'.'Role is'.[role:'Faculty Fellow']
     .'and University is'.[uni:Cambridge].then
   .'get the data'
@@ -541,6 +553,16 @@ table.create(data).set(emptyText="No records match the selected criteria")
   thegamma.push({id:"listing", editors:"listing-options"});
 </script>
 
+<div class="thegamma">
+<div id="thegamma-sizer" class="thegamma-sizer"></div>
+<div id="thegamma-dialog" class="thegamma-dialog">
+  <div id="thegamma-dialog-window" class="thegamma-dialog-window">
+    <div class="header"><a href="javascript:closeDialog();">&times;</a><span>Edit source code</span></div>
+    <div class="body"><div id="thegamma-ed"></div><div id="thegamma-errors" class="errors"></div>
+      <button id="thegamma-update">Update page</button></div>
+  </div>
+</div>
+</div>
 
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/babel.min.js"></script>
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/core-js.min.js"></script>
