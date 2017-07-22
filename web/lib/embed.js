@@ -91,7 +91,7 @@ var scoring =
     "thegamma-people-uni-out": { title:"Universities", f:scoreBars(170) },
     "thegamma-youtube-views-out": { title:"Views", f:scoreLine(5,75,300) },
     "thegamma-youtube-videos-out": { title:"Videos", f:scoreSortBars(6000) },    
-    "thegamma-events-attend-kind-out": { title:"Events", f:scoreBars(16500) },
+    "thegamma-events-attend-kind-out": { title:"Events", f:scoreBars(12000) },
     "thegamma-events-selected-out": { title:"Lectures", f:scoreSortBars(320) } }
 
 function updateScoreTable() {
@@ -233,18 +233,19 @@ function loadTheGamma() {
   });
   require(["vs/editor/editor.main", theGammaRoot + "/thegamma.js"], function (_, g) {
     var services = "https://thegamma-services.azurewebsites.net/";
+    var gallery = "https://gallery-csv-service.azurewebsites.net/";
     var providers =
       g.providers.createProviders({
         "worldbank": g.providers.rest(services + "worldbank"),
         "libraries": g.providers.library(theGammaRoot + "/libraries.json"),
-        "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing", null, true),
+        "shared": g.providers.rest(gallery + "providers/listing", null, true),
         
         // Turing 2016/2017
-        "people": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-07/file_0.csv"),
-        "views": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-29/file_3.csv"),
-        "videos": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-29/file_1.csv"),
-        "events": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-07-03/file_2.csv"),
-        "papers": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-07-04/file_0.csv"),
+        "people": g.providers.pivot(gallery + "providers/csv/2017-07-22/file_0.csv"),
+        "views": g.providers.pivot(gallery + "providers/csv/2017-07-21/file_5.csv"),
+        "videos": g.providers.pivot(gallery + "providers/csv/2017-05-29/file_1.csv"),
+        "events": g.providers.pivot(gallery + "providers/csv/2017-07-03/file_2.csv"),
+        "papers": g.providers.pivot(gallery + "providers/csv/2017-07-04/file_0.csv"),
         
         // shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
         "olympics": g.providers.pivot(services + "pdata/olympics"),

@@ -109,6 +109,9 @@ article p {
   line-height:1.7em;
   margin:0px 0px 25px 0px;
 }
+article p.solved {
+  text-align:left;
+}
 article p.small {
   line-height:1.8em;
   font-size:11pt;
@@ -133,11 +136,12 @@ article code {
   background:transparent;
 }
 
-article a {
+footer a, article a {
   text-decoration:none;
   color:#E4003C !important;
 }
-article a:hover, article a:active {
+footer a:hover, footer a:active
+ article a:hover, article a:active {
   color:#FF5969 !important;
 }
 article h2 a, article h2 a:hover {
@@ -181,6 +185,12 @@ article .botpad {
 }
 .article-info-sm a:hover, .article-info-sm a:active {
   color:#2191F2 !important;
+}
+.article-info-orange a {
+  color:#D8591E !important;
+}
+.article-info-orange a:hover, .article-info-orange a:active {
+  color:#F2743A !important;
 }
 
 

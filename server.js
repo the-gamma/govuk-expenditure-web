@@ -10,7 +10,7 @@ var exposedNodeModules = [
   '/node_modules/babel-standalone' ];
 var exposedDirs = [
   'img', 'lib', 'expenditure', 'playground', 
-  'carbon', 'turing-2017' ];
+  'carbon', 'turing-report' ];
   
 for(var i=0; i<exposedNodeModules.length; i++) {
   var subdir = exposedNodeModules[i];
