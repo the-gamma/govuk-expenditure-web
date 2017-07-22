@@ -3,29 +3,119 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <title>Year 2017 in numbers | The Alan Turing Institute</title>
+  <title>Turing 2016/2017 in numbers | The Alan Turing Institute</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="https://thegamma.net/lib/thegamma/thegamma.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto:300,400,500,700,900" rel="stylesheet">
   <link href="/lib/custom.css" rel="stylesheet">
   <script type="text/javascript">
     var thegamma = [];
   </script>  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-big.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon-big.png">
+  <meta name="msapplication-TileColor" content="#3D46FF">
+  <meta name="msapplication-TileImage" content="/img/favicon-big.png">
+  <meta name="theme-color" content="#00202D">    
+  
+  <meta name="description" content="Test how many facts about The Alan Turing Institute can you get right and
+    share your results with us! This interactive mini-game tells you all you a number of fun
+    facts about the first year of the institute!" />
+  <meta name="keywords" content="research, turing institute, thegamma, data journalism, data science" />  
+  <meta name="author" content="Tomas Petricek" />
+  <meta name="copyright" content="Tha Alan Turing Institute" />
+  
+  <meta property="og:title" content="Turing 2016/2017 in numbers" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://gamma.turing.ac.uk/turing-report/" />
+  <meta property="og:image" content="http://thegamma-turing-web.azurewebsites.net/turing-report/card.png" />
+  <meta property="og:description" content="Test how many facts about The Alan Turing Institute can you get right and
+  share your results with us! This interactive mini-game tells you all you a number of fun
+  facts about the first year of the institute!" />
+  
+  <meta name="twitter:card" content="summary_large_image">  
+  <meta name="twitter:site" content="@thegamma_net">
+  <meta name="twitter:creator" content="@thegamma_net">  
+  <meta name="twitter:title" content="Turing 2016/2017 in numbers" />
+  <meta name="twitter:image" content="http://thegamma-turing-web.azurewebsites.net/turing-report/card.png" />
+  <meta name="twitter:description" content="Test how many facts about The Alan Turing Institute can you get right and
+  share your results with us! This interactive mini-game tells you all you a number of fun
+  facts about the first year of the institute!" />
+    
+  <script type="application/ld+json">
+  {
+  	"@context": "http:\/\/schema.org",
+  	"@type": "Article",
+  	"name": "Turing 2016/2017 in numbers",
+    "headline": "Test how many facts about The Alan Turing Institute can you get right and share your results with us!",
+  	"description": "This interactive mini-game tells you all you a number of fun facts about the first year of the institute.",
+  	"url": "http://gamma.turing.ac.uk/turing-report/",
+  	"author": [{
+  		"@type": "Person",
+  		"name": "Tomas Petricek",
+  		"url": "http://tomasp.net",
+  		"sameAs": ["http://twitter.com/tomaspetricek"]
+  	}],
+  	"creator": ["Tomas Petricek"],
+  	"dateCreated": "2017-07-22T13:27:17.4779884+01:00",
+  	"datePublished": "2017-07-22T13:27:17.4779884+01:00",
+    "dateModified": "2017-07-22T13:27:17.4779884+01:00",
+    "mainEntityOfPage": "http://gamma.turing.ac.uk/turing-report/",
+  	"image": "http://thegamma-turing-web.azurewebsites.net/turing-report/card.png",
+  	"thumbnailUrl": "http://thegamma-turing-web.azurewebsites.net/turing-report/card.png",
+  	"keywords": ["research", "turing institute", "thegamma", "data journalism", "data science"],
+  	"inLanguage": "en-us",
+  	"publisher": {
+  		"@type": "Organization",
+  		"name": "The Alan Turing Institute",
+  		"url": "http://turing.ac.uk",
+      "logo": "http://thegamma-turing-web.azurewebsites.net/img/turing.jpg"
+  	}
+  }  
+  </script>      
 </head>
 <body>
+  <div class="game-status" id="game-status">
+    <div id="game-details">
+      <table id="game-table">
+      </table>
+    </div>
+    <div>
+        <a style="float:right;" href="javascript:;" onclick="switchDetails()"><i class="fa fa-bars"></i></a>
+        <a href="" id="game-tweet" target="_blank">
+          <i class="fa fa-twitter"></i> Tweet score! 
+        </a>
+    </div>
+  </div>
+  
   <div id="trig"><div id="trig1orange"></div></div>
   <article class="container">
     
   <div class="row">
     <div class="col-sm-12 col-md-8">
-      <h1>The Alan Turing Institute<br/><em>Year 2017 in numbers</em></h1>
+      <h1>The Alan Turing Institute<br/><em>2016/2017 in numbers</em></h1>
+      <p class="article-info-sm article-info-orange">
+        <a target="_blank" href="https://twitter.com/intent/tweet?url=http%3a%2f%2fgamma.turing.ac.uk%2fturing-report&amp;text=The+Alan+Turing+Institute+2016%2f2017+in+numbers+-+Interactive+%23dataviz+using+%40thegamma_net+by+%40turinginst+%23ddj">
+          <i class="fa fa-twitter-square"></i></a>
+        <a target="_blank" href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fgamma.turing.ac.uk%2fturing-report">
+          <i class="fa fa-facebook-official"></i></a>
+        <a href="mailto:?subject=The%20Alan%20Turing%20Institute%202016%2f2017%20in%20numbers&body=See%3a%20http%3a%2f%2fgamma.turing.ac.uk%2fturing-report">
+          <i class="fa fa-envelope"></i></a>
+        <a href="http://www.reddit.com/submit?url=http%3a%2f%2fgamma.turing.ac.uk&title=The+Alan+Turing+Institute+2016%2f2017+in+numbers">
+          <i class="fa fa-reddit-square"></i></a>
+        <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgamma.turing.ac.uk&t=The%20Alan%20Turing%20Institute%202016%2f2017%20in%20numbers">
+          <i class="fa fa-hacker-news"></i></a>
+      </p>
+      
       <p>
         The Alan Turing Institute is the United Kingdom national institute for data sciences, 
         founded in 2015. It is named after Alan Turing, the British mathematician and computing pioneer.
-        Since getting started in 2015, the institute hired its first Research Fellows, published 
+        In the academic year 2016/2017, the institute hired its first Research Fellows, published 
         over <span id="stats-youtube-count"></span> <a href="https://www.youtube.com/channel/UCcr5vuAH5TPlYox-QLj4ySw">recorded talks</a>,
         over <span id="stats-pubs-count"></span> <a href="https://www.turing.ac.uk/publications/">academic publications</a> and started
         new <a href="https://www.turing.ac.uk/category/research/projects/">research projects</a>
@@ -35,8 +125,8 @@
         Gamma</a> project, which make it possible to present data transparently. Behind 
         every number and every chart on this page, there is source code that links the chart to the primary data 
         source and lets you check the data and explore further. For example, if you want to verify that
-        the Institute hosted <span id="stats-event-count"></span> events, click on the number to 
-        see the raw data from which it is calculated!</p>
+        the Institute hosted <span id="stats-event-count"></span> events during the year, click 
+        on the number to see the raw data from which it is calculated!</p>
     </div>
   </div>
   
@@ -53,32 +143,38 @@
     </div>
     <div class="col-sm-6">
       <div class="game-info">
-        <p><a href="#"><i class="fa fa-search"></i>  &nbsp; <strong>I don't like games.</strong></a>
+        <p><a href="javascript:;" onclick="dontLikeGames();"><i class="fa fa-search"></i>  &nbsp; <strong>I don't like games.</strong></a>
           Just show me the correct results on all interactive charts.</p>
-        <p><a href="#"><i class="fa fa-refresh"></i> &nbsp; <strong>Play again.</strong></a>
+        <p><a href="javascript:;" onclick="resetGame();"><i class="fa fa-refresh"></i> &nbsp; <strong>Play again.</strong></a>
           Reset all guesses on the interactive charts. I want to try again!</p>
-        <p><a href="#"><i class="fa fa-twitter"></i> &nbsp; <strong>Share your score.</strong></a>
+        <p><a id="game-tweet-2" target="_blank" href="https://twitter.com/intent/tweet?url=http%3a%2f%2fgamma.turing.ac.uk%2fturing-2017&amp;text=How%20do%20you%20know%20%40turinginst%3F%20Find%20out%20in%20our%20interactive%20game!%20"><i class="fa fa-twitter"></i> &nbsp; <strong>Share your score.</strong></a>
           Tell the world how you did! Don't worry, this is just for fun.</p>
       </div>
     </div>
   </div>
 
 <script type="text/thegamma" id="stats-youtube-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'.'get the data'
+  videos
+    .'filter data'.'Video created is in range'(date.date(2016,4,1), date.date(2017,3,31)).then
+    .'group data'.'by Card clicks'.'count all'.then
+    .'get the data'
   
-let rounded = data.count().map(fun x -> math.floor(x/10)*10)  
+let rounded = data.sumBy(fun x -> x.count).map(fun x -> math.floor(x/10)*10)  
 inline.create(rounded)</script>
 <script type="text/thegamma" id="stats-pubs-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Papers (3 July 2017, raw)'.'get the data'
+  papers.'get the data'
   
 let rounded = data.count().map(fun x -> math.floor(x/10)*10)  
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="stats-event-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then
+    .'group data'.'by Kind'.'count all'.then
     .'get the data'
-
-inline.create(data.count())
+  
+let rounded = data.sumBy(fun x -> x.count).map(fun x -> math.floor(x/10)*10)  
+inline.create(rounded)
 </script>
 <script type="text/javascript">
   thegamma.push({id:"stats-youtube-count", inline:true});
@@ -99,10 +195,11 @@ inline.create(data.count())
       <p>The Alan Turing Institute hosts over <span id="people-count"></span> academics and
         students. The members <a href="https://www.turing.ac.uk/people/">listed on the Turing web page</a>,
         include Research Fellows who work full-time at the institute, 
-        Faculty Fellows who divide their time between the host university and the instiute and 
-        Doctoral Students who spent one year of their PhD at the institute.</p>
-      <p>Can you guess how many Research Fellows, Faculty Fellows, Doctoral Students and
-        members of the Leadership team are there? </p>
+        Turing Fellows who divide their time between the host university and the instiute and 
+        Doctoral Students. We also counted members of the Research Engineering team who work 
+        with researchers to produce practical software.</p>
+      <p>Can you guess how many Research Fellows, Turing Fellows, Doctoral Students and
+        members of the Research Engineering team are there? </p>
     </div>
     <div class="toppad col-md-8">
       <div class="thegamma" id="people-role"></div>
@@ -112,10 +209,10 @@ inline.create(data.count())
   <div class="row">
     <div class="left col-md-4">
       <h3><span>Fellows from partner universities</span></h3>
-      <p>The Faculty Fellows are based at one of the partner universities and have 
+      <p>The Turing Fellows are based at one of the partner universities and have 
         a part-time appointment at the Alan Turing Institute. This can range from one day a
         month to several days a week and each university prefers different arrangements.</p>
-      <p>Can you guess which university has the largest number of Faculty Fellows
+      <p>Can you guess which university has the largest number of Turing Fellows
         affiliated with the Alan Turing Institute?</p>
     </div>
     <div class="toppad col-md-8">
@@ -124,23 +221,38 @@ inline.create(data.count())
   </div>
   
 <script type="text/thegamma" id="people-role-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
+  people
     .'group data'.'by Role'.'count all'.then
+    .'filter data'.'Role is not'.Leadership.then
     .'get series'.'with key Role'.'and value count'
 
+let comment = "That's right! There is almost 100 Turing Fellows who are " + 
+  "affiliated with the Alan Turing Institute. Some of them are regular " +
+  "visitors at the Turing and some of them only visit occasionally to " +
+  "collaborate with Research Fellows or supervise Doctoral Students. The " +
+  "Research Software Engineering team is quite small for now, but is " + 
+  "expected to grow in the next year! "
+
 youguess.bars(data).setMaximum(150).setSize(height=350)
+  .setSolvedComment(comment)
 </script>
 <script type="text/thegamma" id="people-uni-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
-    .'filter data'.'Role is'.'Faculty Fellow'.then
+  people
+    .'filter data'.'Role is'.'Turing Fellow'.then
     .'group data'.'by University'.'count all'.then
     .'get series'.'with key University'.'and value count'
 
+let comment = "This one is hard! The universities are equal partners, but each " +
+  "prefers a different arrangement. Oxford has the largest number of Turing " +
+  "Fellows, but many of them only spend one day a month in the Institute, while " +
+  "Turing Fellows from UCL and Cambridge come to the institute more frequently."
+
 youguess.bars(data).setSize(height=350)
+  .setSolvedComment(comment)
 </script>
 <script type="text/thegamma" id="people-count-code">let data =
-  shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
-    .'filter data'.'Role is'.'Faculty Fellow'.'or Role is'.'Research Fellow'
+  people
+    .'filter data'.'Role is'.'Turing Fellow'.'or Role is'.'Research Fellow'
       .'or Role is'.'Doctoral Student'.then
     .'get the data'
     
@@ -228,21 +340,22 @@ inline.create(rounded)
   </div>
   
 <script type="text/thegamma" id="youtube-sums-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
-    .windowing.'expanding by date'.'sum views'.then
-    .'get series'.'with key last date'.'and value views'
+  views
+    .windowing.'expanding by Date'.'sum Views'.then
+    .'filter data'.'last Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
+    .'get series'.'with key last Date'.'and value Views'
 
 compost.charts.area(data)
   .setColors(["#ff7f0e"])
-  .setAxisX(minValue=date.date(2016,5,10), maxValue=date.date(2017,5,10))
+  .setAxisX(minValue=date.date(2016,4,1), maxValue=date.date(2017,3,31))
   .setAxisY(label="Total number of YouTube views")
   .setSize(height=300)
 </script>  
 <script type="text/thegamma" id="youtube-views-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
-    .windowing.'window by date'(15)
-      .'middle date'.'mean views'.then
-    .'get series'.'with key middle date'.'and value views'
+  views
+    .windowing.'window by Date'(15)
+      .'middle Date'.'mean Views'.then
+    .'get series'.'with key middle Date'.'and value Views'
 
 let sample = 
   data.filterIndex(fun n -> n % 7 = 0)    
@@ -254,7 +367,7 @@ youguess.line(sample)
 </script>
 
 <script type="text/thegamma" id="youtube-bubbles-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube views by video'.'get the data'
+  videos.'get the data'
 
 compost.charts.bubbles(data).set(
     x = fun v -> v.'Video created',
@@ -264,10 +377,10 @@ compost.charts.bubbles(data).set(
   .setColors("#ffa070")
   .setSize(height=300)
   .setAxisY(label="Logarithm of total viedeo views", labelOffset=45)
-  .setAxisX(date.date(2016, 4, 5), date.date(2017, 4, 20))
+  .setAxisX(date.date(2016, 4, 1), date.date(2017, 3, 31))
 </script>
 <script type="text/thegamma" id="youtube-videos-code">let data =
-  shared.'by date'.'May 2017'.'YouTube views by video'
+  videos
     .'filter data'
         .'Video title is'.'Fellow Short Talks: Dr Tomas Petricek, The Alan Turing Institute'
         .'or Video title is'.'The Role of Multi-Agent Learning in Artificial Intelligence Research at DeepMind'
@@ -281,18 +394,21 @@ compost.charts.bubbles(data).set(
 youguess.sortBars(data).setSize(height=500)
 </script>
 <script type="text/thegamma" id="youtube-watchtime-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube Views per Date'
-    .'group data'.'by ad_impressions'.'sum watch_time_minutes'.then
-    .'get series'.'with key ad_impressions'.'and value watch_time_minutes'.first()
+  views
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
+    .'group data'.'by Ad impressions'.'sum Watch time (minutes)'.then
+    .'get series'.'with key Ad impressions'.'and value Watch time (minutes)'.first()
 
 inline.create(data.map(fun n -> number.format(n,0)))
 </script>
 <script type="text/thegamma" id="youtube-count-code">let data = 
-  shared.'by date'.'May 2017'.'YouTube views by video'
-    .'group data'.'by Estimated partner revenue usd'.'count all'.then 
-    .'get series'.'with key Estimated partner revenue usd'.'and value count'.first()
+  videos
+    .'filter data'.'Video created is in range'(date.date(2016,4,1), date.date(2017,3,31)).then
+    .'group data'.'by Card clicks'.'count all'.then
+    .'get the data'
 
-inline.create(data.map(fun n -> number.format(n,0)))
+let rounded = data.sumBy(fun x -> x.count).map(fun x -> math.floor(x/10)*10)  
+inline.create(rounded)
 </script>
 <script type="text/javascript">
   thegamma.push({id:"youtube-videos"});
@@ -384,7 +500,7 @@ inline.create(data.map(fun n -> number.format(n,0)))
   </div>
   
 <script type="text/thegamma" id="events-bubbles-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'.'get the data'
+  events.'get the data'
 
 compost.charts.bubbles(data).set(
     x = fun v -> v.Date,
@@ -397,7 +513,7 @@ compost.charts.bubbles(data).set(
   .setAxisX(date.date(2015, 11, 1), date.date(2017, 4, 10))
 </script>
 <script type="text/thegamma" id="events-selected-code">let data =
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'sort data'.'by Number descending'.then
     .paging.take(5)
     .'get series'.'with key Event'.'and value Number'
@@ -406,30 +522,42 @@ compost.charts.bubbles(data).set(
 youguess.sortBars(data).setSize(height=500)
 </script>
 <script type="text/thegamma" id="events-attend-kind-code">let data =
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
     .'filter data'.'Kind is not'.Masterclass
       .'and Kind is not'.'External event'.then
     .'group data'.'by Kind'.'sum Number'.then
     .'get series'.'with key Kind'.'and value Number'
 
-youguess.bars(data).setSize(height=320)</script>  
+let comment = "Turing Lectures tend to be larger and have on " + 
+  "average 150 attendees, while Workshops are smaller and more " + 
+  "intensive meetings with 50 attendees on average. This is why the " + 
+  "largest number of visitors came to see one or more of the Turing Lectures!"
+
+youguess.bars(data).setSize(height=320)
+  .setSolvedComment(comment)</script>  
 <script type="text/thegamma" id="events-count-kind-code">let data =
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
     .'filter data'.'Kind is not'.Masterclass
       .'and Kind is not'.'External event'.then
     .'group data'.'by Kind'.'count distinct Event'.then
     .'get series'.'with key Kind'.'and value Event'
 
-youguess.bars(data).setSize(height=320).setInteractive(false)</script>  
+youguess.bars(data).setSize(height=320)
+  .setInteractive(false)</script>  
 <script type="text/thegamma" id="events-count-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
+    .'group data'.'by Kind'.'count all'.then
     .'get the data'
 
-let rounded = data.count().map(fun x -> math.floor(x/10)*10)
+let rounded = data.sumBy(fun x -> x.count).map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="events-people-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
     .'group data'.'by Kind'.'sum Number'.then
     .'get the data'
 
@@ -437,7 +565,8 @@ let rounded = data.sumBy(fun x -> x.Number).map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="events-people2-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
     .'group data'.'by Kind'.'sum Number'.then
     .'get the data'
 
@@ -445,7 +574,8 @@ let rounded = data.sumBy(fun x -> x.Number).map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/thegamma" id="events-count-lecture-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
     .'group data'.'by Kind'.'count distinct Event'.then
     .'filter data'.'Kind is'.Lecture.then
     .'get series'.'with key Kind'.'and value Event'
@@ -453,7 +583,8 @@ inline.create(rounded)
 inline.create(data.first())
 </script>
 <script type="text/thegamma" id="events-count-workshop-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
+    .'filter data'.'Date is in range'(date.date(2016,4,1), date.date(2017,3,31)).then  
     .'group data'.'by Kind'.'count distinct Event'.then
     .'filter data'.'Kind is'.Workshop.then
     .'get series'.'with key Kind'.'and value Event'
@@ -461,7 +592,7 @@ inline.create(data.first())
 inline.create(data.first())
 </script>
 <script type="text/thegamma" id="events-largest-code">let data = 
-  shared.'by date'.'July 2017'.'Turing Events (3 July 2017, corrected)'
+  events
     .'sort data'.'by Number descending'.then
     .paging.take(1).'get the data'
 
@@ -528,8 +659,8 @@ inline.create(rounded)
 <div id="inline-placeholder" class="thegamma"></div>
 
 <script type="text/thegamma" id="listing-code">let data = 
- shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
-  .'filter data'.'Role is'.[role:'Faculty Fellow']
+ people
+  .'filter data'.'Role is'.[role:'Turing Fellow']
     .'and University is'.[uni:Cambridge].then
   .'get the data'
 
@@ -541,6 +672,48 @@ table.create(data).set(emptyText="No records match the selected criteria")
   thegamma.push({id:"listing", editors:"listing-options"});
 </script>
 
+<div class="thegamma">
+<div id="thegamma-sizer" class="thegamma-sizer"></div>
+<div id="thegamma-dialog" class="thegamma-dialog">
+  <div id="thegamma-dialog-window" class="thegamma-dialog-window">
+    <div class="header"><a href="javascript:closeDialog();">&times;</a><span>Edit source code</span></div>
+    <div class="body"><div id="thegamma-ed"></div><div id="thegamma-errors" class="errors"></div>
+      <button id="thegamma-update">Update page</button></div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <div class="container">
+    <div calss="row">
+      <div class="col-sm-5">
+        <h4>About the project</h4>
+        <p>
+          This page has been created by Tomas Petricek using using <a href="https://thegamma.net/">The Gamma</a>,
+          an innovative open-source visualization tools that lets you create transparent data-driven visualizations.
+        </p>
+        <p>
+          To find out more, check out <a href="https://thegamma.net/">The Gamma homepage</a> and source on 
+          <a href="https://github.com/the-gamma">GitHub</a>. For updates, follow
+          <a href="https://twitter.com/thegamma_net">@thegamma_net</a> and <a href="https://twitter.com/tomaspetricek">@tomaspetricek</a>.
+          Send your comments to Tomas at <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a>.
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <h4>Privacy policy</h4>
+        <p>For further research purposes, this page collects anonymous usage data about the choices made in the interactive 
+          visualizations and changes made to source code of snippets.</p>
+        <p>In addition, we are using
+          Google Analytics, which collects information about page views and uses tracking cookies.</p>
+      </div>
+      <div class="col-sm-3">
+        <p style="text-align:center;padding-top:40px">
+          <img src="../img/turing.png" style="width:200px;opacity:0.2"/>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/babel.min.js"></script>
 <script type="text/javascript" src="https://thegamma.net/lib/thegamma-0.1/core-js.min.js"></script>
@@ -548,5 +721,13 @@ table.create(data).set(emptyText="No records match the selected criteria")
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="/lib/embed.js"></script>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-65311433-2', 'auto');
+  ga('send', 'pageview');
+</script>
 </body>
 </html>
