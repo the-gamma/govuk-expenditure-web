@@ -143,6 +143,7 @@ function dontLikeGames() {
 }
 
 function handleCompletedEvent(o) {
+  if (!document.getElementById("game-status")) return;
   document.getElementById("game-status").style.display="block";
   var guess = makeDictionary(o.data.guess);
   var values = makeDictionary(o.data.values);
