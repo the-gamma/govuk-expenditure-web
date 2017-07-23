@@ -136,13 +136,13 @@ article code {
   background:transparent;
 }
 
-footer a, article a {
-  text-decoration:none;
-  color:#E4003C !important;
+.redlinks footer a, .redlinks article a {
+  color:#E4003C;
 }
-footer a:hover, footer a:active
- article a:hover, article a:active {
-  color:#FF5969 !important;
+
+.redlinks footer a:hover, .redlinks footer a:active,
+ .redlinks article a:hover, .redlinks article a:active {
+  color:#FF5969;
 }
 article h2 a, article h2 a:hover {
   color:black;
@@ -158,13 +158,14 @@ article .thegamma-inline:hover, article .thegamma-inline:active {
   text-decoration:none;
   border-bottom:1px dashed;
 }
-article .thegamma-edit a {
+article .thegamma-commands a, article .thegamma-edit a {
   font-size:11pt;
   text-decoration:none;
-  color:#8a8a8a !important;
+  color:#8a8a8a;
 }
-article .thegamma-edit a:hover, article .thegamma-edit a:active {
-  color:#bababa !important;
+article .thegamma-edit a:hover, article .thegamma-edit a:active,
+  article .thegamma-commands a:hover, article .thegamma-commands a:active {
+  color:#bababa;
 }
 article .toppad {
   padding-top:40px;
@@ -181,21 +182,21 @@ article .botpad {
   margin-left:5px;
 }
 .article-info-sm a {
-  color:#1A6EBC !important;
+  color:#1A6EBC;
 }
 .article-info-sm a:hover, .article-info-sm a:active {
-  color:#2191F2 !important;
+  color:#2191F2;
 }
 .article-info-orange a {
-  color:#D8591E !important;
+  color:#D8591E;
 }
 .article-info-orange a:hover, .article-info-orange a:active {
-  color:#F2743A !important;
+  color:#F2743A;
 }
 
 
 /* Edit source code link and scrollable table outputs */
-.thegamma-edit a i {
+.thegamma-edit a i, .thegamma-commands a i {
   margin-right:5px;
 }
 .thegamma-edit {
@@ -261,13 +262,6 @@ article .botpad {
 }
 .game-status td {
   padding-right:30px;
-}
-.game-status a {
-  text-decoration:none;
-  color:#E4003C !important;
-}
-.game-status a:hover, .game-status a:active {
-  color:#FF5969 !important;
 }
 #game-details {
   overflow:hidden;

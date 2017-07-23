@@ -260,8 +260,8 @@ let rounded = data.count().map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/javascript">
-  thegamma.push({id:"people-uni"});
-  thegamma.push({id:"people-role"});
+  thegamma.push({id:"people-uni", title:"People - Fellows per university"});
+  thegamma.push({id:"people-role", title:"People - People by role"});
   thegamma.push({id:"people-count", inline:true});
 </script>
   
@@ -411,8 +411,8 @@ let rounded = data.sumBy(fun x -> x.count).map(fun x -> math.floor(x/10)*10)
 inline.create(rounded)
 </script>
 <script type="text/javascript">
-  thegamma.push({id:"youtube-videos"});
-  thegamma.push({id:"youtube-sums"});
+  thegamma.push({id:"youtube-videos",title:"Videos - Selected videos"});
+  thegamma.push({id:"youtube-sums",title:"Videos - Total video views"});
   thegamma.push({id:"youtube-views"});
   thegamma.push({id:"youtube-bubbles"});
   thegamma.push({id:"youtube-watchtime", inline:true});
@@ -603,11 +603,11 @@ inline.create(rounded)
 
 <script type="text/javascript">
   thegamma.push({id:"events-bubbles"});
-  thegamma.push({id:"events-count-kind"});
-  thegamma.push({id:"events-attend-kind"});
-  thegamma.push({id:"events-selected"});
-  thegamma.push({id:"events-count-workshop", inline:true});
-  thegamma.push({id:"events-count-lecture", inline:true});
+  thegamma.push({id:"events-count-kind",title:"Events - Events by kind"});
+  thegamma.push({id:"events-attend-kind",title:"Events - Attendees by kind"});
+  thegamma.push({id:"events-selected",title:"Events - Selected events"});
+  thegamma.push({id:"events-count-workshop", inline:true, title:"Events - Number of workshops"});
+  thegamma.push({id:"events-count-lecture", inline:true, title:"Events - Number of lectures"});
   thegamma.push({id:"events-count", inline:true});
   thegamma.push({id:"events-people", inline:true});
   thegamma.push({id:"events-people2", inline:true});
@@ -616,61 +616,49 @@ inline.create(rounded)
   
     
   <div class="row">
-    <div class="col-sm-12">    
+    <div class="col-sm-12 col-md-8">
       <h2><span>Explore the data on your own</span></h2>
+      <p>This article is built using <a href="https://thegamma.net/">The Gamma</a>, which makes
+        it possible to present data in a transparent and open way. This means that you can access
+        the raw data behind the visualization and check that it is used correctly. You can do this
+        for any visualziation on the page by clicking on the "open source code" link. To make it
+        easier, you can also use the editor below. Select any of the samples, edit the code and
+        hit "Run and show" to see the results!</p>
+      
+      <div class="thegamma">
+        <select id="explore-samples" class="form-control" style="padding:3px 10px 3px 10px;width:calc(100% - 200px);display:inline-block;">
+        </select>
+        <button class="btn btn-success" id="explore-ok" style="display:inline-block;width:100px;margin-top:0px">Run and show</button>
+      </div>                
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-7">
-      <h3>People at the Alan Turing Institute</h3>
-      <p>This report is generated live using the original dataset that contains all information
-        used in the report in a form that is not aggregated in any way. This means that you can
-        easily explore the data further on your own. In this section, you can access some of the
-        original data. For example, below is a listing of people 
-        <a href="https://www.turing.ac.uk/people/">based on the insititute web site</a>.
-        To make filtering simpler, everyone from the Leadership team is listed as being
-        affiliated with The Alan Turing Institute rather than their other institutions.</p>
-    </div>
-    <div class="col-md-5">      
-      <div class="hidden-sm hidden-xs" style="height:60px;"></div>
-      <div class="form-group">
-        <label for="listing-options-role" class="control-label">Filter by role</label>
-        <div><select class="form-control" style="max-width:360px" id="listing-options-role"></select></div>
+    <div class="col-sm-12">        
+      <div class="thegamma" style="min-height:500px">
+        <div id="explore-ed-wrapper" style="padding:40px 0px 0px 0px">
+          <div id="explore-ed"></div>
+          <div id="explore-ed-errors" class="errors" style="bottom:0px"></div>
+        </div>
+        <div id="explore-out-wrapper" style="display:none;padding:40px 0px 0px 0px">
+          <div id="explore-out" class="output">
+            <div class="placeholder">
+              Loading the visualization...
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="listing-options-uni" class="control-label">Filter by university</label>
-        <div><select class="form-control" style="max-width:360px" id="listing-options-uni"></select></div>
-      </div>      
+      
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <style type="text/css">#listing .thegamma-out { margin-top:35px; }</style>
-      <div class="thegamma thegamma-table-out" id="listing"></div>
-    </div>
-    <div class="col-md-1"></div>
-  </div>
-
-</article>  
-
-<!-- Source code for embedded The Gamma visualizations -->
-<div id="inline-placeholder" class="thegamma"></div>
-
-<script type="text/thegamma" id="listing-code">let data = 
- people
-  .'filter data'.'Role is'.[role:'Turing Fellow']
-    .'and University is'.[uni:Cambridge].then
+  
+<script id="explore-demo" type="text/thegamma">let data = people
+  .'filter data'.'Role is'.'Research Fellow'.then
+  .'sort data'.'by Name'.then
   .'get the data'
 
-table.create(data).set(emptyText="No records match the selected criteria")
-</script>
-  
-<!-- Define visualizations that should be loaded by embed.js later -->
-<script type="text/javascript">
-  thegamma.push({id:"listing", editors:"listing-options"});
-</script>
+table.create(data)</script>
+</article>  
 
 <div class="thegamma">
 <div id="thegamma-sizer" class="thegamma-sizer"></div>

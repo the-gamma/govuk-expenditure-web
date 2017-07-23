@@ -225,6 +225,181 @@ function closeDialog() {
   },400)
 }
 
+//
+function createExploreEditor(ctx) {
+  ctx.errorsReported(function (errs) {
+    var lis = errs.slice(0, 5).map(function (e) {
+      return "<li><span class='err'>error " + e.number + "</span>" +
+        "<span class='loc'>at line " + e.startLine + " col " + e.startColumn + "</span>: " +
+        e.message;
+    });
+    var ul = "<ul>" + lis + "</ul>";
+    document.getElementById("explore-ed-errors").innerHTML = ul;
+  });
+
+  var opts =
+    { autoHeight: true,
+      monacoOptions: function(m) {
+        m.fontFamily = "Inconsolata";
+        m.fontSize = 16;
+        m.lineHeight = 20;
+        m.lineNumbers = false;
+      } };
+
+  var code = document.getElementById("explore-demo").innerHTML;
+  var editor = ctx.createEditor("explore-ed", code, opts);
+  var changing = false;
+  var changingLogTimer = -1;
+  editor.getMonacoEditor().onDidChangeModelContent(function() {
+    if (changing) return;
+    if (changingLogTimer != -1) clearTimeout(changingLogTimer);
+    changingLogTimer = setTimeout(function() {
+      var id = document.getElementById("explore-samples").value;
+      logEvent("explore", "code", id, {"code":editor.getValue()});
+    }, 5000);
+  })
+  
+  function loadSource(code) {
+    var lines = code.trim().split(/\r\n|\r|\n/);
+    changing = true;
+    editor.setValue(code);
+    editor.getMonacoEditor().focus();
+    setTimeout(function() {
+      editor.getMonacoEditor().setPosition({column:lines[lines.length-1].trimRight().length+1,lineNumber:lines.length});
+    }, 500);
+    changing = false;
+  }
+  loadSource(code);
+  
+  // Get editor text and run it on the main page
+  var editorMode = true;
+  var okbtn = document.getElementById('explore-ok');
+  okbtn.onclick = function() { 
+    editorMode = !editorMode;    
+    if (editorMode) {
+      logEvent("explore", "edit", "", "");
+      okbtn.innerText = "Run and show"; 
+      document.getElementById('explore-ed-wrapper').style.display = "block";
+      document.getElementById('explore-out-wrapper').style.display = "none";
+    } else { 
+      okbtn.innerText = "Edit source code";
+      document.getElementById('explore-ed-wrapper').style.display = "none";
+      document.getElementById('explore-out-wrapper').style.display = "block";
+      code = editor.getValue();
+      logEvent("explore", "run", "", {"code":code});
+      ctx.evaluate(code, "explore-out");
+    }
+  };
+  
+  var samples = "<option>Open sample visualization...</option>";
+  thegamma.forEach(function (info) { 
+    if (info.title) samples += "<option value='" + info.id + "-code'>" + info.title + "</option>"; });
+  document.getElementById("explore-samples").innerHTML = samples;
+  
+  document.getElementById("explore-samples").onchange = function() {
+    var id = document.getElementById("explore-samples").value;
+    logEvent("explore", "select", id, "");  
+    if (id != null && id != "") {
+      var code = document.getElementById(id).innerHTML;
+      loadSource(code);
+      editorMode = false;
+      okbtn.onclick();
+    }
+  };
+}
+
+function evalSnippetsAndCreateEditor(ctx) {
+  ctx.errorsReported(function (errs) {
+    var lis = errs.slice(0, 5).map(function (e) {
+      return "<li><span class='err'>error " + e.number + "</span>" +
+        "<span class='loc'>at line " + e.startLine + " col " + e.startColumn + "</span>: " +
+        e.message;
+    });
+    var ul = "<ul>" + lis + "</ul>";
+    document.getElementById("thegamma-errors").innerHTML = ul;
+  });
+  
+  // Specify options and create the editor
+  var opts =
+    { height: document.getElementById("thegamma-sizer").clientHeight-115,
+      width: document.getElementById("thegamma-sizer").clientWidth-20,
+      monacoOptions: function(m) {
+        m.fontFamily = "Inconsolata";
+        m.fontSize = 15;
+        m.lineHeight = 20;
+        m.lineNumbers = false;
+      } };
+  editor = ctx.createEditor("thegamma-ed", "", opts);
+
+  // Go over all the visualizations as defined by 'var thegamma = [ .. ]' in the index.html file
+  thegamma.forEach(function (info) {
+    var id = info.id;
+
+    // Set source code, evalate it and generate options for <select> elements
+    // (only when there are placeholders and 'info.editors' is specified)
+    function setSource(code, log, completed) {
+      document.getElementById(id + "-code").innerHTML = code;
+      
+      if (log) logEvent("source", "update", id, code);
+      ctx.evaluate(code).then(function(res) { 
+        Object.keys(res).forEach(function(k) {
+          var it = res[k];
+          if (typeof it.setLogger === 'function') it = it.setLogger(function(o) { 
+            if (o.event == "completed") handleCompletedEvent(o);
+            logEvent("interactive", o.event, o.id, o.data);
+          });
+          if (typeof it.show === 'function') {
+            if (completed) it.setInteractive(false).show("thegamma-" + id + "-out");
+            else it.show("thegamma-" + id + "-out");
+          }
+        });
+      });
+      
+      if (info.editors) {
+        // Type check the source code & get result (as a JS promise)
+        ctx.check(code).then(function(res) {
+          if (res.wellTyped) {
+            // If type checking succeeded, get all 'syntactic entities' in the typed code,
+            // find all placeholders and generate <select> options for each placeholder
+            res.getEntities()
+              .filter(function(ent) { return ent.kind == "placeholder"; })
+              .forEach(function(place) {
+                var html = "";
+                // Get the name of the selected member and other possible members
+                // e.g. given `foo.[p:bar]`, selected will be "bar" and members
+                // will be all other members that are available in `foo.<here>`
+                var selected = place.getChildren()[0].getChildren()[1];
+                place.getChildren()[0].getChildren()[0].type.members
+                  .filter(function(m) { return m != "preview"; })
+                  .forEach(function(m) {
+                    var sel = m == selected.name ? " selected" : "";
+                    html += "<option value='" + m + "'" + sel + ">" + m + "</option>";
+                  });
+
+                // Set elements of the drop down. When selection changes,
+                // replace the placeholder in the source code with a new one.
+                var drop = document.getElementById(info.editors + "-" + place.name);
+                drop.onchange = function() {
+                  var newCode = code.substr(0, place.range.start) +
+                    "[" + place.name + ":'" + drop.value + "']" +
+                    code.substr(place.range.end + 1);
+                  logEvent("source", "select", id, {"placeholder":place.name, "value":drop.value});
+                  setSource(newCode, true, false);
+                };
+                drop.innerHTML = html;
+              });
+          }
+        });
+      }
+    }
+
+    // Get and run default code, setup update handler
+    setSourceLookup[id] = setSource;
+    var code = document.getElementById(id + "-code").innerHTML;
+    setSource(code, false, false);
+  });
+}
+
 // When page loads - initialize all The Gamma visualizations
 function loadTheGamma() {
   require.config({
@@ -251,98 +426,10 @@ function loadTheGamma() {
         "olympics": g.providers.pivot(services + "pdata/olympics"),
         "expenditure": g.providers.rest("https://thegamma-govuk-expenditure-service.azurewebsites.net/expenditure") 
       });
-      
-    // Create context and setup error handler
-    var ctx = g.gamma.createContext(providers);
-    ctx.errorsReported(function (errs) {
-      var lis = errs.slice(0, 5).map(function (e) {
-        return "<li><span class='err'>error " + e.number + "</span>" +
-          "<span class='loc'>at line " + e.startLine + " col " + e.startColumn + "</span>: " +
-          e.message;
-      });
-      var ul = "<ul>" + lis + "</ul>";
-      document.getElementById("thegamma-errors").innerHTML = ul;
-    });
     
-    // Specify options and create the editor
-    var opts =
-      { height: document.getElementById("thegamma-sizer").clientHeight-115,
-        width: document.getElementById("thegamma-sizer").clientWidth-20,
-        monacoOptions: function(m) {
-          m.fontFamily = "Inconsolata";
-          m.fontSize = 15;
-          m.lineHeight = 20;
-          m.lineNumbers = false;
-        } };
-    editor = ctx.createEditor("thegamma-ed", "", opts);
-
-    // Go over all the visualizations as defined by 'var thegamma = [ .. ]' in the index.html file
-    thegamma.forEach(function (info) {
-      var id = info.id;
-
-      // Set source code, evalate it and generate options for <select> elements
-      // (only when there are placeholders and 'info.editors' is specified)
-      function setSource(code, log, completed) {
-        document.getElementById(id + "-code").innerHTML = code;
-        
-        if (log) logEvent("source", "update", id, code);
-        ctx.evaluate(code).then(function(res) { 
-          Object.keys(res).forEach(function(k) {
-            var it = res[k];
-            if (typeof it.setLogger === 'function') it = it.setLogger(function(o) { 
-              if (o.event == "completed") handleCompletedEvent(o);
-              logEvent("interactive", o.event, o.id, o.data);
-            });
-            if (typeof it.show === 'function') {
-              if (completed) it.setInteractive(false).show("thegamma-" + id + "-out");
-              else it.show("thegamma-" + id + "-out");
-            }
-          });
-        });
-        
-        if (info.editors) {
-          // Type check the source code & get result (as a JS promise)
-          ctx.check(code).then(function(res) {
-            if (res.wellTyped) {
-              // If type checking succeeded, get all 'syntactic entities' in the typed code,
-              // find all placeholders and generate <select> options for each placeholder
-              res.getEntities()
-                .filter(function(ent) { return ent.kind == "placeholder"; })
-                .forEach(function(place) {
-                  var html = "";
-                  // Get the name of the selected member and other possible members
-                  // e.g. given `foo.[p:bar]`, selected will be "bar" and members
-                  // will be all other members that are available in `foo.<here>`
-                  var selected = place.getChildren()[0].getChildren()[1];
-                  place.getChildren()[0].getChildren()[0].type.members
-                    .filter(function(m) { return m != "preview"; })
-                    .forEach(function(m) {
-                      var sel = m == selected.name ? " selected" : "";
-                      html += "<option value='" + m + "'" + sel + ">" + m + "</option>";
-                    });
-
-                  // Set elements of the drop down. When selection changes,
-                  // replace the placeholder in the source code with a new one.
-                  var drop = document.getElementById(info.editors + "-" + place.name);
-                  drop.onchange = function() {
-                    var newCode = code.substr(0, place.range.start) +
-                      "[" + place.name + ":'" + drop.value + "']" +
-                      code.substr(place.range.end + 1);
-                    logEvent("source", "select", id, {"placeholder":place.name, "value":drop.value});
-                    setSource(newCode, true, false);
-                  };
-                  drop.innerHTML = html;
-                });
-            }
-          });
-        }
-      }
-
-      // Get and run default code, setup update handler
-      setSourceLookup[id] = setSource;
-      var code = document.getElementById(id + "-code").innerHTML;
-      setSource(code, false, false);
-    });
+    evalSnippetsAndCreateEditor(g.gamma.createContext(providers));
+    if (document.getElementById("explore-ed"))
+      createExploreEditor(g.gamma.createContext(providers));
   });
 }
 
