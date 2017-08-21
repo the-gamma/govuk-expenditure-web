@@ -309,6 +309,56 @@ function createExploreEditor(ctx) {
   };
 }
 
+function createSimpleEditor(ctx) {
+  ctx.errorsReported(function (errs) {
+    var lis = errs.slice(0, 5).map(function (e) {
+      return "<li><span class='err'>error " + e.number + "</span>" +
+        "<span class='loc'>at line " + e.startLine + " col " + e.startColumn + "</span>: " +
+        e.message;
+    });
+    var ul = "<ul>" + lis + "</ul>";
+    document.getElementById("simple-ed-errors").innerHTML = ul;
+  });
+
+  var opts =
+    { autoHeight: true,
+      monacoOptions: function(m) {
+        m.fontFamily = "Inconsolata";
+        m.fontSize = 16;
+        m.lineHeight = 20;
+        m.lineNumbers = false;
+      } };
+
+  var code = document.getElementById("simple-demo").innerHTML;
+  ctx.evaluate(code, "simple-out");
+  
+  var editor = ctx.createEditor("simple-ed", code, opts);
+  var changing = false;
+  var changingLogTimer = -1;
+  editor.getMonacoEditor().onDidChangeModelContent(function() {
+    if (changing) return;
+    if (changingLogTimer != -1) clearTimeout(changingLogTimer);
+    changingLogTimer = setTimeout(function() {
+      var id = document.getElementById("simple-samples").value;
+      logEvent("explore", "code", id, {"code":editor.getValue()});
+    }, 5000);
+  })
+  
+  // Get editor text and run it on the main page
+  var okbtn = document.getElementById('simple-ok');
+  okbtn.onclick = function() { 
+    code = editor.getValue();
+    logEvent("explore", "run", "", {"code":code});
+    ctx.evaluate(code, "simple-out");
+    if (!code.endsWith(" ")) {
+      changing = true; editor.setValue(code + " "); changing = false; 
+    }
+    
+    var lines = code.trim().split(/\r\n|\r|\n/);
+    editor.getMonacoEditor().setPosition({column:lines[lines.length-1].trimRight().length+1,lineNumber:lines.length+1});
+  };
+}
+
 function evalSnippetsAndCreateEditor(ctx) {
   ctx.errorsReported(function (errs) {
     var lis = errs.slice(0, 5).map(function (e) {
@@ -345,11 +395,11 @@ function evalSnippetsAndCreateEditor(ctx) {
       ctx.evaluate(code).then(function(res) { 
         Object.keys(res).forEach(function(k) {
           var it = res[k];
-          if (typeof it.setLogger === 'function') it = it.setLogger(function(o) { 
+          if (it && typeof it.setLogger === 'function') it = it.setLogger(function(o) { 
             if (o.event == "completed") handleCompletedEvent(o);
             logEvent("interactive", o.event, o.id, o.data);
           });
-          if (typeof it.show === 'function') {
+          if (it && typeof it.show === 'function') {
             if (completed) it.setInteractive(false).show("thegamma-" + id + "-out");
             else it.show("thegamma-" + id + "-out");
           }
@@ -415,6 +465,7 @@ function loadTheGamma() {
         "worldbank": g.providers.rest(services + "worldbank"),
         "libraries": g.providers.library(theGammaRoot + "/libraries.json"),
         "shared": g.providers.rest(gallery + "providers/listing", null, true),
+        "web": g.providers.rest(gallery + "providers/data"),
         
         // Turing 2016/2017
         "people": g.providers.pivot(gallery + "providers/csv/2017-07-22/file_0.csv"),
@@ -431,6 +482,8 @@ function loadTheGamma() {
     evalSnippetsAndCreateEditor(g.gamma.createContext(providers));
     if (document.getElementById("explore-ed"))
       createExploreEditor(g.gamma.createContext(providers));
+    if (document.getElementById("simple-ed"))
+      createSimpleEditor(g.gamma.createContext(providers));
   });
 }
 

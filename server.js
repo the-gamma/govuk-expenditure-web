@@ -9,7 +9,7 @@ var exposedNodeModules = [
   '/node_modules/thegamma-script',
   '/node_modules/babel-standalone' ];
 var exposedDirs = [
-  'img', 'lib', 'expenditure', 'playground', 
+  'img', 'lib', 'expenditure', 'playground', 'markets',
   'carbon', 'turing-report' ];
   
 for(var i=0; i<exposedNodeModules.length; i++) {

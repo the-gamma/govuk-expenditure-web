@@ -53,7 +53,20 @@ body {
   background:#38B738;
   z-index:-1;
 }
-
+#trig1purple:after{
+  height:50vw;
+  width:100vw;
+  position:absolute;
+  left:17vw;
+  top:-42vw;
+  z-ms-transform:skew(20deg,0deg);
+  z-webkit-transform:skew(20deg,0deg);
+  transform:rotate(10deg) skew(-40deg,0deg);
+  content:'';
+  display:block;
+  background:#9D30CC;
+  z-index:-1;
+}
 footer {
   color:#a0a0a0;
   background:#e8e8e8;
@@ -118,6 +131,7 @@ article p.small {
 }
 article ul {
   margin:0px 0px 25px 0px;
+  padding:0px 0px 0px 30px;
 }
 article li {
   font-weight:400;
@@ -135,6 +149,23 @@ article p small {
 article code {
   background:transparent;
 }
+@media only screen and (max-width : 560px) {
+  article table th {
+    display:none;
+  }
+  article table tr td:first-child {
+    font-weight:bold;
+  }
+  article table tr {
+    width:100%;
+    display:block;
+  }
+  article table td {
+    display: inline-block;
+    width:100%;
+  }
+}
+
 
 .redlinks footer a, .redlinks article a {
   color:#E4003C;
