@@ -20,7 +20,7 @@ for(var i=0; i<exposedDirs.length; i++) {
   var dir = exposedDirs[i];
   app.use('/' + dir, express.static(__dirname + '/web/' + dir));
 }
-app.get('/', function(_, res) { res.redirect('/expenditure'); })
+app.get('/', function(_, res) { res.sendFile(__dirname + '/web/index.html'); })
 app.listen(port);
 
 console.log('Listening on port: ', port);

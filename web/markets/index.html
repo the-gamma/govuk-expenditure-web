@@ -3,9 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <!--
-  <title>Accounting for democracy | The Alan Turing Institute</title>
--->
+  <title>Expected and Unexpected | The Alan Turing Institute</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
@@ -18,60 +16,66 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon-big.png">
-  <!--
+
   <meta name="msapplication-TileColor" content="#3D46FF">
   <meta name="msapplication-TileImage" content="/img/favicon-big.png">
   <meta name="theme-color" content="#00202D">    
   
-  <meta name="description" content="Can you guess how the UK government spends money on public services? 
-    You can find the answers in this interactive article, but we let you go even further and 
-    explore the UK government spending data on your own." />
-  <meta name="keywords" content="government, spending, turing institute, thegamma, data journalism, data science" />  
-  <meta name="author" content="May Yong and Tomas Petricek" />
+  <meta name="description" content="Deciding what events affect the financial markets can sometimes 
+    be easy. The fact that the value of Pound dropped following Brexit is likely a causation. The 
+    fact that the value of Pound went up following the return of the astronaut Tim Peake is certainly 
+    a pure coincidence. Sometimes, making a good guess can be a lot harder. For example, would Brexit 
+    affect the FTSE index? In this article, you get to make your guess!" />
+  <meta name="keywords" content="market, brexit, financial crisis, turing institute, thegamma, data journalism, data science" />  
+  <meta name="author" content="Tomas Petricek and May Yong" />
   <meta name="copyright" content="Tha Alan Turing Institute" />
   
-  <meta property="og:title" content="Accounting for democracy" />
+  <meta property="og:title" content="Expected and Unexpected" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="http://gamma.turing.ac.uk/expenditure/" />
-  <meta property="og:image" content="http://thegamma-turing-web.azurewebsites.net/expenditure/card.png" />
-  <meta property="og:description" content="Can you guess how the UK government spends money on public services? 
-    You can find the answers in this interactive article, but we let you go even further and 
-    explore the UK government spending data on your own." />
+  <meta property="og:url" content="http://gamma.turing.ac.uk/markets/" />
+  <meta property="og:image" content="http://thegamma-turing-web.azurewebsites.net/markets/card.png" />
+  <meta property="og:description" content="Deciding what events affect the financial markets can sometimes 
+    be easy. The fact that the value of Pound dropped following Brexit is likely a causation. The 
+    fact that the value of Pound went up following the return of the astronaut Tim Peake is certainly 
+    a pure coincidence. Sometimes, making a good guess can be a lot harder. For example, would Brexit 
+    affect the FTSE index? In this article, you get to make your guess!" />
   
   <meta name="twitter:card" content="summary_large_image">  
   <meta name="twitter:site" content="@thegamma_net">
   <meta name="twitter:creator" content="@thegamma_net">  
-  <meta name="twitter:title" content="Accounting for democracy" />
-  <meta name="twitter:image" content="http://thegamma-turing-web.azurewebsites.net/expenditure/card.png" />
-  <meta name="twitter:description" content="Can you guess how the UK government spends money on public services? 
-    You can find the answers in this interactive article, but we let you go even further and 
-    explore the UK government spending data on your own." />
+  <meta name="twitter:title" content="Expected and Unexpected" />
+  <meta name="twitter:image" content="http://thegamma-turing-web.azurewebsites.net/markets/card.png" />
+  <meta name="twitter:description" content="Deciding what events affect the financial markets can sometimes 
+    be easy. The fact that the value of Pound dropped following Brexit is likely a causation. The 
+    fact that the value of Pound went up following the return of the astronaut Tim Peake is certainly 
+    a pure coincidence. Sometimes, making a good guess can be a lot harder. For example, would Brexit 
+    affect the FTSE index? In this article, you get to make your guess!" />
     
   <script type="application/ld+json">
   {
   	"@context": "http:\/\/schema.org",
   	"@type": "Article",
-  	"name": "Accounting for democracy",
-    "headline": "Can you guess how the UK government spends money on public services?",
-  	"description": "You can find the answers in this interactive article, but we let you go even further and explore the UK government spending data on your own.",
-  	"url": "http://gamma.turing.ac.uk/expenditure/",
+  	"name": "Expected and Unexpected",
+    "headline": "Can you guess whatevents affect the financial markets?",
+  	"description": "The fact that the value of Pound dropped following Brexit is likely a causation. The fact that the value of Pound went up following the return of the astronaut Tim Peake is certainly a pure coincidence. Sometimes, making a good guess can be a lot harder. For example, would Brexit affect the FTSE index? In this article, you get to make your guess!",
+  	"url": "http://gamma.turing.ac.uk/markets/",
   	"author": [{
-  		"@type": "Person",
-  		"name": "May Yong"
-  	}, {
-  		"@type": "Person",
+      "@type": "Person",
   		"name": "Tomas Petricek",
   		"url": "http://tomasp.net",
   		"sameAs": ["http://twitter.com/tomaspetricek"]
+  	}, {
+      "@type": "Person",
+  		"name": "May Yong"
   	}],
   	"creator": ["Tomas Petricek"],
-  	"dateCreated": "2017-06-16T13:27:17.4779884+01:00",
-  	"datePublished": "2017-06-16T13:27:17.4779884+01:00",
-    "dateModified": "2017-06-16T13:27:17.4779884+01:00",
-    "mainEntityOfPage": "http://gamma.turing.ac.uk/expenditure/",
-  	"image": "http://thegamma-turing-web.azurewebsites.net/expenditure/card.png",
-  	"thumbnailUrl": "http://thegamma-turing-web.azurewebsites.net/expenditure/card.png",
-  	"keywords": ["government", "spending", "turing institute", "thegamma", "data journalism", "data science"],
+  	"dateCreated": "2017-12-13T13:27:17.4779884+01:00",
+  	"datePublished": "2017-12-13T13:27:17.4779884+01:00",
+    "dateModified": "2017-12-13T13:27:17.4779884+01:00",
+    "mainEntityOfPage": "http://gamma.turing.ac.uk/markets/",
+  	"image": "http://thegamma-turing-web.azurewebsites.net/markets/card.png",
+  	"thumbnailUrl": "http://thegamma-turing-web.azurewebsites.net/markets/card.png",
+  	"keywords": ["financial crisis", "markets", "brexit", "turing institute", "thegamma", "data journalism", "data science"],
   	"inLanguage": "en-us",
   	"publisher": {
   		"@type": "Organization",
@@ -81,7 +85,6 @@
   	}
   }  
   </script>    
--->
   <script type="text/javascript">
     var thegamma = [];
   </script>
@@ -94,15 +97,15 @@
     <div class="col-sm-10 col-lg-8">
       <h1>The Alan Turing Institute<br/><em>Expected and unexpected</em></h1>
       <p class="article-info-sm">
-        <a target="_blank" href="https://twitter.com/intent/tweet?url=http%3a%2f%2fgamma.turing.ac.uk%2fexpenditure&amp;text=Accounting+for+democracy+-+Interactive+%23dataviz+using+%40thegamma_net+by+%40turinginst+%23ddj">
+        <a target="_blank" href="https://twitter.com/intent/tweet?url=http%3a%2f%2fgamma.turing.ac.uk%2fmarkets&amp;text=Expected+and+Unexpected+-+Interactive+%23dataviz+using+%40thegamma_net+by+%40turinginst+%23ddj">
           <i class="fa fa-twitter-square"></i></a>
-        <a target="_blank" href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fgamma.turing.ac.uk%2fexpenditure">
+        <a target="_blank" href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fgamma.turing.ac.uk%2fmarkets">
           <i class="fa fa-facebook-official"></i></a>
-        <a href="mailto:?subject=Accounting%20for%20democracy%20%7c%20The%20Alan%20Turing%20Institute&body=See%3a%20http%3a%2f%2fgamma.turing.ac.uk%2fexpenditure">
+        <a href="mailto:?subject=Expected%20and%20Unexpected%20%7c%20The%20Alan%20Turing%20Institute&body=See%3a%20http%3a%2f%2fgamma.turing.ac.uk%2fmarkets">
           <i class="fa fa-envelope"></i></a>
-        <a href="http://www.reddit.com/submit?url=http%3a%2f%2fgamma.turing.ac.uk%2fexpenditure&title=Accounting+for+democracy+%7c+The+Alan+Turing+Institute">
+        <a href="http://www.reddit.com/submit?url=http%3a%2f%2fgamma.turing.ac.uk%2fmarkets&title=Expected+and+Unexpected+%7c+The+Alan+Turing+Institute">
           <i class="fa fa-reddit-square"></i></a>
-        <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgamma.turing.ac.uk%2fexpenditure&t=Accounting%20for%20democracy%20-%20The%20Alan%20Turing%20Institute">
+        <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgamma.turing.ac.uk%2fmarkets&t=Expected%20and%20Unexpected%20-%20The%20Alan%20Turing%20Institute">
           <i class="fa fa-hacker-news"></i></a>
       </p>
       <p>
