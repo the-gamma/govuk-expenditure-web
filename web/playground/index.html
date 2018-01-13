@@ -113,7 +113,8 @@ compost.charts.lines([china,usa])
           "shared": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/listing"),
           "expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure"),
           "videos": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-12/file_8.csv"),
-          "views": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-29/file_3.csv")
+          "views": g.providers.pivot("https://gallery-csv-service.azurewebsites.net/providers/csv/2017-05-29/file_3.csv"),
+          "web": g.providers.rest("https://gallery-csv-service.azurewebsites.net/providers/data")
         });
           
       // Create context which is used to create editor & run code
