@@ -39,10 +39,10 @@ function logEvent(category, evt, id, data) {
       "time":(new Date()).toISOString(),
       "url":window.location.toString(),
       "element": id, "category": category, "event": evt, "data": data };
-  
+
   pendingEvents.push(JSON.stringify(logObj));
   if (logTimer != -1) clearTimeout(logTimer);
-  logTimer = setTimeout(writeLog, 1000);  
+  logTimer = setTimeout(writeLog, 1000);
 }
 
 // ----------------------------------------------------------------------------------------
@@ -51,13 +51,13 @@ function logEvent(category, evt, id, data) {
 
 function pairwiseDifference(o1, o2, op) {
   var res = 0;
-  Object.keys(o1).forEach(function(k) { 
+  Object.keys(o1).forEach(function(k) {
     res = op(res, o1[k] - o2[k]);
   });
-  return res;    
+  return res;
 }
 
-function makeDictionary(arr) { 
+function makeDictionary(arr) {
   var o = {};
   arr.forEach(function(v) { o[v[0]] = v[1]; });
   return o;
@@ -66,31 +66,31 @@ function makeDictionary(arr) {
 function scoreBars(maxError) {
   return function(guess, values) {
     function add(a, b) { return a + Math.abs(b); }
-    return 1 - (Math.sqrt(pairwiseDifference(guess, values, add)) / Math.sqrt(maxError));  
+    return 1 - (Math.sqrt(pairwiseDifference(guess, values, add)) / Math.sqrt(maxError));
   }
 }
 
 function scoreSortBars(maxError) {
   return function(guess, values) {
     function add(a, b) { return a + Math.abs(b); }
-    return 1 - (pairwiseDifference(guess, values, add) / maxError);  
+    return 1 - (pairwiseDifference(guess, values, add) / maxError);
   }
 }
 
 function scoreLine(cutoff, minError, maxError) {
   return function(guess, values) {
-    function add(a, b) { 
+    function add(a, b) {
       var bb = Math.abs(b) > cutoff ? cutoff + Math.sqrt(Math.abs(b)) : Math.abs(b);
       return a + bb * bb; }
     return 1 - (((pairwiseDifference(guess, values, add) / Object.keys(guess).length) - minError) / (maxError - minError));
   }
 }
 
-var scoring = 
-  { "thegamma-people-role-out": { title:"People", f:scoreBars(500) }, 
+var scoring =
+  { "thegamma-people-role-out": { title:"People", f:scoreBars(500) },
     "thegamma-people-uni-out": { title:"Universities", f:scoreBars(170) },
     "thegamma-youtube-views-out": { title:"Views", f:scoreLine(5,75,300) },
-    "thegamma-youtube-videos-out": { title:"Videos", f:scoreSortBars(6000) },    
+    "thegamma-youtube-videos-out": { title:"Videos", f:scoreSortBars(6000) },
     "thegamma-events-attend-kind-out": { title:"Events", f:scoreBars(12000) },
     "thegamma-events-selected-out": { title:"Lectures", f:scoreSortBars(320) } }
 
@@ -122,14 +122,14 @@ function updateScoreTable() {
 }
 
 function resetGame() {
-  logEvent("game", "reset", "", "");  
+  logEvent("game", "reset", "", "");
   Object.keys(scoring).forEach(function(id) {
     scoring[id].score = undefined;
     var id = id.substr(9, id.length-13);
     var code = document.getElementById(id + "-code").innerHTML;
     setSourceLookup[id](code, false, false);
   });
-  updateScoreTable();  
+  updateScoreTable();
   showScore();
 }
 function dontLikeGames() {
@@ -167,7 +167,7 @@ function switchDetails() {
 }
 
 function showScore() {
-  if (open) return;  
+  if (open) return;
   open = true;
   var el = document.getElementById("game-details");
   el.style.maxHeight = "170px";
@@ -189,7 +189,7 @@ var roots =
   (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1") ?
   ["/node_modules/monaco-editor/min/vs", "/node_modules/thegamma-script/dist"] :
   ["https://thegamma.net/lib/thegamma-0.1/vs", "https://thegamma.net/lib/thegamma-0.1"];
-  
+
 var vsRoot = roots[0];
 var theGammaRoot = roots[1];
 var editor;
@@ -199,17 +199,17 @@ var lastId;
 // We're not using any framework here (to keep it self-contained),
 // so the following implements simple dialog boxes for showing the code.
 function openDialog(id) {
-  logEvent("dialog", "open", id, "");  
+  logEvent("dialog", "open", id, "");
   var code = document.getElementById(id + "-code").innerHTML;
   editor.setValue(code);
   lastId = id;
-    
+
   document.getElementById("thegamma-update").onclick = function() {
     setSourceLookup[id](editor.getValue(), true);
     closeDialog();
     return false;
   }
-  
+
   document.getElementById("thegamma-dialog").style.display="block";
   setTimeout(function() {
     document.getElementById("thegamma-dialog").style.opacity=1;
@@ -259,7 +259,7 @@ function createExploreEditor(ctx) {
       logEvent("explore", "code", id, {"code":editor.getValue()});
     }, 5000);
   })
-  
+
   function loadSource(code) {
     var lines = code.trim().split(/\r\n|\r|\n/);
     changing = true;
@@ -271,18 +271,18 @@ function createExploreEditor(ctx) {
     changing = false;
   }
   loadSource(code);
-  
+
   // Get editor text and run it on the main page
   var editorMode = true;
   var okbtn = document.getElementById('explore-ok');
-  okbtn.onclick = function() { 
-    editorMode = !editorMode;    
+  okbtn.onclick = function() {
+    editorMode = !editorMode;
     if (editorMode) {
       logEvent("explore", "edit", "", "");
-      okbtn.innerText = "Run and show"; 
+      okbtn.innerText = "Run and show";
       document.getElementById('explore-ed-wrapper').style.display = "block";
       document.getElementById('explore-out-wrapper').style.display = "none";
-    } else { 
+    } else {
       okbtn.innerText = "Edit source code";
       document.getElementById('explore-ed-wrapper').style.display = "none";
       document.getElementById('explore-out-wrapper').style.display = "block";
@@ -291,15 +291,15 @@ function createExploreEditor(ctx) {
       ctx.evaluate(code, "explore-out");
     }
   };
-  
+
   var samples = "<option>Open sample visualization...</option>";
-  thegamma.forEach(function (info) { 
+  thegamma.forEach(function (info) {
     if (info.title) samples += "<option value='" + info.id + "-code'>" + info.title + "</option>"; });
   document.getElementById("explore-samples").innerHTML = samples;
-  
+
   document.getElementById("explore-samples").onchange = function() {
     var id = document.getElementById("explore-samples").value;
-    logEvent("explore", "select", id, "");  
+    logEvent("explore", "select", id, "");
     if (id != null && id != "") {
       var code = document.getElementById(id).innerHTML;
       loadSource(code);
@@ -331,7 +331,7 @@ function createSimpleEditor(ctx) {
 
   var code = document.getElementById("simple-demo").innerHTML;
   ctx.evaluate(code, "simple-out");
-  
+
   var editor = ctx.createEditor("simple-ed", code, opts);
   var changing = false;
   var changingLogTimer = -1;
@@ -343,17 +343,17 @@ function createSimpleEditor(ctx) {
       logEvent("explore", "code", id, {"code":editor.getValue()});
     }, 5000);
   })
-  
+
   // Get editor text and run it on the main page
   var okbtn = document.getElementById('simple-ok');
-  okbtn.onclick = function() { 
+  okbtn.onclick = function() {
     code = editor.getValue();
     logEvent("explore", "run", "", {"code":code});
     ctx.evaluate(code, "simple-out");
     if (!code.endsWith(" ")) {
-      changing = true; editor.setValue(code + " "); changing = false; 
+      changing = true; editor.setValue(code + " "); changing = false;
     }
-    
+
     var lines = code.trim().split(/\r\n|\r|\n/);
     editor.getMonacoEditor().setPosition({column:lines[lines.length-1].trimRight().length+1,lineNumber:lines.length+1});
   };
@@ -369,7 +369,7 @@ function evalSnippetsAndCreateEditor(ctx) {
     var ul = "<ul>" + lis + "</ul>";
     document.getElementById("thegamma-errors").innerHTML = ul;
   });
-  
+
   // Specify options and create the editor
   var opts =
     { height: document.getElementById("thegamma-sizer").clientHeight-115,
@@ -390,12 +390,12 @@ function evalSnippetsAndCreateEditor(ctx) {
     // (only when there are placeholders and 'info.editors' is specified)
     function setSource(code, log, completed) {
       document.getElementById(id + "-code").innerHTML = code;
-      
+
       if (log) logEvent("source", "update", id, code);
-      ctx.evaluate(code).then(function(res) { 
+      ctx.evaluate(code).then(function(res) {
         Object.keys(res).forEach(function(k) {
           var it = res[k];
-          if (it && typeof it.setLogger === 'function') it = it.setLogger(function(o) { 
+          if (it && typeof it.setLogger === 'function') it = it.setLogger(function(o) {
             if (o.event == "completed") handleCompletedEvent(o);
             logEvent("interactive", o.event, o.id, o.data);
           });
@@ -405,7 +405,7 @@ function evalSnippetsAndCreateEditor(ctx) {
           }
         });
       });
-      
+
       if (info.editors) {
         // Type check the source code & get result (as a JS promise)
         ctx.check(code).then(function(res) {
@@ -466,19 +466,20 @@ function loadTheGamma() {
         "libraries": g.providers.library(theGammaRoot + "/libraries.json"),
         "shared": g.providers.rest(gallery + "providers/listing", null, true),
         "web": g.providers.rest(gallery + "providers/data"),
-        
+
         // Turing 2016/2017
         "people": g.providers.pivot(gallery + "providers/csv/2017-07-22/file_0.csv"),
         "views": g.providers.pivot(gallery + "providers/csv/2017-07-21/file_5.csv"),
         "videos": g.providers.pivot(gallery + "providers/csv/2017-05-29/file_1.csv"),
         "events": g.providers.pivot(gallery + "providers/csv/2017-07-03/file_2.csv"),
         "papers": g.providers.pivot(gallery + "providers/csv/2017-07-04/file_0.csv"),
-        
+
         // shared.'by date'.'May 2017'.'The Alan Turing Institute People (7 May 2017)'
         "olympics": g.providers.pivot(services + "pdata/olympics"),
-        "expenditure": g.providers.rest("https://thegamma-govuk-expenditure-service.azurewebsites.net/expenditure") 
+        "expenditure": g.providers.rest("https://govuk-expenditure.azurewebsites.net/expenditure"),
+        "drwho": g.providers.rest("https://thegamma-graph-service.azurewebsites.net/drWho")
       });
-    
+
     evalSnippetsAndCreateEditor(g.gamma.createContext(providers));
     if (document.getElementById("explore-ed"))
       createExploreEditor(g.gamma.createContext(providers));
@@ -494,7 +495,7 @@ function initTheGamma() {
     if (info.inline) {
       el.innerHTML =
         ("<a href='javascript:openDialog(\"[ID]\")' title='Click here to see the calculation behind the number.' " +
-            "class='thegamma-inline' id='thegamma-[ID]-out'>(...)</a>").replace(/\[ID\]/g, info.id);      
+            "class='thegamma-inline' id='thegamma-[ID]-out'>(...)</a>").replace(/\[ID\]/g, info.id);
     } else {
       el.innerHTML =
         ("<div class='thegamma-edit'><a href='javascript:openDialog(\"[ID]\")'><i class='fa fa-code'></i> open source code</a></div>" +
@@ -503,7 +504,7 @@ function initTheGamma() {
       }
   });
   loadTheGamma();
-  
+
   logStarted = true;
   logEvent("page", "loaded", "", window.navigator.userAgent);
 }
@@ -519,7 +520,7 @@ if (!thegammaInit) {
 }
 
 var lastWinWidth = window.innerWidth;
-window.onresize = function() { 
+window.onresize = function() {
   var w = window.innerWidth;
   if (lastWinWidth != w) {
     lastWinWidth = w;
