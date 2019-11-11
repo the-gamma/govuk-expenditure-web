@@ -50,6 +50,17 @@ compost.charts.lines([china,usa])
   .setTitle("Total CO2 emissions")
   .setLegend("right")
 </script>
+<script id="drwho" type="text/thegamma">let topEnemies =
+  drwho.Character.Doctor
+    .'ENEMY_OF'.'[any]'.'APPEARED_IN'.'[any]'.'explore_properties'
+  .explore
+    .'group data'.'by 1-name'.'count distinct 2-name'.then
+    .'sort data'.'by 2-name descending'.then
+    .paging.take(8).'get series'.'with key 1-name'.'and value 2-name'
+
+compost.charts.column(topEnemies)
+  .setTitle("Most frequent enemies of The Doctor")
+</script>
   <div id="trig"><div id="trig1green"></div></div>
   <article class="container">
 
@@ -81,6 +92,7 @@ compost.charts.lines([china,usa])
           <option>Open sample visualization...</option>
           <option value="worldbank">WorldBank: CO2 emissions of China and USA</option>
           <option value="rio2016">Olympics: Top medalists from Rio 2016</option>
+          <option value="drwho">Dr Who: Most common enemies of The Doctor</option>
         </select>
       </div>
     </div>
